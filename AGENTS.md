@@ -214,14 +214,14 @@ If the AI cannot confidently verify an important behavior without running the ap
 
 The AI should not take ownership of the user's normal development workflow unless the user explicitly asks it to do so.
 
-The user may run the project and perform browser, application, or environment-based verification.
+**10.1 Command Execution Rules:**
 
-The AI's required verification is primarily:
-
-- static inspection,
-- syntax correctness,
-- consistency with the existing code,
-- and checking for obvious implementation errors.
+- The AI MUST NOT run `npm run dev`, `npm run build`, `npm start`, or any equivalent server/build commands on its own. The user will handle checking the project in the browser and managing the development server.
+- The AI's required verification is primarily:
+  - static inspection,
+  - syntax correctness,
+  - consistency with the existing code,
+  - and checking for obvious implementation errors.
 
 Do not make unnecessary changes just to accommodate a local development environment.
 
