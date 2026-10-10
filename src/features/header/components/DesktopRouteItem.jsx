@@ -114,7 +114,7 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
             aria-label={`${isExpanded ? "Hide" : "Show"} ${route.title} subroutes`}
             aria-expanded={isExpanded}
             aria-controls={panelId}
-            className="flex cursor-pointer items-center justify-center p-2"
+            className="flex cursor-pointer items-center justify-center"
             onClick={() => setIsExpanded((open) => !open)}
           >
             <motion.span
