@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto flex flex-col items-center gap-7.5 border-t border-black/10 py-10 text-xs text-gold-700 transition-colors dark:border-paper/10 dark:text-gold-400 md:text-[15px] lg:py-15 lg:text-[17px]">
+    <footer className="mt-auto flex flex-col items-center gap-6.5 border-t border-black/10 py-10 text-xs text-gold-700 transition-colors dark:border-paper/10 dark:text-gold-400 md:text-[15px] lg:py-12 lg:text-[17px]">
       <div className="hidden lg:flex items-center justify-center gap-4">
         {DesktopFooterRoutes.map((route) => (
           <Link

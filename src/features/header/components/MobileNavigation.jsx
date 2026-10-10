@@ -41,7 +41,7 @@ function MobileRouteItem({ route, pathname, onNavigate }) {
 
   return (
     <motion.li
-      className={`cursor-pointer border-l-4 transition-colors duration-200 ${
+      className={`cursor-pointer border-l transition-colors duration-200 ${
         isActive
           ? "border-gold-400 bg-gold-500/15 font-semibold text-gold-600 dark:text-gold-400"
           : isChildActive

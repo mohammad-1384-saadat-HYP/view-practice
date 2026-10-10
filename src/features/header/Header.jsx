@@ -17,7 +17,7 @@ function DesktopRouteList({ routes }) {
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between border-b border-black/10 px-4 py-3.75 transition-colors dark:border-paper/20 lg:border-none lg:px-[150px] lg:py-5">
+    <header className="flex items-center justify-between border-b border-black/5 px-4 py-3.75 shadow-md shadow-black/5 transition-all dark:border-paper/10 dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.7)] lg:border-none lg:shadow-none lg:px-[150px] lg:py-5">
       <MobileNavigation />
       <div className="hidden lg:flex items-center gap-3.5">
         <div>

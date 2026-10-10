@@ -85,3 +85,32 @@
 - Files changed: `src/features/footer/Footer.jsx`.
 - Changes: Updated text colors from static `text-gold-400` to responsive `text-gold-700 dark:text-gold-400` for high contrast in light mode; added interactive hover transitions to all links and social buttons; replaced hardcoded divider colors with `currentColor` and gold opacity borders; added theme transitions and subtle top border (`border-t border-black/10 dark:border-paper/10`).
 - Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Make main tag in page.js stretch to full height so footer mt-auto aligns to bottom.
+- Files changed: `src/app/page.js`.
+- Changes: Added `flex min-h-full flex-1 flex-col` to `<main>` so it stretches to fill the body's full height and enables the column flex layout required for Footer's `mt-auto`. No files outside `app` were modified.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+- Task: Add elevation shadow and distinction border to Header.
+- Files changed: `src/features/header/Header.jsx`.
+- Changes: Added `shadow-md shadow-black/5` in light mode and `dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.7)]` with subtle border in dark mode to visually distinguish the Header from following page content across mobile and desktop.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Implement alternating fixed background sections on the Home page.
+- Files changed: `src/app/page.js`.
+- Changes:
+  - Structured the Home page into 6 sequential sections:
+    1. Section 1: Fixed background with Image 1 (`/5433d670a0ebb05b60950360c728a427.jpeg`), with `<Header />` rendered at the top without solid background, scrolling naturally out of view.
+    2. Section 2: Site theme background (`bg-paper dark:bg-black text-ink dark:text-paper`).
+    3. Section 3: Fixed background with Image 2 (`/5815532-3840x2160-desktop-hd-4k-wallpaper-image.jpg`).
+    4. Section 4: Site theme background (`bg-paper dark:bg-black`).
+    5. Section 5: Fixed background with Image 2 repeated.
+    6. Section 6: Site theme background transitioning into `<Footer />`.
+- Important decisions: Used pure CSS `bg-fixed bg-cover bg-center bg-no-repeat` for parallax backgrounds rather than `clip-path: inset(0)` or negative z-index overlays, preventing mobile drawer / dropdown truncation issues from CSS clipping stacking contexts.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings. Dev-server launch was not run per AGENTS.md rule 10.1.
+
+- Task: Set dark mode initial background image for Section 1 and retain light mode references commented out.
+- Files changed: `src/app/page.js`.
+- Changes:
+  - Updated Section 1's background image to the dark mountain wallpaper (`/2117697-3840x2160-desktop-4k-dark-wallpaper.jpg`) for both light and dark modes per user request.
+  - Kept the previous light mode image (`/5433d670a0ebb05b60950360c728a427.jpg`) and light mode configuration commented out so they can easily be re-enabled and replaced when the final light mode assets are provided.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
