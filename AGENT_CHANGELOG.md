@@ -81,4 +81,7 @@
   - Updated Tailwind v4 dark variant configuration with `@custom-variant dark (&:where(.dark, .dark *));`.
   - Added light and dark mode styles for desktop routes, mobile drawer, logo (`dark:invert`), and body background/text.
 - Verification: `npm run lint` passed with 0 errors and 0 warnings.
-
+- Task: Harmonize Footer with light and dark themes.
+- Files changed: `src/features/footer/Footer.jsx`.
+- Changes: Updated text colors from static `text-gold-400` to responsive `text-gold-700 dark:text-gold-400` for high contrast in light mode; added interactive hover transitions to all links and social buttons; replaced hardcoded divider colors with `currentColor` and gold opacity borders; added theme transitions and subtle top border (`border-t border-black/10 dark:border-paper/10`).
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
