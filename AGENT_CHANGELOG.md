@@ -56,3 +56,29 @@
 - Changes: The home page now imports the named Header export from `@/features/header`. Grouped header UI, desktop/mobile navigation components, and route data under the header feature; moved the existing footer and scroll-to-top placeholders into their own feature folders with public entry points. Replaced the duplicate inline desktop route list with the dedicated DesktopRouteItem component, fixing the undefined component reference.
 - Important decisions: Kept `app` focused on route composition, made Header a Server Component that composes its client components, and kept route data inside its owning feature. Preserved the existing desktop Link/button behavior; independent route navigation and disclosure remains mobile-only. Did not alter existing package/config/CSS/layout changes.
 - Verification: `npm run lint` passed; VS Code reported no errors. No production build was run, per project workflow instructions.
+
+## 2026-10-10
+
+- Task: Indicate current page in mobile navigation aside drawer and harmonize desktop header texts with black theme.
+- Files changed: `src/features/header/components/MobileNavigation.jsx`, `src/features/header/components/DesktopRouteItem.jsx`, `src/features/header/Header.jsx`.
+- Changes:
+  - In `MobileNavigation.jsx`: Added `usePathname` to determine the active route; styled active page items with a gold left accent bar (`border-gold-400`), subtle gold background tint (`bg-gold-500/15`), gold text (`text-gold-400`), an active dot indicator, and `aria-current="page"`; automatically expands parent categories when a child route is active.
+  - In `DesktopRouteItem.jsx` & `Header.jsx`: Harmonized desktop route text with `text-paper` to contrast with the black body theme; added `group-hover:text-ink` for high contrast against gold hover backgrounds; set dropdown menus to `bg-black text-paper border-gold-500`.
+- Important decisions: Kept changes strictly limited to Header navigation components without modifying unrelated files; avoided synchronous setState in effects by deriving state during render; preserved all existing animations and interactions.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings. Build/dev-server launch skipped per AGENTS.md rule 10.1.
+
+- Task: Indicate current page and active route hierarchy on desktop navigation.
+- Files changed: `src/features/header/components/DesktopRouteItem.jsx`.
+- Changes: Added `usePathname` and `hasActiveChild` detection; styled active root items with gold text (`text-gold-400 font-semibold`) and a bottom accent indicator bar (`h-0.5 bg-gold-400`); highlighted active subroutes in dropdown menus with gold left border (`border-gold-400`), gold tint background (`bg-gold-500/15`), gold text, and glowing dot indicator; added `aria-current="page"`.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Set default theme to light, add theme toggle icon, and synchronize with localStorage.
+- Files changed: `src/context/ThemeContext.jsx`, `src/features/header/components/ThemeToggle.jsx`, `src/features/header/Header.jsx`, `src/features/header/components/MobileNavigation.jsx`, `src/features/header/components/DesktopRouteItem.jsx`, `src/app/layout.js`, `src/app/globals.css`.
+- Changes:
+  - Created `ThemeContext` using `useSyncExternalStore` for flicker-free localStorage persistence, defaulting to light mode.
+  - Created `ThemeToggle` component featuring animated Sun/Moon icons with Motion.
+  - Reorganized `Header` to use flex layout: placed the logo Link and ThemeToggle within a container `div` (to the right of the site icon on mobile and on the left side of desktop); removed `absolute` positioning from the mobile burger button.
+  - Updated Tailwind v4 dark variant configuration with `@custom-variant dark (&:where(.dark, .dark *));`.
+  - Added light and dark mode styles for desktop routes, mobile drawer, logo (`dark:invert`), and body background/text.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
