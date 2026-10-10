@@ -3,6 +3,7 @@
 import { HeaderRoutes } from "../data/headerRoutes";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FaBars, FaCaretDown, FaTimes } from "react-icons/fa";
 
@@ -12,14 +13,41 @@ const submenuTransition = {
   opacity: { duration: 0.2, ease: "easeOut" },
 };
 
-function MobileRouteItem({ route, onNavigate }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+function hasActiveChild(route, currentPath) {
+  if (!route.subRoutes || !currentPath) return false;
+  return route.subRoutes.some(
+    (sub) => sub.path === currentPath || hasActiveChild(sub, currentPath)
+  );
+}
+
+function MobileRouteItem({ route, pathname, onNavigate }) {
+  const normalizedPathname =
+    pathname?.endsWith("/") && pathname !== "/"
+      ? pathname.slice(0, -1)
+      : pathname;
+  const isActive = normalizedPathname === route.path;
+  const isChildActive = hasActiveChild(route, normalizedPathname);
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  const [userExpanded, setUserExpanded] = useState(null);
+
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setUserExpanded(null);
+  }
+
+  const isExpanded = userExpanded ?? isChildActive;
   const hasSubRoutes = route.subRoutes?.length > 0;
   const submenuId = `mobile-subroutes-${route.path.replaceAll("/", "-")}`;
 
   return (
     <motion.li
-      className="cursor-pointer"
+      className={`cursor-pointer border-l-4 transition-colors duration-200 ${
+        isActive
+          ? "border-gold-400 bg-gold-500/15 font-semibold text-gold-600 dark:text-gold-400"
+          : isChildActive
+            ? "border-transparent text-gold-600/90 dark:text-gold-200/90"
+            : "border-transparent text-ink dark:text-paper"
+      }`}
       whileHover={{
         backgroundColor: "var(--color-gold-500)",
         color: "var(--color-ink)",
@@ -31,17 +59,24 @@ function MobileRouteItem({ route, onNavigate }) {
     >
       {hasSubRoutes ? (
         <div
-          className="flex items-center justify-between"
-          onClick={() => setIsExpanded((open) => !open)}
+          className="flex items-center justify-between px-2"
+          onClick={() => setUserExpanded(!isExpanded)}
         >
           <Link
             href={route.path}
-            className="group p-3"
+            aria-current={isActive ? "page" : undefined}
+            className="group flex items-center gap-2.5 p-3"
             onClick={(event) => {
               event.stopPropagation();
               onNavigate();
             }}
           >
+            {isActive && (
+              <span
+                className="size-2 shrink-0 rounded-full bg-gold-400 shadow-[0_0_8px_var(--color-gold-400)] transition-colors group-hover:bg-ink group-hover:shadow-none"
+                aria-hidden="true"
+              />
+            )}
             <span className="transition-colors duration-200 group-hover:text-ink">
               {route.title}
             </span>
@@ -66,12 +101,19 @@ function MobileRouteItem({ route, onNavigate }) {
       ) : (
         <Link
           href={route.path}
-          className="group flex min-h-12 items-center p-3"
+          aria-current={isActive ? "page" : undefined}
+          className="group flex min-h-12 items-center gap-2.5 py-3 px-5"
           onClick={(event) => {
             event.stopPropagation();
             onNavigate();
           }}
         >
+          {isActive && (
+            <span
+              className="size-2 shrink-0 rounded-full bg-gold-400 shadow-[0_0_8px_var(--color-gold-400)] transition-colors group-hover:bg-ink group-hover:shadow-none"
+              aria-hidden="true"
+            />
+          )}
           <span className="transition-colors duration-200 group-hover:text-ink">
             {route.title}
           </span>
@@ -85,12 +127,13 @@ function MobileRouteItem({ route, onNavigate }) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={submenuTransition}
-            className="ml-3 overflow-hidden border-l border-gold-300 pl-3"
+            className="ml-3 overflow-hidden border-l border-gold-500 pl-3"
           >
             {route.subRoutes.map((subRoute) => (
               <MobileRouteItem
                 key={subRoute.path}
                 route={subRoute}
+                pathname={pathname}
                 onNavigate={onNavigate}
               />
             ))}
@@ -102,6 +145,7 @@ function MobileRouteItem({ route, onNavigate }) {
 }
 
 export default function MobileNavigation() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const menuButtonRef = useRef(null);
   const closeButtonRef = useRef(null);
@@ -129,10 +173,10 @@ export default function MobileNavigation() {
         aria-label="Open navigation menu"
         aria-controls="mobile-navigation"
         aria-expanded={isOpen}
-        className="absolute left-4 top-1/2 flex size-10 -translate-y-1/2 cursor-pointer items-center justify-center text-ink lg:hidden"
+        className="flex size-8.5 cursor-pointer items-center justify-center text-ink transition-colors dark:text-paper lg:hidden"
         onClick={() => setIsOpen(true)}
       >
-        <FaBars aria-hidden="true" size={20} />
+        <FaBars aria-hidden="true" className="size-2/3" />
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -157,18 +201,18 @@ export default function MobileNavigation() {
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-y-0 left-0 z-50 flex w-[75vw] max-w-sm flex-col overflow-y-auto bg-paper p-2 text-ink shadow-2xl lg:hidden"
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="fixed inset-y-0 left-0 z-50 flex w-[75vw] max-w-sm flex-col overflow-y-auto bg-paper py-2 text-ink shadow-2xl transition-colors dark:bg-black dark:text-paper lg:hidden"
             >
-              <div className="mb-3 flex items-center justify-between border-b border-gold-200 pb-3">
+              <div className="mb-3 flex items-center justify-between border-b border-gold-500 pb-3 px-2">
                 <button
                   ref={closeButtonRef}
                   type="button"
                   aria-label="Close navigation menu"
-                  className="flex size-10 cursor-pointer items-center justify-center text-ink"
+                  className="flex size-10 cursor-pointer items-center justify-center text-ink transition-colors dark:text-paper"
                   onClick={closeMenu}
                 >
-                  <FaTimes aria-hidden="true" size={20} />
+                  <FaTimes aria-hidden="true" className="size-2/3" />
                 </button>
               </div>
               <nav aria-label="Mobile navigation">
@@ -177,6 +221,7 @@ export default function MobileNavigation() {
                     <MobileRouteItem
                       key={route.path}
                       route={route}
+                      pathname={pathname}
                       onNavigate={closeMenu}
                     />
                   ))}

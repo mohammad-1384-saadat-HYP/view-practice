@@ -1,11 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { FaCaretDown, FaCaretLeft } from "react-icons/fa";
 
-const hoverTransition = { backgroundColor: { duration: 0.18 } };
+const hoverTransition = {
+  backgroundColor: { duration: 0.18 },
+  color: { duration: 0.18 },
+};
 const iconTransition = { type: "spring", stiffness: 240, damping: 20 };
 
 const panelVariants = {
@@ -41,7 +45,21 @@ const panelVariants = {
   },
 };
 
+function hasActiveChild(route, currentPath) {
+  if (!route.subRoutes || !currentPath) return false;
+  return route.subRoutes.some(
+    (sub) => sub.path === currentPath || hasActiveChild(sub, currentPath)
+  );
+}
+
 export default function DesktopRouteItem({ route, isRoot = false }) {
+  const pathname = usePathname();
+  const normalizedPathname =
+    pathname?.endsWith("/") && pathname !== "/"
+      ? pathname.slice(0, -1)
+      : pathname;
+  const isActive = normalizedPathname === route.path;
+  const isChildActive = hasActiveChild(route, normalizedPathname);
   const [isExpanded, setIsExpanded] = useState(false);
   const hasSubRoutes = route.subRoutes?.length > 0;
   const panelDirection = isRoot ? "vertical" : "horizontal";
@@ -53,19 +71,41 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
 
   return (
     <motion.li
-      className="relative cursor-pointer"
+      className={`group/item relative cursor-pointer ${
+        !isRoot
+          ? isActive
+            ? "border-l-4 border-gold-400 bg-gold-500/15"
+            : "border-l-4 border-transparent"
+          : ""
+      }`}
       onHoverStart={() => hasSubRoutes && setIsExpanded(true)}
       onHoverEnd={() => hasSubRoutes && setIsExpanded(false)}
-      whileHover={{ backgroundColor: "var(--color-gold-500)" }}
+      whileHover={{
+        backgroundColor: "var(--color-gold-500)",
+        color: "var(--color-ink)",
+      }}
       transition={hoverTransition}
     >
       <Link
         href={route.path}
+        aria-current={isActive ? "page" : undefined}
         className={`group flex flex-1 cursor-pointer items-center p-2 ${
-          isRoot ? "gap-1" : "justify-between"
+          isRoot ? "gap-1" : "gap-2 justify-between"
+        } ${
+          isActive
+            ? "font-semibold text-gold-600 dark:text-gold-400"
+            : isChildActive
+              ? "text-gold-600 dark:text-gold-400"
+              : "text-ink dark:text-paper"
         }`}
       >
-        <span className="transition-colors duration-200 group-hover:text-paper">
+        <span className="flex items-center gap-2 transition-colors duration-200 group-hover:text-ink">
+          {!isRoot && isActive && (
+            <span
+              className="size-1.5 shrink-0 rounded-full bg-gold-400 shadow-[0_0_6px_var(--color-gold-400)] transition-colors group-hover:bg-ink group-hover:shadow-none"
+              aria-hidden="true"
+            />
+          )}
           {route.title}
         </span>
         {hasSubRoutes && (
@@ -83,11 +123,23 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
               animate={{ rotate: isExpanded ? 180 : 0 }}
               transition={iconTransition}
             >
-              <CaretIcon className="transition-colors duration-200 group-hover:text-paper" />
+              <CaretIcon
+                className={`transition-colors duration-200 group-hover:text-ink ${
+                  isActive || isChildActive
+                    ? "text-gold-600 dark:text-gold-400"
+                    : ""
+                }`}
+              />
             </motion.span>
           </button>
         )}
       </Link>
+      {isRoot && (isActive || isChildActive) && (
+        <span
+          className="absolute bottom-0 inset-x-1.5 h-0.5 rounded-full bg-gold-500 shadow-[0_0_6px_var(--color-gold-400)] transition-opacity group-hover/item:opacity-0 dark:bg-gold-400"
+          aria-hidden="true"
+        />
+      )}
       <AnimatePresence>
         {hasSubRoutes && isExpanded && (
           <motion.div
@@ -99,7 +151,7 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
             exit="exit"
             className={panelClassName}
           >
-            <ul className="flex w-max min-w-48 flex-col border border-gold-500 bg-paper">
+            <ul className="flex w-max min-w-48 flex-col border border-gold-500 bg-paper text-ink shadow-xl dark:bg-black dark:text-paper">
               {route.subRoutes.map((subRoute) => (
                 <DesktopRouteItem
                   key={subRoute.path}
