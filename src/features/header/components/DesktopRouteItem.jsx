@@ -89,13 +89,13 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
       <Link
         href={route.path}
         aria-current={isActive ? "page" : undefined}
-        className={`group flex flex-1 cursor-pointer items-center p-2 ${
+        className={`group flex flex-1 cursor-pointer items-center py-2 px-3 ${
           isRoot ? "gap-1" : "gap-2 justify-between"
         } ${
           isActive
-            ? "font-semibold text-gold-600 dark:text-gold-400"
+            ? "font-semibold text-gold-700 dark:text-gold-400"
             : isChildActive
-              ? "text-gold-600 dark:text-gold-400"
+              ? "text-gold-700 dark:text-gold-400"
               : "text-ink dark:text-paper"
         }`}
       >
@@ -126,7 +126,7 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
               <CaretIcon
                 className={`transition-colors duration-200 group-hover:text-ink ${
                   isActive || isChildActive
-                    ? "text-gold-600 dark:text-gold-400"
+                    ? "text-gold-700 dark:text-gold-400"
                     : ""
                 }`}
               />
@@ -151,7 +151,7 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
             exit="exit"
             className={panelClassName}
           >
-            <ul className="flex w-max min-w-48 flex-col border border-gold-500 bg-paper text-ink shadow-xl dark:bg-black dark:text-paper">
+            <ul className="flex w-max min-w-48 flex-col border border-gold-500/30 bg-paper text-ink shadow-xl dark:border-gold-500/30 dark:bg-night-950 dark:text-paper">
               {route.subRoutes.map((subRoute) => (
                 <DesktopRouteItem
                   key={subRoute.path}

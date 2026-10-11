@@ -9,13 +9,13 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto flex flex-col items-center gap-6.5 border-t border-black/10 py-10 text-xs text-gold-700 transition-colors dark:border-paper/10 dark:text-gold-400 md:text-[15px] lg:py-12 lg:text-[17px]">
-      <div className="hidden lg:flex items-center justify-center gap-4">
+    <footer className="mt-auto flex flex-col items-center gap-6.5 border-t border-night-200/60 py-10 text-xs text-gold-700 transition-colors dark:border-night-800/80 dark:text-gold-400 md:text-[15px] lg:py-12 lg:text-[17px]">
+      <div className="hidden lg:flex items-center justify-center gap-6">
         {DesktopFooterRoutes.map((route) => (
           <Link
             key={route.path}
             href={route.path}
-            className="transition-colors hover:text-gold-500 dark:hover:text-gold-200"
+            className="transition-colors hover:text-gold-600 dark:hover:text-gold-300"
           >
             {route.title}
           </Link>
@@ -28,7 +28,7 @@ export default function Footer() {
               <Link
                 key={route.path}
                 href={route.path}
-                className="transition-colors hover:text-gold-500 dark:hover:text-gold-200"
+                className="transition-colors hover:text-gold-600 dark:hover:text-gold-300"
               >
                 {route.title}
               </Link>
@@ -39,25 +39,25 @@ export default function Footer() {
       <div className="my-6.5 flex items-center justify-center gap-4">
         <div
           aria-label="Facebook"
-          className="flex size-6.5 cursor-pointer items-center justify-center rounded-full bg-gold-500 text-ink shadow-sm transition-transform hover:scale-110 dark:bg-gold-400 dark:text-black md:size-8 lg:size-9.5"
+          className="flex size-6.5 cursor-pointer items-center justify-center rounded-full bg-gold-500 text-ink shadow-sm transition-all hover:scale-110 hover:bg-gold-600 dark:bg-gold-400 dark:text-night-950 dark:hover:bg-gold-300 md:size-8 lg:size-9.5"
         >
           <FaFacebookF className="size-2/3" />
         </div>
         <div
           aria-label="WhatsApp"
-          className="flex size-6.5 cursor-pointer items-center justify-center rounded-full bg-gold-500 text-ink shadow-sm transition-transform hover:scale-110 dark:bg-gold-400 dark:text-black md:size-8 lg:size-9.5"
+          className="flex size-6.5 cursor-pointer items-center justify-center rounded-full bg-gold-500 text-ink shadow-sm transition-all hover:scale-110 hover:bg-gold-600 dark:bg-gold-400 dark:text-night-950 dark:hover:bg-gold-300 md:size-8 lg:size-9.5"
         >
           <FaWhatsapp className="size-2/3" />
         </div>
         <div
           aria-label="Instagram"
-          className="flex size-6.5 cursor-pointer items-center justify-center rounded-full bg-gold-500 text-ink shadow-sm transition-transform hover:scale-110 dark:bg-gold-400 dark:text-black md:size-8 lg:size-9.5"
+          className="flex size-6.5 cursor-pointer items-center justify-center rounded-full bg-gold-500 text-ink shadow-sm transition-all hover:scale-110 hover:bg-gold-600 dark:bg-gold-400 dark:text-night-950 dark:hover:bg-gold-300 md:size-8 lg:size-9.5"
         >
           <FaInstagram className="size-2/3" />
         </div>
         <div
           aria-label="Twitter"
-          className="flex size-6.5 cursor-pointer items-center justify-center rounded-full bg-gold-500 text-ink shadow-sm transition-transform hover:scale-110 dark:bg-gold-400 dark:text-black md:size-8 lg:size-9.5"
+          className="flex size-6.5 cursor-pointer items-center justify-center rounded-full bg-gold-500 text-ink shadow-sm transition-all hover:scale-110 hover:bg-gold-600 dark:bg-gold-400 dark:text-night-950 dark:hover:bg-gold-300 md:size-8 lg:size-9.5"
         >
           <FaTwitter className="size-2/3" />
         </div>
@@ -76,17 +76,17 @@ export default function Footer() {
           href="https://github.com/mohammad-1384-saadat-HYP?tab=repositories"
           target="_blank"
           rel="noopener noreferrer"
-          className="transition-colors hover:text-gold-500 hover:underline dark:hover:text-gold-200"
+          className="transition-colors hover:text-gold-600 hover:underline dark:hover:text-gold-300"
         >
           github.com/mohammad-1384-saadat-HYP
         </a>
       </div>
-      <span className="block h-px w-2/3 bg-gold-500/60 dark:bg-gold-500/70 md:w-1/2 lg:w-4/5"></span>
+      <span className="block h-px w-2/3 bg-gold-500/50 dark:bg-gold-400/50 md:w-1/2 lg:w-4/5"></span>
       <a
         href="https://github.com/mohammad-1384-saadat-HYP?tab=repositories"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6.5 text-base font-medium transition-colors hover:text-gold-500 hover:underline dark:hover:text-gold-200 md:text-lg lg:text-[20px]"
+        className="mt-6.5 text-base font-medium transition-colors hover:text-gold-600 hover:underline dark:hover:text-gold-300 md:text-lg lg:text-[20px]"
       >
         github.com/mohammad-1384-saadat-HYP
       </a>

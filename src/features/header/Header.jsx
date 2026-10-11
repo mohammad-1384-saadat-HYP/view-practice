@@ -7,7 +7,7 @@ import Link from "next/link";
 
 function DesktopRouteList({ routes }) {
   return (
-    <ul className="flex flex-wrap items-center justify-center text-ink dark:text-paper [&>li:first-child]:rounded-l-sm [&>li:last-child]:rounded-r-sm">
+    <ul className="flex flex-wrap items-center justify-center text-ink text-sm dark:text-paper [&>li:first-child]:rounded-l-sm [&>li:last-child]:rounded-r-sm">
       {routes.map((route) => (
         <DesktopRouteItem key={route.path} route={route} isRoot />
       ))}
@@ -17,7 +17,7 @@ function DesktopRouteList({ routes }) {
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between border-b border-black/5 px-4 py-3.75 shadow-md shadow-black/5 transition-all dark:border-paper/10 dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.7)] lg:border-none lg:shadow-none lg:px-[150px] lg:py-5">
+    <header className="flex items-center justify-between border-b border-night-200/50 px-4 py-3.75 shadow-md shadow-night-950/5 transition-all dark:border-night-800/60 dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.7)] lg:border-none lg:shadow-none lg:px-20 lg:py-5">
       <MobileNavigation />
       <div className="hidden lg:flex items-center gap-3.5">
         <div>

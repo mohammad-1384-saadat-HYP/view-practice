@@ -5,15 +5,30 @@
 @theme {
 	--color-paper: #ffffff;
 	--color-ink: #111111;
-	--color-gold-50: #fbf8eb;
-	--color-gold-100: #f6f0d3;
-	--color-gold-200: #ebdd9a;
-	--color-gold-300: #e0ca62;
-	--color-gold-400: #d9b945;
+
+	/* Reconstructed Royal / Champagne Gold Palette */
+	--color-gold-50: #fdfbf2;
+	--color-gold-100: #f7f0d4;
+	--color-gold-200: #efe0a8;
+	--color-gold-300: #e5cc73;
+	--color-gold-400: #dab342;
 	--color-gold-500: #d4af37;
-	--color-gold-600: #b9952a;
-	--color-gold-700: #92721f;
-	--color-gold-800: #6a5118;
-	--color-gold-900: #42330f;
-	--color-gold-950: #2b210a;
+	--color-gold-600: #b38e22;
+	--color-gold-700: #8c6c18;
+	--color-gold-800: #6b5114;
+	--color-gold-900: #4a3810;
+	--color-gold-950: #2a1f08;
+
+	/* Comprehensive Luxury Dark / Neutral Scale (Night) */
+	--color-night-50: #f8f9fa;
+	--color-night-100: #f1f3f5;
+	--color-night-200: #e2e5e9;
+	--color-night-300: #c4c9d1;
+	--color-night-400: #9aa1ad;
+	--color-night-500: #6c7482;
+	--color-night-600: #484f5c;
+	--color-night-700: #2d323c;
+	--color-night-800: #1c1f26;
+	--color-night-900: #111317;
+	--color-night-950: #0a0b0d;
 }

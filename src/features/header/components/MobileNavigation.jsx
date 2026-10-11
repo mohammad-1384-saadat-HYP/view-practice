@@ -43,9 +43,9 @@ function MobileRouteItem({ route, pathname, onNavigate }) {
     <motion.li
       className={`cursor-pointer border-l transition-colors duration-200 ${
         isActive
-          ? "border-gold-400 bg-gold-500/15 font-semibold text-gold-600 dark:text-gold-400"
+          ? "border-gold-400 bg-gold-500/15 font-semibold text-gold-700 dark:text-gold-400"
           : isChildActive
-            ? "border-transparent text-gold-600/90 dark:text-gold-200/90"
+            ? "border-transparent text-gold-700/90 dark:text-gold-300/90"
             : "border-transparent text-ink dark:text-paper"
       }`}
       whileHover={{
@@ -127,7 +127,7 @@ function MobileRouteItem({ route, pathname, onNavigate }) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={submenuTransition}
-            className="ml-3 overflow-hidden border-l border-gold-500 pl-3"
+            className="ml-3 overflow-hidden border-l border-gold-500/30 pl-3"
           >
             {route.subRoutes.map((subRoute) => (
               <MobileRouteItem
@@ -202,9 +202,9 @@ export default function MobileNavigation() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="fixed inset-y-0 left-0 z-50 flex w-[75vw] max-w-sm flex-col overflow-y-auto bg-paper py-2 text-ink shadow-2xl transition-colors dark:bg-black dark:text-paper lg:hidden"
+              className="fixed inset-y-0 left-0 z-50 flex w-[75vw] max-w-sm flex-col overflow-y-auto bg-paper py-2 text-ink shadow-2xl transition-colors dark:bg-night-950 dark:text-paper lg:hidden"
             >
-              <div className="mb-3 flex items-center justify-between border-b border-gold-500 pb-3 px-2">
+              <div className="mb-3 flex items-center justify-between border-b border-gold-500/30 pb-3 px-2">
                 <button
                   ref={closeButtonRef}
                   type="button"

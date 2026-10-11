@@ -114,3 +114,16 @@
   - Updated Section 1's background image to the dark mountain wallpaper (`/2117697-3840x2160-desktop-4k-dark-wallpaper.jpg`) for both light and dark modes per user request.
   - Kept the previous light mode image (`/5433d670a0ebb05b60950360c728a427.jpg`) and light mode configuration commented out so they can easily be re-enabled and replaced when the final light mode assets are provided.
 - Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+## 2026-10-11
+
+- Task: Reconstruct color palettes and apply enhanced colors across project files.
+- Files changed: `src/app/globals.css`, `src/features/footer/Footer.jsx`, `src/features/header/Header.jsx`, `src/features/header/components/DesktopRouteItem.jsx`, `src/features/header/components/MobileNavigation.jsx`, `src/features/header/components/ThemeToggle.jsx`, `src/app/page.js`, `src/app/layout.js`.
+- Changes:
+  - In `globals.css`: Rebuilt the `gold` palette (50-950) into an exquisite Royal / Champagne Gold scale with balanced contrast for light and dark modes. Added the 11-step `night` neutral palette (50-950) to support elevated dark surfaces, borders, and depth without departing from the tri-color (gold, black, white) aesthetic.
+  - Updated `Footer.jsx`: Adjusted active text to `text-gold-700 dark:text-gold-400`, dividers and borders to use `night` and refined `gold`.
+  - Updated `Header.jsx`, `DesktopRouteItem.jsx`, `MobileNavigation.jsx`, and `ThemeToggle.jsx`: Upgraded borders, active states, indicators, and dropdown/drawer surfaces to use the new `gold` and `night` tokens.
+  - Updated `page.js` and `layout.js`: Upgraded dark mode body and section surfaces to `dark:bg-night-950`, card containers to `bg-night-950/60 border-gold-500/30`, and headings to `text-gold-700 dark:text-gold-400`.
+  - Preserved `ScrollToTopButton.jsx` untouched per explicit user constraint.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
