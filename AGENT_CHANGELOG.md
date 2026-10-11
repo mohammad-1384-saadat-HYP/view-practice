@@ -157,6 +157,14 @@
   - Retained `src/features/scroll-to-top/ScrollUpButton.jsx` as the direct feature entry point imported in `src/app/layout.js`.
 - Verification: `npm run lint` passed with 0 errors and 0 warnings.
 
+- Task: Attach background images directly to page sections instead of fixed viewport coordinate space.
+- Files changed: `src/app/page.js`.
+- Changes:
+  - Removed `bg-fixed` from Sections 1, 3, and 5, retaining `bg-cover bg-center bg-no-repeat`.
+  - Ensures each background image travels naturally into the viewport as the user scrolls to each section, eliminating the unnatural viewport-stencil/masking artifact.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+
 
 
 
