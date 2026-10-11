@@ -7,7 +7,7 @@ export default function ScrollReveal({
   className = "",
   delay = 0,
   duration = 0.5,
-  y = 80,
+  y = 70,
 }) {
   return (
     <motion.div
