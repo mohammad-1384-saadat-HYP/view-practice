@@ -76,11 +76,15 @@ export default function Footer() {
           href="https://github.com/mohammad-1384-saadat-HYP?tab=repositories"
           target="_blank"
           rel="noopener noreferrer"
+<<<<<<< HEAD
           className="transition-colors hover:text-gold-600 hover:underline dark:hover:text-gold-300"
+=======
+>>>>>>> 5a68e583cbf0d29f725ebb8240f0eff5fc11db62
         >
           github.com/mohammad-1384-saadat-HYP
         </a>
       </div>
+<<<<<<< HEAD
       <span className="block h-px w-2/3 bg-gold-500/50 dark:bg-gold-400/50 md:w-1/2 lg:w-4/5"></span>
       <a
         href="https://github.com/mohammad-1384-saadat-HYP?tab=repositories"
@@ -90,6 +94,10 @@ export default function Footer() {
       >
         github.com/mohammad-1384-saadat-HYP
       </a>
+=======
+      <span className="w-full h-px bg-gold-500"></span>
+      <div>github.com/mohammad-1384-saadat-HYP</div>
+>>>>>>> 5a68e583cbf0d29f725ebb8240f0eff5fc11db62
     </footer>
   );
 }
