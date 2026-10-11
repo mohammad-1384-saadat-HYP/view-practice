@@ -127,3 +127,11 @@
   - Preserved `ScrollToTopButton.jsx` untouched per explicit user constraint.
 - Verification: `npm run lint` passed with 0 errors and 0 warnings.
 
+- Task: Add alternative gold palettes (Bright Vivid Gold and Antique Bronze Gold) to globals.css.
+- Files changed: `src/app/globals.css`.
+- Changes:
+  - Added `--color-gold-bright-50` through `--color-gold-bright-950` for Bright Vivid Gold utility classes (`*-gold-bright-*`).
+  - Added `--color-gold-antique-50` through `--color-gold-antique-950` for Antique Bronze Gold utility classes (`*-gold-antique-*`).
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+

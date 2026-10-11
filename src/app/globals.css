@@ -19,6 +19,32 @@
 	--color-gold-900: #4a3810;
 	--color-gold-950: #2a1f08;
 
+	/* Bright Vivid Gold Palette (طلایی درخشان و زرد-طلایی روشن) */
+	--color-gold-bright-50: #fffdeb;
+	--color-gold-bright-100: #fff9c4;
+	--color-gold-bright-200: #fff187;
+	--color-gold-bright-300: #ffe345;
+	--color-gold-bright-400: #ffd314;
+	--color-gold-bright-500: #f5be0b;
+	--color-gold-bright-600: #d49b04;
+	--color-gold-bright-700: #a87405;
+	--color-gold-bright-800: #865a0c;
+	--color-gold-bright-900: #6e480f;
+	--color-gold-bright-950: #402604;
+
+	/* Antique Bronze Gold Palette (طلایی عتیقه و برنزی گرم) */
+	--color-gold-antique-50: #fbf7f0;
+	--color-gold-antique-100: #f5ebd9;
+	--color-gold-antique-200: #ecd5b1;
+	--color-gold-antique-300: #dfbb83;
+	--color-gold-antique-400: #ce9d55;
+	--color-gold-antique-500: #bf8535;
+	--color-gold-antique-600: #a36a28;
+	--color-gold-antique-700: #835022;
+	--color-gold-antique-800: #6c4121;
+	--color-gold-antique-900: #59361e;
+	--color-gold-antique-950: #331c0e;
+
 	/* Comprehensive Luxury Dark / Neutral Scale (Night) */
 	--color-night-50: #f8f9fa;
 	--color-night-100: #f1f3f5;
