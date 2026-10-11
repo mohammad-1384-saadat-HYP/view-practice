@@ -142,4 +142,21 @@
   - Preserved `page.js` as a React Server Component.
 - Verification: `npm run lint` passed with 0 errors and 0 warnings.
 
+- Task: Implement ScrollUpButton component and integrate into root layout.
+- Files changed: `src/features/scroll-to-top/ScrollUpButton.jsx`, `src/features/scroll-to-top/ScrollToTopButton.jsx`, `src/app/layout.js`.
+- Changes:
+  - Created `ScrollUpButton.jsx` under `src/features/scroll-to-top/` featuring passive scroll threshold listener (> 350px), smooth scrolling behavior, enter/exit animations via `AnimatePresence` and `motion.button`, floating circular FAB styling positioned at bottom-right (`bottom-6 right-6 sm:bottom-8 sm:right-8`), and dual-theme colors (`bg-paper/85 text-gold-700` and `dark:bg-night-900/85 dark:text-gold-400`).
+  - Re-exported `ScrollUpButton` from `ScrollToTopButton.jsx` for compatibility.
+  - Added `<ScrollUpButton />` to `src/app/layout.js` inside `<ThemeProvider>` to ensure global availability on all pages.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Clean up redundant ScrollToTopButton.jsx file.
+- Files changed: `src/features/scroll-to-top/ScrollToTopButton.jsx` (removed).
+- Changes:
+  - Deleted obsolete `ScrollToTopButton.jsx` per explicit user confirmation.
+  - Retained `src/features/scroll-to-top/ScrollUpButton.jsx` as the direct feature entry point imported in `src/app/layout.js`.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+
+
 
