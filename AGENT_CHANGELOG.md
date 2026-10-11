@@ -134,4 +134,12 @@
   - Added `--color-gold-antique-50` through `--color-gold-antique-950` for Antique Bronze Gold utility classes (`*-gold-antique-*`).
 - Verification: `npm run lint` passed with 0 errors and 0 warnings.
 
+- Task: Implement scroll reveal animation (upward motion + opacity 0 to 1) for page content.
+- Files changed: `src/components/ScrollReveal.jsx`, `src/app/page.js`.
+- Changes:
+  - Created reusable client component `ScrollReveal` using Motion with `initial={{ opacity: 0, y: 35 }}` and `whileInView={{ opacity: 1, y: 0 }}` with `viewport={{ once: true, amount: 0.2 }}`.
+  - Wrapped content blocks in `page.js` across Sections 1 to 6 with `<ScrollReveal>`, keeping outer section backgrounds and headers static for optimal performance and no visual jumps.
+  - Preserved `page.js` as a React Server Component.
+- Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
 

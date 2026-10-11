@@ -1,5 +1,6 @@
 import Header from "@/features/header/Header";
 import Footer from "@/features/footer/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
   return (
@@ -28,14 +29,14 @@ export default function Home() {
 
       {/* 2. Section 2: Site Theme Background */}
       <section className="relative z-10 flex min-h-screen flex-col items-center justify-center bg-paper px-6 py-20 text-ink shadow-xl transition-colors dark:bg-night-950 dark:text-paper">
-        <div className="mx-auto max-w-3xl text-center">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold sm:text-4xl text-gold-700 dark:text-gold-400">
             About
           </h2>
           <p className="mt-4 text-sm sm:text-base leading-relaxed opacity-80">
             Content section on the site theme background.
           </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* 3. Section 3: Image 2 as fixed background */}
@@ -46,26 +47,26 @@ export default function Home() {
             "url('/5815532-3840x2160-desktop-hd-4k-wallpaper-image.jpg')",
         }}
       >
-        <div className="max-w-2xl rounded-2xl bg-night-950/60 p-8 text-paper shadow-2xl backdrop-blur-xs border border-gold-500/30">
+        <ScrollReveal className="max-w-2xl rounded-2xl bg-night-950/60 p-8 text-paper shadow-2xl backdrop-blur-xs border border-gold-500/30">
           <h2 className="text-2xl font-bold sm:text-4xl text-gold-400">
             Featured Experience
           </h2>
           <p className="mt-4 text-sm sm:text-base text-paper/85">
             Full-view presentation on the second background image.
           </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* 4. Section 4: Site Theme Background */}
       <section className="relative z-10 flex min-h-screen flex-col items-center justify-center bg-paper px-6 py-20 text-ink shadow-xl transition-colors dark:bg-night-950 dark:text-paper">
-        <div className="mx-auto max-w-3xl text-center">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold sm:text-4xl text-gold-700 dark:text-gold-400">
             Information & Details
           </h2>
           <p className="mt-4 text-sm sm:text-base leading-relaxed opacity-80">
             Content section on the site theme background.
           </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* 5. Section 5: Image 2 repeated as fixed background */}
@@ -76,26 +77,26 @@ export default function Home() {
             "url('/5815532-3840x2160-desktop-hd-4k-wallpaper-image.jpg')",
         }}
       >
-        <div className="max-w-2xl rounded-2xl bg-night-950/60 p-8 text-paper shadow-2xl backdrop-blur-xs border border-gold-500/30">
+        <ScrollReveal className="max-w-2xl rounded-2xl bg-night-950/60 p-8 text-paper shadow-2xl backdrop-blur-xs border border-gold-500/30">
           <h2 className="text-2xl font-bold sm:text-4xl text-gold-400">
             Highlights
           </h2>
           <p className="mt-4 text-sm sm:text-base text-paper/85">
             Repeated showcase section with the second background image.
           </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* 6. Section 6: Site Theme Background before footer */}
       <section className="relative z-10 flex min-h-[50vh] flex-col items-center justify-center bg-paper px-6 py-16 text-ink shadow-xl transition-colors dark:bg-night-950 dark:text-paper">
-        <div className="mx-auto max-w-3xl text-center">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold sm:text-4xl text-gold-700 dark:text-gold-400">
             Connect With Us
           </h2>
           <p className="mt-4 text-sm sm:text-base leading-relaxed opacity-80">
             Final theme background section before the footer.
           </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       <Footer />
