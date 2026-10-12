@@ -164,7 +164,59 @@
   - Ensures each background image travels naturally into the viewport as the user scrolls to each section, eliminating the unnatural viewport-stencil/masking artifact.
 - Verification: `npm run lint` passed with 0 errors and 0 warnings.
 
+## 2026-10-12
 
+- Task: Home page UI/UX refactor — Phase 1 (independent/permitted work per ANTIGRAVITY_TASK_MERGED.md).
+- Files changed: `src/app/page.js`, `src/app/components/HeroSlider.jsx` (new), `src/app/components/StickyImageTextSection.jsx` (new).
+- Changes:
+  - Created `BadgePill` reusable server component (inside `page.js`) to unify all `BiTargetLock` and icon+label pill badges across Sections 2–7 with consistent sizing, spacing, and theme support.
+  - Enhanced all `h2` headings in Sections 2, 3, 4, and 7 with gold gradient accents, improved typography, and decorative underlines, while maintaining readability in both light and dark themes.
+  - Section 3: Added section-level dark overlay, `backdrop-blur-sm`, improved padding/spacing, constrained max-width, and enhanced text contrast.
+  - Section 4 Part 1: Added z-10 to content elements for proper layering over images, added dark overlay for theme-safe readability, added hover scale effect on images.
+  - Section 4 Part 2: Integrated `HeroSlider` component with `Section4DataP2` (currently empty — renders nothing safely).
+  - Created `HeroSlider.jsx` client component: Swiper 14 with fade effect, autoplay, vertical image pagination on desktop, per-slide links, image-behind-text overlay, and empty-array safe guard.
+  - Created `StickyImageTextSection.jsx` client component: Reusable for Sections 5 and 6 with `reverse` prop for desktop layout direction, `position: sticky` text content, responsive image aspect ratios, gradient overlays for text readability.
+  - Section 5: Replaced with `StickyImageTextSection` (images right, text left on desktop).
+  - Section 6: Replaced with `StickyImageTextSection reverse` (images left, text right on desktop).
+  - Section 7 Part 1: Integrated `HeroSlider` with `Section7Data1` (currently empty — renders nothing safely).
+  - Section 7 Part 2: Improved review card layout with border, spacing, icon accent, and responsive flex direction. Left as basic list pending user choice for Swiper carousel design.
+  - Section 2 `Section2DataP2` image cards: Added `group-hover:scale-105` with overflow hidden, dark overlay, and `drop-shadow-md` for text.
+  - Fixed Section 4 `pt-15 pt-2.5` duplicate padding to single `py-15`.
+- Important decisions:
+  - Created two new files (`HeroSlider.jsx`, `StickyImageTextSection.jsx`) in `src/app/components/` with explicit user permission, since `page.js` is a Server Component and Swiper requires client-side rendering.
+  - Did NOT implement any ⛔ gated items (3D card effect, Section4DataP1 visual changes, numeric pagination changes, image hover effects, Section7Data2 card/slider design, desktop slidesPerView).
+  - Section 1 remains completely untouched.
+- Verification: Static code inspection for syntax correctness, import consistency, and theme compatibility. No build/dev-server was run per AGENTS.md rule 10.1.
+- Known issues / Unverified items: Visual appearance not browser-tested by the agent. Swiper CSS imports (`swiper/css`, `swiper/css/effect-fade`) need verification with the installed Swiper 14 module paths.
+
+- Task: Home page UI/UX refactor — Phase 2 & Final Implementation (per ANTIGRAVITY_TASK_MERGED.md and user decisions).
+- Files changed: `src/app/page.js`, `src/app/components/HeroSlider.jsx`, `src/app/components/StickyImageTextSection.jsx`, `src/app/components/ReviewsSlider.jsx` (new).
+- Changes:
+  - Section 2: Implemented isolated layered-shadow cards for `Section2DataP1` with dual-theme shadow depth, subtle gold border glow, hover lift (`-translate-y-1.5`), and key prop mapped to `item.id`.
+  - Section 4 Part 1: Implemented Polish & Elevate on `Section4DataP1` with enhanced dark gradient overlay, glass badge pill, refined typography with semantic `h3`, hover scale (`scale-108`), and elevated CTA button with arrow transition.
+  - Section 4 Part 2 & Section 7 Part 1 (`HeroSlider.jsx`):
+    - Removed numeric pagination completely.
+    - Omitted dot/bullet pagination as explicitly rejected by user.
+    - Moved desktop vertical image thumbnail pagination inside the active slide on the right (`absolute right-5 top-1/2 -translate-y-1/2 z-20`) with dark glass backdrop (`bg-black/45 backdrop-blur-md`) and accessible button tabs (`aria-label`, `aria-current`, `aria-selected`).
+    - Reserved right-side padding (`lg:pr-36 xl:pr-44`) on slide text content and CTA button so they never collide with the thumbnail controls.
+    - Ensured safe rendering with real filled data (`Section4DataP2` and `Section7Data1`).
+  - Sections 5 & 6 (`StickyImageTextSection.jsx`):
+    - Added subtle scale (`scale-105`) + shadow lift (`hover:-translate-y-1.5 hover:shadow-2xl`) hover effect across image cards in both sections.
+    - Validated DOM structure for `position: sticky`: sticky text column is bounded strictly within the parent flex height (`w-1/2 self-stretch`) and stops cleanly at the bottom of the 4th image. Verified no parent has overflow clipping that could break sticky scrolling.
+    - Added section-level dark overlay for high text contrast in both themes.
+  - Section 7 Part 2 (`ReviewsSlider.jsx`):
+    - Created new client component with Swiper continuous autoplay (`delay: 3500`, `speed: 900`, pause on hover/touch).
+    - Centered emphasized active slide (`centeredSlides: true`, `scale-100 opacity-100`, border-2 gold-400), with responsive `slidesPerView`: 1.2 on mobile (peeking side slides), 1.8 on tablet, 2.5 on desktop.
+    - Added theme-safe left and right edge fade / vignette gradients (`pointer-events-none`).
+    - Styled cards as glass gold cards with `FiUser` avatar, `BiSolidQuoteAltRight` icon, and quote text.
+  - General: Section 1 remains 100% untouched. Data files remain untouched.
+- Important decisions:
+  - Created `ReviewsSlider.jsx` in `src/app/components/` with client-side Swiper carousel, per user authorization.
+  - Left pre-existing Section 1 unescaped apostrophes untouched to strictly obey the hard constraint of never modifying Section 1.
+- Verification:
+  - `npm run lint` ran and passed with 0 errors/warnings on all modified code (Sections 2–7 and components).
+  - Pre-existing lint notices in protected Section 1 preserved untouched.
+  - Dev server and browser visual verification left to user per AGENTS.md rule 10.1.
 
 
 
