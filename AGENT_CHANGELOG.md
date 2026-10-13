@@ -334,3 +334,22 @@
     - `public/next.svg`
   - Verification: `npm run lint` passed with 0 errors and 0 warnings.
 
+- Task: Circular wave theme transition (Task 1) and mobile scroll animation improvements (Task 2: A1 + A2).
+  - Explicit User Authorization: User authorized editing `ThemeToggle.jsx`, `ThemeContext.jsx`, and `globals.css` for Task 1, and selected proposals A1 + A2 for Task 2.
+  - Files changed:
+    - `src/app/globals.css`: Added View Transitions root pseudo-element rules (`::view-transition-old(root)`, `::view-transition-new(root)`) with native `@keyframes circle-expand` driven by dynamic CSS variables (`--theme-x`, `--theme-y`, `--theme-r`) for seamless compositor-driven wave animation across all desktop and mobile viewport sizes, with `prefers-reduced-motion` overrides.
+    - `src/context/ThemeContext.jsx`: Integrated dynamic CSS variable assignment (`--theme-x`, `--theme-y`, `--theme-r`) alongside `document.startViewTransition` with `flushSync` for synchronous DOM state capture, dual execution (CSS keyframes + WAAPI fallback), rapid-click overlap protection (`isTransitioningRef`), and graceful fallbacks for browsers without View Transitions or when `prefers-reduced-motion` is active.
+    - `src/features/header/components/ThemeToggle.jsx`: Updated `onClick` to compute button center coordinates via `getBoundingClientRect` and pass `{ x, y }` to `toggleTheme`.
+    - `src/components/ScrollReveal.jsx`: Reduced vertical displacement default from 70px to 24px and tuned easing to `easeOut` for fluid, non-jarring scrolling in mobile and desktop viewports.
+    - `src/app/page.js`: Applied staggered `ScrollReveal` animations with incremental delays (`delay={index * 0.1}` and `0.12s`) to cards in Section 2 (`Section2DataP1`, `Section2DataP2`) and Section 4 (`Section4DataP1`).
+  - Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Fix circular wave theme transition bug, un-nest scroll reveals, and enforce RTL on Swiper sliders.
+  - Files changed:
+    - `src/app/globals.css`: Simplified View Transitions CSS rules by removing fragile static `@keyframes` referencing non-inherited CSS variables on `::view-transition-new(root)`.
+    - `src/context/ThemeContext.jsx`: Upgraded `toggleTheme` to inject clean dynamic keyframes with exact click coordinates `${x}px ${y}px` and `${endRadius}px` during the view transition and safely removed upon `transition.finished`, eliminating WAAPI pseudo-element errors and fallback coordinate bugs.
+    - `src/components/ScrollReveal.jsx`: Refined viewport threshold to `amount: 0.05` and added `margin: "0px 0px -40px 0px"` for immediate, fluid reveals on mobile viewports.
+    - `src/app/page.js`: Removed nested `ScrollReveal` wrappers around entire sections (Section 2 and Section 4), revealing headers and cards independently with smooth staggered delays, preventing double-translation and visual jitter.
+    - `src/app/components/HeroSlider.jsx` & `src/app/components/ReviewsSlider.jsx`: Added explicit `dir="rtl"` prop to `<Swiper>` components to ensure correct slide positioning and touch gestures in RTL mode.
+  - Important decisions: Injected dynamic `<style>` rules during View Transitions to guarantee reliable compositor-driven expansion from the exact click center without relying on CSS variable inheritance to root pseudo-elements.
+  - Verification: `npm run lint` passed with 0 errors and 0 warnings. Dev-server visual verification left to user per AGENTS.md rule 10.1.

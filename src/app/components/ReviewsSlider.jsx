@@ -21,6 +21,7 @@ export default function ReviewsSlider({ items = [], className = "" }) {
       <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 sm:w-24 lg:w-36 bg-gradient-to-l from-paper via-paper/80 to-transparent dark:from-black dark:via-black/80 dark:to-transparent" />
 
       <Swiper
+        dir="rtl"
         modules={[Autoplay]}
         loop={items.length > 2}
         centeredSlides={true}

@@ -18,10 +18,17 @@ export default function ThemeToggle() {
 
   const isDark = theme === "dark";
 
+  const handleClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    toggleTheme({ x, y });
+  };
+
   return (
     <button
       type="button"
-      onClick={toggleTheme}
+      onClick={handleClick}
       aria-label={isDark ? "تغییر به تم روشن" : "تغییر به تم تاریک"}
       className="relative flex size-8.5 cursor-pointer items-center justify-center rounded-full border border-gold-500/40 bg-night-50/80 text-gold-700 transition-colors hover:border-gold-500 hover:bg-gold-500 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 dark:bg-night-900/60 dark:text-gold-400 dark:hover:bg-gold-500 dark:hover:text-night-950"
     >

@@ -37,6 +37,7 @@ export default function HeroSlider({ items = [], className = "" }) {
     >
       <div className="relative min-h-[440px] w-full lg:min-h-[520px]">
         <Swiper
+          dir="rtl"
           modules={[Autoplay, EffectFade]}
           effect="fade"
           fadeEffect={{ crossFade: true }}
