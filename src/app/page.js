@@ -57,15 +57,13 @@ export default function Home() {
         <Header />
         <div className="py-15 px-7 lg:p-20">
           <h1 className="text-2xl lg:text-3xl font-bold italic">
-            Experience
-            <br /> Vancouver Island&apos;s
-            <br /> <span className="text-gold-400">Ultimate</span> Hunting
-            Adventures
+            تجربه
+            <br /> بی‌پایان جزیره ونکوور
+            <br /> ماجراجویی‌های <span className="text-gold-400">بی‌نظیر</span> شکار
           </h1>
           <p className="text-[15px] lg:text-base italic mt-4 lg:mt-6.5">
-            Guided wilderness expeditions across Vancouver Island&apos;s most
-            spectacular hunting territories.
-            <br /> Where wild landscapes meet unforgettable adventure.
+            سفرهای اکتشافی در بکرترین قلمروهای شکار جزیره ونکوور با همراهی راهنمایان مجرب.
+            <br /> پیوند طبیعت وحشی و ماجراجویی‌های فراموش‌نشدنی.
           </p>
         </div>
       </section>
@@ -74,15 +72,15 @@ export default function Home() {
       <section className="relative z-10 flex flex-col items-center min-h-screen bg-paper py-15 px-3.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
         <ScrollReveal className="flex flex-col items-center gap-7.5 lg:gap-24 w-full">
           <div className="flex flex-col items-center gap-10 w-full">
-            <BadgePill icon={BiTargetLock} label="unrivaled wildlife density" />
+            <BadgePill icon={BiTargetLock} label="تراکم بی‌نظیر حیات وحش" />
             {/* Enhanced h2 styling — accent gradient underline + improved typography */}
             <h2 className="relative text-xl font-bold italic text-center leading-snug lg:text-3xl">
               <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                Why Hunters Are Obsessed
+                چرا شکارچیان شیفته
               </span>
               <br className="sm:hidden" />
               <span className="text-ink dark:text-paper">
-                {" "}with Hunting on Vancouver Island
+                {" "}شکار در جزیره ونکوور هستند؟
               </span>
               <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
             </h2>
@@ -114,17 +112,13 @@ export default function Home() {
             {/* Enhanced h2 styling */}
             <h2 className="relative text-2xl font-bold italic text-center leading-snug lg:text-3xl">
               <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                Find the Perfect
+                ماجراجویی ایده‌آل
               </span>{" "}
-              Hunting Adventure on Vancouver Island
+              شکار خود را در جزیره ونکوور تجربه کنید
               <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
             </h2>
             <p className="text-sm lg:text-base text-center max-w-2xl leading-relaxed text-ink/80 dark:text-paper/80">
-              The Vanisle Hunters team offers tailored hunting tours for
-              individuals, groups, or families. If you have any particular
-              requests, we will do our best to design a hunting trip that meets
-              your preferences. Explore our hunting challenges and enjoy your
-              dream hunt in one of BC&apos;s best-hunting destinations.
+              تیم ونایزل هانترز تورهای اختصاصی شکار را برای افراد، گروه‌ها و خانواده‌ها ارائه می‌دهد. اگر درخواست یا شرایط خاصی مد نظر دارید، بهترین سفر متناسب با ترجیحات شما را طراحی خواهیم کرد. مقاصد شکار ما را بررسی کنید و از شکاری رؤیایی در یکی از برترین مناطق بریتیش کلمبیا لذت ببرید.
             </p>
             <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-5">
               {Section2DataP2.map((item) => (
@@ -151,9 +145,9 @@ export default function Home() {
               className="w-full lg:w-fit h-15 flex items-center justify-center gap-2 border-2 border-gold-500/85 px-6 py-2 rounded-2xl transition-colors hover:bg-gold-500/10"
             >
               <span className="capitalize text-lg lg:text-xl font-bold">
-                More Hunting Locations
+                مناطق شکار بیشتر
               </span>
-              <FaAngleRight className="size-6 lg:size-7.5 text-gold-500" />
+              <FaAngleRight className="size-6 lg:size-7.5 text-gold-500 -scale-x-100" />
             </Link>
           </div>
         </ScrollReveal>
@@ -170,23 +164,15 @@ export default function Home() {
         {/* Dark overlay for section-level readability */}
         <div className="pointer-events-none absolute inset-0 bg-black/35" />
         <ScrollReveal className="relative z-10 mx-auto w-full max-w-3xl flex flex-col items-center gap-5 rounded-2xl border border-gold-500/60 bg-black/75 px-6 py-10 shadow-2xl backdrop-blur-sm sm:px-10 lg:w-2/3 lg:py-12">
-          <BadgePill icon={GiCutDiamond} label="Exclusive Packages" variant="muted" />
+          <BadgePill icon={GiCutDiamond} label="پکیج‌های اختصاصی" variant="muted" />
           {/* Enhanced h2 */}
           <h2 className="text-xl font-bold italic leading-snug text-white sm:text-2xl lg:text-3xl">
-            Opportunities More Tempting than{" "}
-            <span className="text-gold-400">Your First Harvest</span>
+            فرصت‌هایی وسوسه‌انگیزتر از{" "}
+            <span className="text-gold-400">نخستین شکار شما</span>
           </h2>
           <span className="mx-auto block h-px w-16 bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
           <p className="max-w-xl text-sm leading-7 text-gray-300 lg:text-base">
-            You are not alone on the journey. Vanisle Hunters works with
-            experienced, licensed hunting guides who can provide the services,
-            local knowledge, and equipment you need for a well-planned hunt.
-            With some species offering year-round hunting opportunities, there
-            are options to explore throughout the year depending on the species,
-            Management Unit, and applicable regulations. We&apos;ve done the research
-            to bring together quality B.C. hunting opportunities at affordable
-            prices, with each hunt selected for its overall value and
-            experience.
+            شما در این مسیر تنها نیستید. ونایزل هانترز با راهنمایان مجرب و رسمی همکاری می‌کند که دانش بومی، تجهیزات حرفه‌ای و خدمات مورد نیاز یک سفر برنامه‌ریزی‌شده را در اختیارتان می‌گذارند. با فراهم بودن امکان شکار برخی گونه‌ها در تمام طول سال، گزینه‌های متعددی متناسب با گونه، منطقه شکار و قوانین مربوطه پیش روی شماست. ما با بررسی دقیق، بهترین فرصت‌های شکار بریتیش کلمبیا را با قیمت‌هایی مناسب و ارزشی استثنایی گرد هم آورده‌ایم.
           </p>
         </ScrollReveal>
       </section>
@@ -197,13 +183,13 @@ export default function Home() {
           {/* Part 1 — Section4DataP1: Polish & Elevate */}
           <ScrollReveal className="w-full text-center">
             <div className="flex flex-col items-center gap-7.5">
-              <BadgePill icon={BiTargetLock} label="Target Species" />
+              <BadgePill icon={BiTargetLock} label="گونه‌های هدف" />
               {/* Enhanced h2 */}
               <h2 className="relative text-xl font-bold italic text-center leading-snug lg:text-3xl">
                 <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                  Vancouver Island
+                  دسته‌بندی شکارهای
                 </span>{" "}
-                Game Classifications
+                جزیره ونکوور
                 <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
               </h2>
               <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -233,12 +219,12 @@ export default function Home() {
                     <div className="relative z-10 w-full flex items-center justify-between mt-2 pt-3 border-t border-white/10">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium text-gold-400 transition-colors group-hover:text-gold-300 lg:text-base">
-                          Choose Your {item.title}
+                          انتخاب {item.title} شما
                         </span>
-                        <FaArrowRight className="size-3 text-gold-400 transition-transform group-hover:translate-x-1" />
+                        <FaArrowRight className="size-3 text-gold-400 transition-transform group-hover:-translate-x-1 -scale-x-100" />
                       </div>
                       <div className="flex size-9 items-center justify-center border border-gold-500/60 rounded-full bg-black/40 text-gold-400 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-black group-hover:border-gold-500">
-                        <FaArrowRight className="size-3.5" />
+                        <FaArrowRight className="size-3.5 -scale-x-100" />
                       </div>
                     </div>
                   </Link>
@@ -259,9 +245,9 @@ export default function Home() {
       {/* Section 5 — Sticky Image-Text Section (reverse=false) */}
       <StickyImageTextSection
         items={Section5DataP1}
-        badge={<BadgePill icon={LuMapPin} label="Vancouver Island, BC" variant="muted" />}
-        heading="Vanisle Hunters Presents:"
-        description="Vanisle Hunters brings you the pinnacle of Vancouver Island wilderness expeditions, backed by seasoned, licensed guides and unmatched local expertise. Whether you're chasing world-class big game trophies, planning an upland bird hunt, or looking for flexible year-round excursions, our curated packages and seasonal promotions are designed to meet every hunter's ambition. From fully customized itineraries tailored to your target species to seamless booking and top-tier logistics, we ensure every trip delivers the ultimate balance of thrilling pursuit, safety, and coastal adventure."
+        badge={<BadgePill icon={LuMapPin} label="جزیره ونکوور، بریتیش کلمبیا" variant="muted" />}
+        heading="ونایزل هانترز تقدیم می‌کند:"
+        description="ونایزل هانترز اوج ماجراجویی در طبیعت وحشی جزیره ونکوور را با همراهی راهنمایان رسمی و شناخت بی‌نظیر محلی برای شما به ارمغان می‌آورد. چه به دنبال شکار تروفی‌های شاخص و بزرگ باشید، چه برنامه‌ای برای شکار پرندگان در نظر داشته باشید یا خواهان سفرهای منعطف در طول سال باشید، پکیج‌های دستچین‌شده و برنامه‌های فصلی ما پاسخگوی تمامی اهداف شماست. از برنامه‌های کاملاً شخصی‌سازی‌شده تا رزرو بی‌دردسر و تدارکات سطح بالا، سفری هیجان‌انگیز، ایمن و ماندگار را تضمین می‌کنیم."
         reverse={false}
         bgImage="/5815532-3840x2160-desktop-hd-4k-wallpaper-image.jpg"
       />
@@ -269,9 +255,9 @@ export default function Home() {
       {/* Section 6 — Sticky Image-Text Section (reverse=true) */}
       <StickyImageTextSection
         items={Section5DataP2}
-        badge={<BadgePill icon={BiTargetLock} label="Premier Hunting Expeditions" variant="muted" />}
-        heading="What to Expect:"
-        description="When you hunt with Vanisle Hunters, expect an effortless journey from your first click to the final harvest. Our streamlined, hassle-free booking platform makes securing your preferred dates, tags, and territories straightforward and transparent. Once in the field, you step into a world-class hunting venture guided by certified outfitters who bring deep local insight, prime wildlife access, and unmatched tracking standards. Anchoring it all is our responsive customer support team, dedicated to handling permits, logistics, and pre-trip preparation so you can focus 100% on the thrill of the pursuit."
+        badge={<BadgePill icon={BiTargetLock} label="اکسپدیشن‌های برتر شکار" variant="muted" />}
+        heading="انتظارات شما از این سفر:"
+        description="هنگام سفر با ونایزل هانترز، از اولین کلیک تا تکمیل شکار، تجربه‌ای آسوده و مطمئن خواهید داشت. سامانه شفاف و سریع رزرواسیون، هماهنگی تاریخ‌ها، مجوزها و مناطق را ساده می‌سازد. در میدان عمل، تحت هدایت شکارچیان معتبر با دانش عمیق منطقه‌ای و مهارت‌های حرفه‌ای ردیابی قرار می‌گیرید. در تمام این مسیر، تیم پشتیبانی متعهد ما در کنار شماست تا با مدیریت کلیه مجوزها و پشتیبانی تدارکاتی، تمام تمرکزتان بر لذت بردن از هیجان شکار باشد."
         reverse={true}
         bgImage="/5815532-3840x2160-desktop-hd-4k-wallpaper-image.jpg"
       />
@@ -287,13 +273,13 @@ export default function Home() {
 
         {/* Part 2 — Hunter Reviews with Section7Data2 (Continuous autoplay carousel) */}
         <ScrollReveal className="mt-15 w-full flex flex-col items-center px-3.5 lg:px-5">
-          <BadgePill icon={BiSolidQuoteAltRight} label="Hunter Reviews" variant="gold" />
+          <BadgePill icon={BiSolidQuoteAltRight} label="نظرات شکارچیان" variant="gold" />
           {/* Enhanced h2 — desktop: single line; mobile: can wrap */}
           <h2 className="mt-5 text-center text-xl font-bold italic leading-snug sm:text-2xl lg:whitespace-nowrap lg:text-3xl">
             <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-              What Everyone Is Saying
+              دیدگاه شکارچیان
             </span>{" "}
-            about Hunting on Vancouver Island
+            درباره شکار در جزیره ونکوور
             <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
           </h2>
 

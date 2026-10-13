@@ -1,41 +1,41 @@
 export const Section2DataP1 = [
   {
     id: 1,
-    title: "Black Bears on Vancouver Island",
-    subTitile: "Home to 7,000 Black Bears",
+    title: "خرس‌های سیاه در جزیره ونکوور",
+    subTitile: "زیستگاه بیش از ۷,۰۰۰ خرس سیاه",
     description:
-      "Vancouver Island is one of the densest places in the world for hunting black bears.",
+      "جزیره ونکوور یکی از متراکم‌ترین و غنی‌ترین مناطق جهان برای شکار خرس سیاه است.",
   },
   {
     id: 2,
-    title: "Fallow Deer on Vancouver Island",
-    subTitile: "No Bag Limit for Fallow Deer in Units 1-1 to 1-7",
+    title: "گوزن‌های زرد در جزیره ونکوور",
+    subTitile: "بدون محدودیت شکار در واحدهای ۱-۱ تا ۱-۷",
     description:
-      "Make the most of 500 to 1,000 fallow deer hunting opportunities on Vancouver Island.",
+      "از ۵۰۰ تا ۱,۰۰۰ فرصت شکار گوزن زرد در سراسر جزیره ونکوور نهایت بهره را ببرید.",
   },
   {
     id: 3,
-    title: "Cougars on Vancouver Island",
-    subTitile: "600–800 Cougars",
+    title: "شیرهای کوهی در جزیره ونکوور",
+    subTitile: "۶۰۰ تا ۸۰۰ قلاده شیر کوهی",
     description:
-      "Vancouver Island is a habitat of cougars, the largest cat species in BC.",
+      "جزیره ونکوور زیستگاه اصلی پوما، بزرگترین گونه گربه‌سانان در بریتیش کلمبیا است.",
   },
 ];
 
 export const Section2DataP2 = [
   {
     id: 1,
-    title: "Victoria Hunting",
+    title: "شکار در ویکتوریا",
     image: "/1788606496_riaHuntinghome.webp",
   },
   {
     id: 2,
-    title: "Cowichan Hunting",
+    title: "شکار در کاویچان",
     image: "/1788606495_hanHuntinghome.webp",
   },
   {
     id: 3,
-    title: "Telegraph Cove Hunting",
+    title: "شکار در تلگراف کوو",
     image: "/1788606495_ve Huntinghome.webp",
   },
 ];
@@ -43,19 +43,19 @@ export const Section2DataP2 = [
 export const Section4DataP1 = [
   {
     id: 1,
-    head: "Hunting large wild animals",
-    title: "Big Game",
+    head: "شکار حیوانات وحشی بزرگ",
+    title: "شکار بزرگ",
     description:
-      "Elk, Bear, Cougar, Deer & Wolf hunts across Vancouver Island.",
+      "تورهای شکار واپیتی، خرس، شیر کوهی، گوزن و گرگ در سراسر جزیره ونکوور.",
     image: "/1788606496_riaHuntinghome.webp",
     href: "/big-game",
   },
   {
     id: 2,
-    head: "Hunting wild and small animals",
-    title: "Small Game",
+    head: "شکار حیوانات کوچک و پرندگان",
+    title: "شکار کوچک",
     description:
-      "Grouse, Pheasant & Snowshoe Hare excursions in pristine habitats.",
+      "تورهای شکار باقرقره، قرقاول و خرگوش در زیستگاه‌های بکر و طبیعی.",
     image: "/1788606495_hanHuntinghome.webp",
     href: "/small-game",
   },
@@ -65,50 +65,50 @@ export const Section4DataP2 = [
   {
     id: 1,
     image: "/1788606495_hanHuntinghome.webp",
-    title1: "Cougar",
-    title2: "Hunting Expedition Vancouver Island",
-    head: "Guided cougar hunt with experienced outfitters",
+    title1: "شیر کوهی",
+    title2: "اکسپدیشن شکار در جزیره ونکوور",
+    head: "شکار هدایت‌شده با شکارچیان و راهنمایان مجرب",
     description:
-      "Guided cougar hunt with experienced outfitters. Includes lodging, meals, and trophy preparation. Season: November to March.",
+      "شکار تخصصی شیر کوهی با راهنمایان کارکشته. شامل اقامتگاه، پذیرایی کامل و آماده‌سازی تروفی. فصل: نوامبر تا مارس.",
     url: "/small-game",
   },
   {
     id: 2,
     image: "/1788606495_hanHuntinghome.webp",
-    title1: "Elk Hunting",
-    title2: "Adventure Vancouver Island",
-    head: "Roosevelt elk hunting in pristine wilderness",
+    title1: "شکار واپیتی",
+    title2: "ماجراجویی در جزیره ونکوور",
+    head: "شکار واپیتی روزولت در طبیعت دست‌نخورده",
     description:
-      "Roosevelt elk hunting in pristine wilderness. Expert guides, comfortable lodging, gourmet meals, and professional trophy care. Season: September to December.",
+      "شکار واپیتی روزولت در حیات وحش بکر. راهنمایان متخصص، اقامتگاه راحت، غذاهای لذیذ و مراقبت حرفه‌ای از تروفی. فصل: سپتامبر تا دسامبر.",
     url: "/small-game",
   },
   {
     id: 3,
     image: "/1788606495_hanHuntinghome.webp",
-    title1: "Wolf Hunting",
-    title2: "Adventure Vancouver Island",
-    head: "Professional wolf hunting with expert guides",
+    title1: "شکار گرگ",
+    title2: "ماجراجویی در جزیره ونکوور",
+    head: "شکار حرفه‌ای گرگ با راهنمایان متخصص",
     description:
-      "Professional wolf hunting with expert guides. Full package includes accommodation, meals, and trophy care. Best season: October to April.",
+      "شکار تخصصی گرگ با راهنمایی بهترین کارشناسان منطقه. پکیج جامع شامل اسکان، غذا و نگهداری تروفی. بهترین فصل: اکتبر تا آوریل.",
     url: "/small-game",
   },
 ];
 
 export const Section5DataP1 = [
-  { id: 1, title: "Special Offers", image: "/1788606496_riaHuntinghome.webp" },
+  { id: 1, title: "پیشنهادات ویژه", image: "/1788606496_riaHuntinghome.webp" },
   {
     id: 2,
-    title: "Hunting Packages",
+    title: "پکیج‌های شکار",
     image: "/1788606496_riaHuntinghome.webp",
   },
   {
     id: 3,
-    title: "Customized Trips",
+    title: "سفرهای سفارشی",
     image: "/1788606496_riaHuntinghome.webp",
   },
   {
     id: 4,
-    title: "Guided Expeditions",
+    title: "اکسپدیشن‌های هدایت‌شده",
     image: "/1788606496_riaHuntinghome.webp",
   },
 ];
@@ -116,22 +116,22 @@ export const Section5DataP1 = [
 export const Section5DataP2 = [
   {
     id: 1,
-    title: "Convenient Booking System",
+    title: "سامانه رزرواسیون آسان",
     image: "/1788606496_riaHuntinghome.webp",
   },
   {
     id: 2,
-    title: "World-class Hunting Experience",
+    title: "تجربه شکار در کلاس جهانی",
     image: "/1788606496_riaHuntinghome.webp",
   },
   {
     id: 3,
-    title: "Reliable Customer Service",
+    title: "پشتیبانی مطمئن مشتریان",
     image: "/1788606496_riaHuntinghome.webp",
   },
   {
     id: 4,
-    title: "Licensed & Experienced Guides",
+    title: "راهنمایان باتجربه و دارای مجوز",
     image: "/1788606496_riaHuntinghome.webp",
   },
 ];
@@ -140,31 +140,31 @@ export const Section7Data1 = [
   {
     id: 1,
     image: "/1788606495_hanHuntinghome.webp",
-    title1: "Pheasant",
-    title2: "Hunting Expedition Vancouver Island",
-    head: "Guided cougar hunt with experienced outfitters",
+    title1: "قرقاول",
+    title2: "اکسپدیشن شکار در جزیره ونکوور",
+    head: "شکار هدایت‌شده پرندگان با راهنمایان حرفه‌ای",
     description:
-      "Guided cougar hunt with experienced outfitters. Includes lodging, meals, and trophy preparation. Season: November to March.",
+      "شکار قرقاول در مراتع و دشت‌های سرسبز به همراه سگ‌های شکاری آموزش‌دیده. شامل اقامتگاه، وعده‌های غذایی و پشتیبانی کامل. فصل: نوامبر تا مارس.",
     url: "/small-game",
   },
   {
     id: 2,
     image: "/1788606495_hanHuntinghome.webp",
-    title1: "Band-Tailed Pigeon",
-    title2: "Adventure Vancouver Island",
-    head: "Roosevelt elk hunting in pristine wilderness",
+    title1: "کبوتر دم‌نواری",
+    title2: "ماجراجویی در جزیره ونکوور",
+    head: "شکار کبوتر در ارتفاعات و دامنه‌های بکر",
     description:
-      "Roosevelt elk hunting in pristine wilderness. Expert guides, comfortable lodging, gourmet meals, and professional trophy care. Season: September to December.",
+      "شکار هیجان‌انگیز کبوتر در دامنه‌های زیبای ساحلی با هدایت راهنماهای محلی، اقامت مطلوب و پذیرایی باکیفیت. فصل: سپتامبر تا دسامبر.",
     url: "/small-game",
   },
   {
     id: 3,
     image: "/1788606495_hanHuntinghome.webp",
-    title1: "Raccoon",
-    title2: "Adventure Vancouver Island",
-    head: "Professional wolf hunting with expert guides",
+    title1: "راکون",
+    title2: "ماجراجویی در جزیره ونکوور",
+    head: "ردیابی و شکار تخصصی با تجهیزات کامل",
     description:
-      "Professional wolf hunting with expert guides. Full package includes accommodation, meals, and trophy care. Best season: October to April.",
+      "شکار شبانه و تخصصی با پیشرفته‌ترین تجهیزات و راهنمایی کارشناسان خبره حیات وحش. بهترین فصل: اکتبر تا آوریل.",
     url: "/small-game",
   },
 ];
@@ -172,44 +172,44 @@ export const Section7Data1 = [
 export const Section7Data2 = [
   {
     id: 1,
-    title: "Karen Brown1",
+    title: "کارن براون",
     comment:
-      "It is no secret that Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!",
+      "بر کسی پوشیده نیست که جزیره ونکوور یکی از بهترین مقاصد شکار خرس سیاه در کل دنیا است. تجربه‌ای که هیچ شکارچی نباید از دست بدهد!",
   },
   {
     id: 2,
-    title: "Karen Brown2",
+    title: "دیوید میلر",
     comment:
-      "It is no secret that Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!",
+      "راهنماها تسلط فوق‌العاده‌ای به منطقه داشتند. تمام برنامه‌ریزی‌ها و تدارکات سفر از لحظه ورود تا خروج بی‌نقص انجام شد.",
   },
   {
     id: 3,
-    title: "Karen Brown3",
+    title: "مایکل جانسون",
     comment:
-      "It is no secret that Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!",
+      "هماهنگی عالی، اقامتگاه تمیز و غذای باکیفیت در کنار یک شکار تروفی فراموش‌نشدنی. قطعا دوباره با ونایزل هانترز سفر خواهم کرد.",
   },
   {
     id: 4,
-    title: "Karen Brown4",
+    title: "سارا ویلسون",
     comment:
-      "It is no secret that Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it! Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!",
+      "به عنوان نخستین تجربه شکاری‌ام در کانادا، همه چیز فراتر از حد تصورم بود. استانداردهای ایمنی و اخلاق شکار به بهترین شکل رعایت شده بود.",
   },
   {
     id: 5,
-    title: "Karen Brown5",
+    title: "رابرت اسمیت",
     comment:
-      "It is no secret that Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!",
+      "طبیعت بکر و مناظر نفس‌گیر ونکوور بی‌نظیر است. راهنما با صبوری و دانش بالای خود ما را به بهترین نقطه برای ردیابی برد.",
   },
   {
     id: 6,
-    title: "Karen Brown6",
+    title: "جیمز تیلور",
     comment:
-      "It is no secret that Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!",
+      "پشتیبانی تیم در دریافت مجوزها و برنامه‌ریزی سفر فوق‌العاده بود. با خیال آسوده تمام تمرکزمان را روی لذت بردن از شکار گذاشتیم.",
   },
   {
     id: 7,
-    title: "Karen Brown7",
+    title: "امیلی کلارک",
     comment:
-      "It is no secret that Vancouver Island has some of the best black bear hunting in the world. You won’t want to miss it!",
+      "یک سفر ماجراجویانه خاطره‌انگیز و خانوادگی در دل حیات وحش کانادا. از تک تک اعضای تیم بابت این تجربه ارزشمند سپاسگزاریم.",
   },
 ];

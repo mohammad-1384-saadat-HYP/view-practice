@@ -41,7 +41,7 @@ function MobileRouteItem({ route, pathname, onNavigate }) {
 
   return (
     <motion.li
-      className={`cursor-pointer border-l transition-colors duration-200 ${
+      className={`cursor-pointer border-r transition-colors duration-200 ${
         isActive
           ? "border-gold-400 bg-gold-500/15 font-semibold text-gold-700 dark:text-gold-400"
           : isChildActive
@@ -83,7 +83,7 @@ function MobileRouteItem({ route, pathname, onNavigate }) {
           </Link>
           <button
             type="button"
-            aria-label={`${isExpanded ? "Hide" : "Show"} ${route.title} subroutes`}
+            aria-label={isExpanded ? `بستن زیرمنوهای ${route.title}` : `باز کردن زیرمنوهای ${route.title}`}
             aria-expanded={isExpanded}
             aria-controls={submenuId}
             className="flex size-11 cursor-pointer items-center justify-center text-inherit"
@@ -127,7 +127,7 @@ function MobileRouteItem({ route, pathname, onNavigate }) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={submenuTransition}
-            className="ml-3 overflow-hidden border-l border-gold-500/30 pl-3"
+            className="mr-3 overflow-hidden border-r border-gold-500/30 pr-3"
           >
             {route.subRoutes.map((subRoute) => (
               <MobileRouteItem
@@ -170,7 +170,7 @@ export default function MobileNavigation() {
       <button
         ref={menuButtonRef}
         type="button"
-        aria-label="Open navigation menu"
+        aria-label="باز کردن منوی ناوبری"
         aria-controls="mobile-navigation"
         aria-expanded={isOpen}
         className="flex size-8.5 cursor-pointer items-center justify-center text-ink transition-colors dark:text-paper lg:hidden"
@@ -184,7 +184,7 @@ export default function MobileNavigation() {
             <motion.button
               key="mobile-navigation-backdrop"
               type="button"
-              aria-label="Close navigation menu"
+              aria-label="بستن منوی ناوبری"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -197,25 +197,25 @@ export default function MobileNavigation() {
               id="mobile-navigation"
               role="dialog"
               aria-modal="true"
-              aria-label="Mobile navigation"
-              initial={{ x: "-100%" }}
+              aria-label="ناوبری موبایل"
+              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
+              exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="fixed inset-y-0 left-0 z-50 flex w-[75vw] max-w-sm flex-col overflow-y-auto bg-paper py-2 text-ink shadow-2xl transition-colors dark:bg-night-950 dark:text-paper lg:hidden"
+              className="fixed inset-y-0 right-0 z-50 flex w-[75vw] max-w-sm flex-col overflow-y-auto bg-paper py-2 text-ink shadow-2xl transition-colors dark:bg-night-950 dark:text-paper lg:hidden"
             >
               <div className="mb-3 flex items-center justify-between border-b border-gold-500/30 pb-3 px-2">
                 <button
                   ref={closeButtonRef}
                   type="button"
-                  aria-label="Close navigation menu"
+                  aria-label="بستن منوی ناوبری"
                   className="flex size-10 cursor-pointer items-center justify-center text-ink transition-colors dark:text-paper"
                   onClick={closeMenu}
                 >
                   <FaTimes aria-hidden="true" className="size-2/3" />
                 </button>
               </div>
-              <nav aria-label="Mobile navigation">
+              <nav aria-label="ناوبری موبایل">
                 <ul className="flex flex-col">
                   {HeaderRoutes.map((route) => (
                     <MobileRouteItem

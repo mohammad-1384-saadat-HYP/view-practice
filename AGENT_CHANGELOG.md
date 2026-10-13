@@ -218,5 +218,45 @@
   - Pre-existing lint notices in protected Section 1 preserved untouched.
   - Dev server and browser visual verification left to user per AGENTS.md rule 10.1.
 
+## 2026-10-13
 
-
+- Task: Full Persian localization and RTL adaptation of the entire website (`سایتمو کامل فارسی کنی`).
+- Files changed:
+  - `src/app/globals.css`
+  - `src/app/layout.js`
+  - `src/features/header/data/headerRoutes.js`
+  - `src/features/footer/data/FooterRoutes.js`
+  - `src/features/footer/Footer.jsx`
+  - `src/features/header/Header.jsx`
+  - `src/features/header/components/DesktopRouteItem.jsx`
+  - `src/features/header/components/MobileNavigation.jsx`
+  - `src/features/header/components/ThemeToggle.jsx`
+  - `src/features/scroll-to-top/ScrollUpButton.jsx`
+  - `src/app/data/HomePageData.js`
+  - `src/app/page.js`
+  - `src/app/components/HeroSlider.jsx`
+  - `src/app/components/StickyImageTextSection.jsx`
+  - `src/app/components/ReviewsSlider.jsx`
+- Changes:
+  - Typography & Document Structure:
+    - Integrated Google Font `Vazirmatn` via `next/font/google` in `layout.js` and defined `--font-sans: var(--font-vazirmatn), system-ui, ...` in `@theme` in `globals.css`.
+    - Added `dir="rtl"` and `lang="fa"` to `<html>` tag in `layout.js`.
+    - Localized metadata `title` and `description` to Persian.
+  - Route Data & Navigation:
+    - Localized all navigation categories, links, and subroutes in `headerRoutes.js`.
+    - Localized all footer route columns and links in `FooterRoutes.js`.
+    - Localized contact information, labels, and social link accessibility attributes in `Footer.jsx`.
+  - RTL Alignment & UI Adjustments:
+    - Updated desktop navigation dropdown positioning (`right-0 top-full` and `right-full top-0 origin-right`), active state indicator (`border-r-4`), and rounded corners.
+    - Updated mobile navigation drawer to open from the right side (`fixed inset-y-0 right-0`, `x: "100%"` animation), with right-side subroute indentation and active border.
+    - Relocated `ScrollUpButton` to the bottom-left (`bottom-6 left-6 sm:bottom-8 sm:left-8`) to align with RTL design standards.
+    - Adjusted `HeroSlider` desktop thumbnail panel to the left side with RTL-oriented gradients and left-side padding reservations.
+    - Changed text alignment to start-aligned (`text-start`) in `StickyImageTextSection.jsx`.
+    - Mirrored direction arrows (`-scale-x-100`) for natural RTL reading flow.
+  - Content Translation:
+    - Translated all content, badges, headings, cards, descriptions, and CTA buttons on the Home page (`page.js`).
+    - Translated mock datasets in `HomePageData.js` (`Section2DataP1`, `Section2DataP2`, `Section4DataP1`, `Section4DataP2`, `Section5DataP1`, `Section5DataP2`, `Section7Data1`, `Section7Data2`).
+    - Localized all `aria-label` and `alt` attributes across all interactive components into Persian.
+- Verification:
+  - Ran `npm run lint` — passed with 0 errors and 0 warnings.
+  - Dev/build server was not executed, per AGENTS.md rule 10.1.

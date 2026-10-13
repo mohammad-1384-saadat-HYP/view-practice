@@ -9,32 +9,6 @@ import { GoArrowUpRight } from "react-icons/go";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-/**
- * HeroSlider — Reusable full-width hero slider used in Section 4 part 2 and
- * Section 7 part 1.
- *
- * Props:
- *  - items: Array of { id, head, title1, title2, description, url, image }
- *  - className: optional extra wrapper classes
- *
- * Field mapping (from ANTIGRAVITY_TASK_MERGED.md):
- *  - id          → slide key
- *  - head        → <p> sibling of <h2>
- *  - title1      → <span> with accent color inside <h2>
- *  - title2      → continuation text in <h2> after title1
- *  - description → descriptive paragraph after <h2>
- *  - url         → per-slide link destination
- *  - image       → slide background image + desktop image pagination source
- *
- * Requirements implemented:
- *  - Numeric pagination: REMOVED.
- *  - Dot indicators: NONE (user explicitly rejected).
- *  - Mobile navigation: Swipe, loop, autoplay (pause on hover/touch), keyboard/ARIA.
- *  - Desktop thumbnail pagination: Moved INSIDE the active slide, vertically on the right side.
- *  - Thumbnails layer: Sits above the image & overlay (z-20), has subtle backdrop/ring for contrast.
- *  - Layout reservation: Slide text container reserves right-side padding so text/CTA never collides with thumbnails.
- *  - Accessible thumbnail buttons: with aria-label and aria-current on the active item.
- */
 export default function HeroSlider({ items = [], className = "" }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [swiperInstance, setSwiperInstance] = useState(null);
@@ -52,7 +26,6 @@ export default function HeroSlider({ items = [], className = "" }) {
     [swiperInstance]
   );
 
-  // Safe guard: render nothing if items array is empty
   if (!items || items.length === 0) return null;
 
   return (
@@ -60,7 +33,7 @@ export default function HeroSlider({ items = [], className = "" }) {
       className={`relative w-full overflow-hidden rounded-3xl ${className}`}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Expeditions Carousel"
+      aria-label="گردونه سفرهای شکار"
     >
       <div className="relative min-h-[440px] w-full lg:min-h-[520px]">
         <Swiper
@@ -83,26 +56,26 @@ export default function HeroSlider({ items = [], className = "" }) {
               <div className="absolute inset-0">
                 <Image
                   src={item.image}
-                  alt={item.title1 ? `${item.title1} ${item.title2 || ""}` : "Slide"}
+                  alt={item.title1 ? `${item.title1} ${item.title2 || ""}` : "اسلاید"}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 90vw"
                   priority={index === 0}
                 />
                 {/* Overlay for text readability in both light & dark themes */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/30 lg:bg-gradient-to-r lg:from-black/95 lg:via-black/65 lg:to-black/25" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/30 lg:bg-gradient-to-l lg:from-black/95 lg:via-black/65 lg:to-black/25" />
               </div>
 
-              {/* Slide content — right padding reserved for desktop thumbnails to prevent overlap */}
+              {/* Slide content — left padding reserved for desktop thumbnails in RTL */}
               <div className="relative z-10 flex h-full min-h-[440px] flex-col justify-end p-6 text-white sm:p-8 lg:min-h-[520px] lg:p-12">
-                <div className="max-w-xl lg:max-w-2xl xl:max-w-3xl pr-0 lg:pr-36 xl:pr-44">
+                <div className="max-w-xl lg:max-w-2xl xl:max-w-3xl pl-0 lg:pl-36 xl:pl-44">
                   {item.head && (
                     <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gold-400 lg:text-sm">
                       {item.head}
                     </p>
                   )}
                   <div className="mb-2">
-                    <span className="inline-block h-0.5 w-16 bg-gradient-to-r from-gold-400 to-transparent" />
+                    <span className="inline-block h-0.5 w-16 bg-gradient-to-l from-gold-400 to-transparent" />
                   </div>
                   <h2 className="mb-3 text-2xl font-bold italic leading-tight lg:text-4xl">
                     {item.title1 && (
@@ -121,8 +94,8 @@ export default function HeroSlider({ items = [], className = "" }) {
                         href={item.url}
                         className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-6 py-2.5 text-sm font-semibold text-black transition-all duration-300 hover:bg-gold-400 hover:shadow-lg hover:shadow-gold-500/20"
                       >
-                        <span>View Details</span>
-                        <GoArrowUpRight className="size-4" />
+                        <span>مشاهده جزئیات</span>
+                        <GoArrowUpRight className="size-4 -scale-x-100" />
                       </Link>
                     </div>
                   )}
@@ -132,12 +105,12 @@ export default function HeroSlider({ items = [], className = "" }) {
           ))}
         </Swiper>
 
-        {/* Desktop Vertical Image Pagination — Inside Active Slide Frame on the Right */}
+        {/* Desktop Vertical Image Pagination — Inside Active Slide Frame on the Left for RTL */}
         {items.length > 1 && (
           <div
-            className="pointer-events-auto absolute right-5 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-3 rounded-2xl border border-white/15 bg-black/45 p-2.5 shadow-2xl backdrop-blur-md lg:flex"
+            className="pointer-events-auto absolute left-5 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-3 rounded-2xl border border-white/15 bg-black/45 p-2.5 shadow-2xl backdrop-blur-md lg:flex"
             role="tablist"
-            aria-label="Slide thumbnail navigation"
+            aria-label="ناوبری تصاویر بندانگشتی اسلاید"
           >
             {items.map((item, index) => {
               const isActive = activeIndex === index;
@@ -148,7 +121,7 @@ export default function HeroSlider({ items = [], className = "" }) {
                   role="tab"
                   aria-selected={isActive}
                   aria-current={isActive ? "true" : undefined}
-                  aria-label={`Go to slide ${index + 1}: ${item.title1 || ""} ${item.title2 || ""}`.trim()}
+                  aria-label={`برو به اسلاید ${index + 1}: ${item.title1 || ""} ${item.title2 || ""}`.trim()}
                   onClick={() => goToSlide(index)}
                   className={`group relative h-18 w-26 overflow-hidden rounded-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 xl:h-20 xl:w-28 ${
                     isActive
@@ -158,7 +131,7 @@ export default function HeroSlider({ items = [], className = "" }) {
                 >
                   <Image
                     src={item.image}
-                    alt={`Thumbnail ${index + 1}`}
+                    alt={`تصویر بندانگشتی ${index + 1}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="120px"

@@ -65,8 +65,8 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
   const panelDirection = isRoot ? "vertical" : "horizontal";
   const CaretIcon = isRoot ? FaCaretDown : FaCaretLeft;
   const panelClassName = isRoot
-    ? "absolute left-0 top-full z-20 origin-top"
-    : "absolute left-full top-0 z-30 origin-left";
+    ? "absolute right-0 top-full z-20 origin-top"
+    : "absolute right-full top-0 z-30 origin-right";
   const panelId = `desktop-subroutes-${route.path.replaceAll("/", "-")}`;
 
   return (
@@ -74,8 +74,8 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
       className={`group/item relative cursor-pointer ${
         !isRoot
           ? isActive
-            ? "border-l-4 border-gold-400 bg-gold-500/15"
-            : "border-l-4 border-transparent"
+            ? "border-r-4 border-gold-400 bg-gold-500/15"
+            : "border-r-4 border-transparent"
           : ""
       }`}
       onHoverStart={() => hasSubRoutes && setIsExpanded(true)}
@@ -111,7 +111,7 @@ export default function DesktopRouteItem({ route, isRoot = false }) {
         {hasSubRoutes && (
           <button
             type="button"
-            aria-label={`${isExpanded ? "Hide" : "Show"} ${route.title} subroutes`}
+            aria-label={isExpanded ? `پنهان‌سازی زیرمنوهای ${route.title}` : `نمایش زیرمنوهای ${route.title}`}
             aria-expanded={isExpanded}
             aria-controls={panelId}
             className="flex cursor-pointer items-center justify-center"

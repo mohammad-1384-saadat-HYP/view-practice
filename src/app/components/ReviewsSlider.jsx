@@ -6,18 +6,6 @@ import { FiUser } from "react-icons/fi";
 import { BiSolidQuoteAltRight } from "react-icons/bi";
 import "swiper/css";
 
-/**
- * ReviewsSlider — Continuous-autoplay carousel for Section 7 Part 2.
- *
- * Requirements implemented:
- *  - Continuous autoplay with smooth interval and pause on touch/hover.
- *  - Emphasized central slide with centeredSlides={true}.
- *  - Glass gold cards with refined borders, backdrop-blur, and light/dark theme support.
- *  - Edge fade / vignette overlays on both sides (theme-safe, pointer-events-none).
- *  - Responsive slidesPerView: 1.2 on mobile (1 centered slide + peeking edges),
- *    1.8 on tablet, and 2.5 on desktop.
- *  - Empty / short array safety.
- */
 export default function ReviewsSlider({ items = [], className = "" }) {
   if (!items || items.length === 0) return null;
 
@@ -26,12 +14,10 @@ export default function ReviewsSlider({ items = [], className = "" }) {
       className={`relative w-full max-w-7xl overflow-hidden py-4 ${className}`}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Hunter Reviews Carousel"
+      aria-label="گردونه نظرات شکارچیان"
     >
-      {/* Edge Fade / Vignette — Left (adapts to light and dark themes) */}
       <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 sm:w-24 lg:w-36 bg-gradient-to-r from-paper via-paper/80 to-transparent dark:from-black dark:via-black/80 dark:to-transparent" />
 
-      {/* Edge Fade / Vignette — Right (adapts to light and dark themes) */}
       <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 sm:w-24 lg:w-36 bg-gradient-to-l from-paper via-paper/80 to-transparent dark:from-black dark:via-black/80 dark:to-transparent" />
 
       <Swiper
@@ -91,7 +77,7 @@ export default function ReviewsSlider({ items = [], className = "" }) {
                   </div>
 
                   {/* Decorative divider */}
-                  <span className="mb-4 block h-px w-full bg-gradient-to-r from-gold-500/40 via-gold-500/10 to-transparent" />
+                  <span className="mb-4 block h-px w-full bg-gradient-to-l from-gold-500/40 via-gold-500/10 to-transparent" />
 
                   {/* Review comment */}
                   <p className="text-sm leading-relaxed text-ink/80 dark:text-paper/80 sm:text-base">

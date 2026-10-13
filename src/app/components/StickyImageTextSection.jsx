@@ -84,7 +84,7 @@ export default function StickyImageTextSection({
       >
         {/* Sticky text column — self-stretch ensures height matches the image column so sticky stops at the bottom */}
         <div className="w-1/2 self-stretch">
-          <div className="sticky top-28 flex flex-col items-start gap-5 text-left">
+          <div className="sticky top-28 flex flex-col items-start gap-5 text-start">
             {badge}
             <h2 className="text-3xl font-bold italic leading-tight text-white xl:text-4xl">
               {heading}

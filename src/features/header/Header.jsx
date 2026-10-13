@@ -7,7 +7,7 @@ import Link from "next/link";
 
 function DesktopRouteList({ routes }) {
   return (
-    <ul className="flex flex-wrap items-center justify-center text-ink text-sm dark:text-paper [&>li:first-child]:rounded-l-sm [&>li:last-child]:rounded-r-sm">
+    <ul className="flex flex-wrap items-center justify-center text-ink text-sm dark:text-paper [&>li:first-child]:rounded-r-sm [&>li:last-child]:rounded-l-sm">
       {routes.map((route) => (
         <DesktopRouteItem key={route.path} route={route} isRoot />
       ))}
@@ -26,7 +26,7 @@ export default function Header() {
         <Link href="/">
           <Image
             src="/next.svg"
-            alt="Next.js logo"
+            alt="لوگوی سایت"
             width={135}
             height={50}
             priority
@@ -37,7 +37,7 @@ export default function Header() {
       <Link href="/" className="lg:hidden">
         <Image
           src="/next.svg"
-          alt="Next.js logo"
+          alt="لوگوی سایت"
           width={115}
           height={40}
           priority
@@ -47,7 +47,7 @@ export default function Header() {
       <div className="lg:hidden">
         <ThemeToggle />
       </div>
-      <nav aria-label="Main navigation" className="hidden lg:flex">
+      <nav aria-label="منوی ناوبری اصلی" className="hidden lg:flex">
         <DesktopRouteList routes={HeaderRoutes} />
       </nav>
     </header>
