@@ -14,7 +14,7 @@ export default function ReviewsSlider({ items = [], className = "" }) {
       className={`relative w-full max-w-7xl overflow-hidden py-4 ${className}`}
       role="region"
       aria-roledescription="carousel"
-      aria-label="گردونه نظرات شکارچیان"
+      aria-label="گردونه نظرات مشتریان گالری طلا"
     >
       <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 sm:w-24 lg:w-36 bg-gradient-to-r from-paper via-paper/80 to-transparent dark:from-black dark:via-black/80 dark:to-transparent" />
 

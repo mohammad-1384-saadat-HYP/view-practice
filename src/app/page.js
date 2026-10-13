@@ -46,24 +46,18 @@ function BadgePill({ icon: Icon, label, variant = "gold" }) {
 export default function Home() {
   return (
     <main className="flex min-h-full flex-1 flex-col">
-      {/* Section 1 — Completely protected & untouched */}
-      <section
-        className="relative min-h-screen flex flex-col bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('/2117697-3840x2160-desktop-4k-dark-wallpaper.jpg')",
-        }}
-      >
+      {/* Section 1 */}
+      <section className="relative min-h-screen flex flex-col bg-cover bg-center bg-no-repeat bg-theme-first">
         <Header />
         <div className="py-15 px-7 lg:p-20">
           <h1 className="text-2xl lg:text-3xl font-bold italic">
-            تجربه
-            <br /> بی‌پایان جزیره ونکوور
-            <br /> ماجراجویی‌های <span className="text-gold-400">بی‌نظیر</span> شکار
+            ویترین لوکس
+            <br /> طلا و جواهرات اصیل
+            <br /> درخششی <span className="text-gold-400">ماندگار</span> و بی‌همتا
           </h1>
           <p className="text-[15px] lg:text-base italic mt-4 lg:mt-6.5">
-            سفرهای اکتشافی در بکرترین قلمروهای شکار جزیره ونکوور با همراهی راهنمایان مجرب.
-            <br /> پیوند طبیعت وحشی و ماجراجویی‌های فراموش‌نشدنی.
+            مجموعه‌ای از نفیس‌ترین زیورآلات و مصنوعات طلای ۱۸ عیار با فاکتور رسمی معتبر.
+            <br /> زیبایی اصیل هنر زرگری در کنار تجربه خریدی مطمئن، شفاف و لذت‌بخش.
           </p>
         </div>
       </section>
@@ -72,15 +66,15 @@ export default function Home() {
       <section className="relative z-10 flex flex-col items-center min-h-screen bg-paper py-15 px-3.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
         <ScrollReveal className="flex flex-col items-center gap-7.5 lg:gap-24 w-full">
           <div className="flex flex-col items-center gap-10 w-full">
-            <BadgePill icon={BiTargetLock} label="تراکم بی‌نظیر حیات وحش" />
+            <BadgePill icon={BiTargetLock} label="اصالت و استاندارد ۱۸ عیار (۷۵۰)" />
             {/* Enhanced h2 styling — accent gradient underline + improved typography */}
             <h2 className="relative text-xl font-bold italic text-center leading-snug lg:text-3xl">
               <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                چرا شکارچیان شیفته
+                چرا خریداران شیفته
               </span>
               <br className="sm:hidden" />
               <span className="text-ink dark:text-paper">
-                {" "}شکار در جزیره ونکوور هستند؟
+                {" "}انتخاب ویترین طلای ما هستند؟
               </span>
               <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
             </h2>
@@ -90,7 +84,7 @@ export default function Home() {
               {Section2DataP1.map((item) => (
                 <div
                   key={item.id}
-                  className="group relative flex flex-col items-center gap-4 rounded-2xl border border-gold-500/40 bg-white/70 p-6 text-center shadow-[0_4px_6px_-1px_rgba(0,0,0,0.06),0_10px_20px_-3px_rgba(212,175,55,0.12)] transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/80 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.1),0_20px_35px_-4px_rgba(212,175,55,0.22)] dark:bg-night-900/60 dark:border-gold-500/30 dark:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.5),0_10px_20px_-3px_rgba(212,175,55,0.08)] dark:hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.7),0_20px_35px_-4px_rgba(212,175,55,0.18)]"
+                  className="group relative flex flex-col items-center gap-4 rounded-2xl border border-gold-500/40 bg-white/80 p-6 text-center shadow-[0_4px_6px_-1px_rgba(0,0,0,0.06),0_10px_20px_-3px_rgba(212,175,55,0.12)] transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/80 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.1),0_20px_35px_-4px_rgba(212,175,55,0.22)] dark:bg-night-900/80 dark:border-gold-500/30 dark:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.5),0_10px_20px_-3px_rgba(212,175,55,0.08)] dark:hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.7),0_20px_35px_-4px_rgba(212,175,55,0.18)]"
                 >
                   <span className="absolute top-0 left-6 right-6 h-0.5 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
                   <h3 className="text-lg lg:text-xl font-bold italic text-ink dark:text-paper">
@@ -112,13 +106,13 @@ export default function Home() {
             {/* Enhanced h2 styling */}
             <h2 className="relative text-2xl font-bold italic text-center leading-snug lg:text-3xl">
               <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                ماجراجویی ایده‌آل
+                درخشان‌ترین کالکشن‌ها
               </span>{" "}
-              شکار خود را در جزیره ونکوور تجربه کنید
+              طلا و جواهرات متناسب با سلیقه شما
               <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
             </h2>
             <p className="text-sm lg:text-base text-center max-w-2xl leading-relaxed text-ink/80 dark:text-paper/80">
-              تیم ونایزل هانترز تورهای اختصاصی شکار را برای افراد، گروه‌ها و خانواده‌ها ارائه می‌دهد. اگر درخواست یا شرایط خاصی مد نظر دارید، بهترین سفر متناسب با ترجیحات شما را طراحی خواهیم کرد. مقاصد شکار ما را بررسی کنید و از شکاری رؤیایی در یکی از برترین مناطق بریتیش کلمبیا لذت ببرید.
+              ویترین طلای ما ارائه‌دهنده نفیس‌ترین مصنوعات طلا، جواهر و سکه برای مناسبت‌ها، سرمایه‌گذاری و استفاده روزمره است. تمامی محصولات همراه با فاکتور رسمی، مشخصات کامل وزن و عیار استاندارد ۱۸ عیار تقدیم می‌گردند. زیباترین مدل‌ها را در ویترین آنلاین مشاهده کنید و خریدی لذت‌بخش و امن را تجربه نمایید.
             </p>
             <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-5">
               {Section2DataP2.map((item) => (
@@ -130,10 +124,10 @@ export default function Home() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover absolute rounded-xl opacity-50 transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover absolute rounded-xl opacity-60 transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* Overlay for text readability in both themes */}
-                  <div className="pointer-events-none absolute inset-0 rounded-xl bg-black/25 dark:bg-black/45" />
+                  <div className="pointer-events-none absolute inset-0 rounded-xl bg-black/35 dark:bg-black/55" />
                   <h3 className="text-lg lg:text-xl font-bold italic z-10 text-white drop-shadow-md">
                     {item.title}
                   </h3>
@@ -141,11 +135,11 @@ export default function Home() {
               ))}
             </div>
             <Link
-              href="/hunting-locations"
+              href="/sets"
               className="w-full lg:w-fit h-15 flex items-center justify-center gap-2 border-2 border-gold-500/85 px-6 py-2 rounded-2xl transition-colors hover:bg-gold-500/10"
             >
               <span className="capitalize text-lg lg:text-xl font-bold">
-                مناطق شکار بیشتر
+                مشاهده تمام کالکشن‌ها
               </span>
               <FaAngleRight className="size-6 lg:size-7.5 text-gold-500 -scale-x-100" />
             </Link>
@@ -154,25 +148,19 @@ export default function Home() {
       </section>
 
       {/* Section 3 */}
-      <section
-        className="relative flex flex-col items-center bg-cover bg-center bg-no-repeat py-15 px-3.5 lg:px-0 text-center"
-        style={{
-          backgroundImage:
-            "url('/5815532-3840x2160-desktop-hd-4k-wallpaper-image.jpg')",
-        }}
-      >
+      <section className="relative flex flex-col items-center bg-cover bg-center bg-no-repeat bg-theme-middle py-15 px-3.5 lg:px-0 text-center">
         {/* Dark overlay for section-level readability */}
-        <div className="pointer-events-none absolute inset-0 bg-black/35" />
-        <ScrollReveal className="relative z-10 mx-auto w-full max-w-3xl flex flex-col items-center gap-5 rounded-2xl border border-gold-500/60 bg-black/75 px-6 py-10 shadow-2xl backdrop-blur-sm sm:px-10 lg:w-2/3 lg:py-12">
-          <BadgePill icon={GiCutDiamond} label="پکیج‌های اختصاصی" variant="muted" />
+        <div className="pointer-events-none absolute inset-0 bg-black/45" />
+        <ScrollReveal className="relative z-10 mx-auto w-full max-w-3xl flex flex-col items-center gap-5 rounded-2xl border border-gold-500/60 bg-black/80 px-6 py-10 shadow-2xl backdrop-blur-sm sm:px-10 lg:w-2/3 lg:py-12">
+          <BadgePill icon={GiCutDiamond} label="کالکشن‌های اختصاصی ویترین" variant="muted" />
           {/* Enhanced h2 */}
           <h2 className="text-xl font-bold italic leading-snug text-white sm:text-2xl lg:text-3xl">
-            فرصت‌هایی وسوسه‌انگیزتر از{" "}
-            <span className="text-gold-400">نخستین شکار شما</span>
+            درخششی فراتر از یک انتخاب،{" "}
+            <span className="text-gold-400">سرمایه‌ای برای همیشه</span>
           </h2>
           <span className="mx-auto block h-px w-16 bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-          <p className="max-w-xl text-sm leading-7 text-gray-300 lg:text-base">
-            شما در این مسیر تنها نیستید. ونایزل هانترز با راهنمایان مجرب و رسمی همکاری می‌کند که دانش بومی، تجهیزات حرفه‌ای و خدمات مورد نیاز یک سفر برنامه‌ریزی‌شده را در اختیارتان می‌گذارند. با فراهم بودن امکان شکار برخی گونه‌ها در تمام طول سال، گزینه‌های متعددی متناسب با گونه، منطقه شکار و قوانین مربوطه پیش روی شماست. ما با بررسی دقیق، بهترین فرصت‌های شکار بریتیش کلمبیا را با قیمت‌هایی مناسب و ارزشی استثنایی گرد هم آورده‌ایم.
+          <p className="max-w-xl text-sm leading-7 text-gray-200 lg:text-base">
+            در ویترین طلای ما، هر قطعه طلا داستانی از ظرافت، هنر دست استادکاران و اصالت عیار ۱۸ است. ما با تلفیق هنر سنتی طلاکاری و مدرن‌ترین متدهای روز دنیا، زیورآلاتی ماندگار را با شفاف‌ترین قیمت‌گذاری، کمترین اجرت ساخت و فاکتور چاپی معتبر به شما ارائه می‌دهیم تا تجربه‌ای امن و لذت‌بخش از خرید آنلاین طلا داشته باشید.
           </p>
         </ScrollReveal>
       </section>
@@ -183,13 +171,13 @@ export default function Home() {
           {/* Part 1 — Section4DataP1: Polish & Elevate */}
           <ScrollReveal className="w-full text-center">
             <div className="flex flex-col items-center gap-7.5">
-              <BadgePill icon={BiTargetLock} label="گونه‌های هدف" />
+              <BadgePill icon={BiTargetLock} label="دسته‌بندی‌های ویترین" />
               {/* Enhanced h2 */}
               <h2 className="relative text-xl font-bold italic text-center leading-snug lg:text-3xl">
                 <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                  دسته‌بندی شکارهای
+                  دسته‌بندی محصولات
                 </span>{" "}
-                جزیره ونکوور
+                طلا، جواهر و زیورآلات فاخر
                 <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
               </h2>
               <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -219,7 +207,7 @@ export default function Home() {
                     <div className="relative z-10 w-full flex items-center justify-between mt-2 pt-3 border-t border-white/10">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium text-gold-400 transition-colors group-hover:text-gold-300 lg:text-base">
-                          انتخاب {item.title} شما
+                          مشاهده کالکشن {item.title}
                         </span>
                         <FaArrowRight className="size-3 text-gold-400 transition-transform group-hover:-translate-x-1 -scale-x-100" />
                       </div>
@@ -245,21 +233,21 @@ export default function Home() {
       {/* Section 5 — Sticky Image-Text Section (reverse=false) */}
       <StickyImageTextSection
         items={Section5DataP1}
-        badge={<BadgePill icon={LuMapPin} label="جزیره ونکوور، بریتیش کلمبیا" variant="muted" />}
-        heading="ونایزل هانترز تقدیم می‌کند:"
-        description="ونایزل هانترز اوج ماجراجویی در طبیعت وحشی جزیره ونکوور را با همراهی راهنمایان رسمی و شناخت بی‌نظیر محلی برای شما به ارمغان می‌آورد. چه به دنبال شکار تروفی‌های شاخص و بزرگ باشید، چه برنامه‌ای برای شکار پرندگان در نظر داشته باشید یا خواهان سفرهای منعطف در طول سال باشید، پکیج‌های دستچین‌شده و برنامه‌های فصلی ما پاسخگوی تمامی اهداف شماست. از برنامه‌های کاملاً شخصی‌سازی‌شده تا رزرو بی‌دردسر و تدارکات سطح بالا، سفری هیجان‌انگیز، ایمن و ماندگار را تضمین می‌کنیم."
+        badge={<BadgePill icon={GiCutDiamond} label="گالری و ویترین زرگری" variant="muted" />}
+        heading="خدمات متمایز ویترین طلا:"
+        description="ویترین آنلاین طلا با افتخار ارائه‌دهنده کامل‌ترین خدمات خرید، سفارش ساخت و مشاوره طلا و جواهر است. تمامی مصنوعات دارای ضمانت اصالت عیار ۷۵۰، فاکتور رسمی چاپی و بسته‌بندی نفیس کادویی می‌باشند. همچنین با سیستم محاسبه آنلاین و شفاف، سفارشات شما با پست ویژه بیمه‌شده در سریع‌ترین زمان ممکن تحویل می‌گردند."
         reverse={false}
-        bgImage="/5815532-3840x2160-desktop-hd-4k-wallpaper-image.jpg"
+        bgClass="bg-theme-middle"
       />
 
       {/* Section 6 — Sticky Image-Text Section (reverse=true) */}
       <StickyImageTextSection
         items={Section5DataP2}
-        badge={<BadgePill icon={BiTargetLock} label="اکسپدیشن‌های برتر شکار" variant="muted" />}
-        heading="انتظارات شما از این سفر:"
-        description="هنگام سفر با ونایزل هانترز، از اولین کلیک تا تکمیل شکار، تجربه‌ای آسوده و مطمئن خواهید داشت. سامانه شفاف و سریع رزرواسیون، هماهنگی تاریخ‌ها، مجوزها و مناطق را ساده می‌سازد. در میدان عمل، تحت هدایت شکارچیان معتبر با دانش عمیق منطقه‌ای و مهارت‌های حرفه‌ای ردیابی قرار می‌گیرید. در تمام این مسیر، تیم پشتیبانی متعهد ما در کنار شماست تا با مدیریت کلیه مجوزها و پشتیبانی تدارکاتی، تمام تمرکزتان بر لذت بردن از هیجان شکار باشد."
+        badge={<BadgePill icon={BiTargetLock} label="خرید امن و مطمئن" variant="muted" />}
+        heading="مزایای خرید از ویترین آنلاین:"
+        description="خرید آنلاین طلا با ما تجربه‌ای ساده، شفاف و سرشار از اطمینان است. از مشاهده مدل‌ها و استعلام لحظه‌ای وزن و اجرت گرفته تا پرداخت امن و دریافت فاکتور رسمی معتبر اتحادیه، تمامی مراحل برای آسودگی خیال شما طراحی شده است. تیم پشتیبانی و کارشناسان طلا در تمامی لحظات همراه شما هستند تا مشاوره‌ای دقیق برای خریدی ایده‌آل دریافت کنید."
         reverse={true}
-        bgImage="/5815532-3840x2160-desktop-hd-4k-wallpaper-image.jpg"
+        bgClass="bg-theme-middle"
       />
 
       {/* Section 7 */}
@@ -271,19 +259,17 @@ export default function Home() {
           </ScrollReveal>
         )}
 
-        {/* Part 2 — Hunter Reviews with Section7Data2 (Continuous autoplay carousel) */}
+        {/* Part 2 — Reviews with Section7Data2 */}
         <ScrollReveal className="mt-15 w-full flex flex-col items-center px-3.5 lg:px-5">
-          <BadgePill icon={BiSolidQuoteAltRight} label="نظرات شکارچیان" variant="gold" />
-          {/* Enhanced h2 — desktop: single line; mobile: can wrap */}
+          <BadgePill icon={BiSolidQuoteAltRight} label="دیدگاه مشتریان ویترین" variant="gold" />
           <h2 className="mt-5 text-center text-xl font-bold italic leading-snug sm:text-2xl lg:whitespace-nowrap lg:text-3xl">
             <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-              دیدگاه شکارچیان
+              رضایت و اعتماد همراهان
             </span>{" "}
-            درباره شکار در جزیره ونکوور
+              به کیفیت و اصالت ویترین طلای ما
             <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
           </h2>
 
-          {/* Continuous autoplay ReviewsSlider with glass gold cards and edge fade */}
           <div className="mt-6 w-full flex justify-center">
             <ReviewsSlider items={Section7Data2} />
           </div>

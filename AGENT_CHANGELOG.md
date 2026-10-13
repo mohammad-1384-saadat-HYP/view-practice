@@ -260,3 +260,77 @@
 - Verification:
   - Ran `npm run lint` — passed with 0 errors and 0 warnings.
   - Dev/build server was not executed, per AGENTS.md rule 10.1.
+
+## 2026-10-13 (Gold Showcase Transformation)
+
+- Task: Transform the website content from Vancouver Island hunting into a luxury Gold and Jewelry Showcase gallery (`ویترین طلا و جواهر`), configure dynamic light/dark theme backgrounds with specific image usage (`first` images on Section 2 only, `middle` images on subsequent sections), and ensure the Footer background adapts cleanly to light (white) and dark (black) modes.
+- Files changed:
+  - `src/app/globals.css`
+  - `src/app/layout.js`
+  - `src/app/page.js`
+  - `src/app/data/HomePageData.js`
+  - `src/app/components/HeroSlider.jsx`
+  - `src/app/components/ReviewsSlider.jsx`
+  - `src/app/components/StickyImageTextSection.jsx`
+  - `src/features/footer/Footer.jsx`
+  - `src/features/footer/data/FooterRoutes.js`
+  - `src/features/header/data/headerRoutes.js`
+- Changes:
+  - Theme Background Classes (`globals.css`):
+    - Added `.bg-theme-first` using `/light-theme-first.jpg` in light mode and `/dark-theme-first.jpg` in dark mode (`:where(.dark, .dark *)`).
+    - Added `.bg-theme-middle` using `/light-theme-middle.jpg` in light mode and `/dark-theme-middle.jpg` in dark mode (`:where(.dark, .dark *)`).
+  - Home Page Section Background Assignments (`page.js` & `StickyImageTextSection.jsx`):
+    - Configured Section 2 exclusively with `bg-theme-first` (using the `*-first.jpg` images).
+    - Configured Sections 3, 4, 5, 6, and 7 with `bg-theme-middle` (using the `*-middle.jpg` images).
+    - Added a `bgClass` prop to `StickyImageTextSection.jsx` defaulting to `bg-theme-middle` so sticky sections properly inherit the theme-switching background image.
+  - Footer Theme Styling (`Footer.jsx` & `FooterRoutes.js`):
+    - Changed Footer background from hardcoded `bg-black` to `bg-white dark:bg-black` with corresponding border and text readability classes.
+    - Updated footer location and routes to gold gallery sections: کالکشن طلا و جواهر، زیورآلات ۱۸ عیار، درباره گالری، راهنمای خرید و اصالت عیار، ضمانت و خدمات پس از فروش.
+  - Gold Showcase Content & Data (`HomePageData.js`, `headerRoutes.js`, `layout.js`, `HeroSlider.jsx`, `ReviewsSlider.jsx`):
+    - Replaced all header routes with luxury jewelry categories (سرویس و نیم‌ست، زیورآلات و تک‌پوش، شمش و سکه، کالکشن‌های اختصاصی، مشاوره و خرید، ویترین آنلاین).
+    - Rewrote all homepage copy and mock datasets to gold gallery products (سرویس‌های مجلسی، انگشترهای برلیان، النگوهای نمادار، دستبند تنیسی، سکه و شمش سرمایه‌گذاری ۱۸ و ۲۴ عیار).
+    - Updated site metadata title and description in `layout.js` for the gold showcase.
+    - Updated accessibility labels (`aria-label`) in `HeroSlider.jsx` and `ReviewsSlider.jsx`.
+- Verification:
+  - Ran `npm run lint` — passed with 0 errors and 0 warnings.
+  - Inspected code for syntax correctness and consistency with Tailwind v4 theme configuration.
+  - Dev/build commands were not executed, adhering strictly to AGENTS.md rule 10.1.
+
+- Adjustment / Clarification:
+  - Task: User clarified that `bg-theme-first` must be placed in Section 1 (Hero section) instead of Section 2, and Section 2 should retain its original clean background (`bg-paper dark:bg-black`).
+  - Files changed: `src/app/page.js`.
+  - Changes: Replaced hardcoded inline wallpaper in Section 1 with `bg-theme-first`, and restored Section 2 to `bg-paper dark:bg-black` removing the temporary custom image backdrop overlay.
+  - Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+- Adjustment / Clarification (Selective `bg-theme-middle` Usage):
+  - Task: User clarified that `bg-theme-middle` must only be applied to sections that originally had a background image in the previous commit, rather than all subsequent sections.
+  - Files changed: `src/app/page.js`.
+  - Analysis of previous commit (`HEAD`):
+    - Section 2: Originally had NO background image (`bg-paper dark:bg-black`).
+    - Section 3: Originally HAD background image (`/5815532-...`) -> Retained `bg-theme-middle`.
+    - Section 4: Originally had NO background image (`bg-paper dark:bg-black`) -> Restored to `bg-paper dark:bg-black` (removed `bg-theme-middle` and backdrop overlay).
+    - Section 5: Originally HAD background image (`/5815532-...`) -> Retained `bgClass="bg-theme-middle"`.
+    - Section 6: Originally HAD background image (`/5815532-...`) -> Retained `bgClass="bg-theme-middle"`.
+    - Section 7: Originally had NO background image (`bg-paper dark:bg-black`) -> Restored to `bg-paper dark:bg-black` (removed `bg-theme-middle` and backdrop overlay).
+  - Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Clean up and delete unused images and assets from `public/`.
+  - Files removed:
+    - `public/1788606495_hanHuntinghome.webp`
+    - `public/1788606495_ve Huntinghome.webp`
+    - `public/1788606496_riaHuntinghome.webp`
+    - `public/2117697-3840x2160-desktop-4k-dark-wallpaper.jpg`
+    - `public/5433d670a0ebb05b60950360c728a427.jpg`
+    - `public/5815532-3840x2160-desktop-hd-4k-wallpaper-image.jpg`
+    - `public/file.svg`
+    - `public/globe.svg`
+    - `public/vercel.svg`
+    - `public/window.svg`
+  - Retained active files:
+    - `public/dark-theme-first.jpg`
+    - `public/dark-theme-middle.jpg`
+    - `public/light-theme-first.jpg`
+    - `public/light-theme-middle.jpg`
+    - `public/next.svg`
+  - Verification: `npm run lint` passed with 0 errors and 0 warnings.
+

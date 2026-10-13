@@ -59,3 +59,17 @@
 	--color-night-900: #111317;
 	--color-night-950: #0a0b0d;
 }
+
+.bg-theme-first {
+	background-image: url('/light-theme-first.jpg');
+}
+:where(.dark, .dark *) .bg-theme-first {
+	background-image: url('/dark-theme-first.jpg');
+}
+
+.bg-theme-middle {
+	background-image: url('/light-theme-middle.jpg');
+}
+:where(.dark, .dark *) .bg-theme-middle {
+	background-image: url('/dark-theme-middle.jpg');
+}

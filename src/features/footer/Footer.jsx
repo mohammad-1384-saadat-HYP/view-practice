@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-6.5 py-10 text-xs text-gold-700 transition-colors dark:text-gold-400 md:text-[15px] lg:py-12 lg:text-[17px] bg-black">
+    <footer className="flex flex-col items-center gap-6.5 py-10 text-xs text-gold-700 transition-colors dark:text-gold-400 md:text-[15px] lg:py-12 lg:text-[17px] bg-white dark:bg-black">
       <div className="hidden lg:flex items-center justify-center gap-6">
         {DesktopFooterRoutes.map((route) => (
           <Link
@@ -62,7 +62,7 @@ export default function Footer() {
           <FaTwitter className="size-2/3" />
         </div>
       </div>
-      <div className="lg:text-[15px]">موقعیت: جزیره ونکوور</div>
+      <div className="lg:text-[15px]">موقعیت: بازار طلا و جواهر</div>
       <div
         className="h-px w-2/3 opacity-70 md:w-1/2 lg:w-1/4"
         style={{

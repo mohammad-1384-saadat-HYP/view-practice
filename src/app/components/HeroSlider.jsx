@@ -33,7 +33,7 @@ export default function HeroSlider({ items = [], className = "" }) {
       className={`relative w-full overflow-hidden rounded-3xl ${className}`}
       role="region"
       aria-roledescription="carousel"
-      aria-label="گردونه سفرهای شکار"
+      aria-label="گردونه معرفی کالکشن‌های طلا"
     >
       <div className="relative min-h-[440px] w-full lg:min-h-[520px]">
         <Swiper

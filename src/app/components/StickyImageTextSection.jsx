@@ -26,13 +26,14 @@ export default function StickyImageTextSection({
   heading = "",
   description = "",
   reverse = false,
+  bgClass = "bg-theme-middle",
   bgImage = "",
 }) {
   if (!items || items.length === 0) return null;
 
   return (
     <section
-      className="relative min-h-screen bg-cover bg-center bg-no-repeat px-3.5 py-12 lg:px-10 lg:py-20"
+      className={`relative min-h-screen bg-cover bg-center bg-no-repeat px-3.5 py-12 lg:px-10 lg:py-20 ${bgClass}`}
       style={bgImage ? { backgroundImage: `url('${bgImage}')` } : undefined}
     >
       {/* Dark overlay for section-level readability in both themes */}
