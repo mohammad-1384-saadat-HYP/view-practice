@@ -353,3 +353,15 @@
     - `src/app/components/HeroSlider.jsx` & `src/app/components/ReviewsSlider.jsx`: Added explicit `dir="rtl"` prop to `<Swiper>` components to ensure correct slide positioning and touch gestures in RTL mode.
   - Important decisions: Injected dynamic `<style>` rules during View Transitions to guarantee reliable compositor-driven expansion from the exact click center without relying on CSS variable inheritance to root pseudo-elements.
   - Verification: `npm run lint` passed with 0 errors and 0 warnings. Dev-server visual verification left to user per AGENTS.md rule 10.1.
+
+- Task: Font consistency across the whole page (Typography-only task).
+  - Files changed:
+    - `src/app/page.js`: Removed `italic` from Section 1 (`h1`, `p`) and Sections 2, 3, 4, 7 (`h2`, `h3`); removed `tracking-wide` from Persian heading in Section 4 card title.
+    - `src/app/components/HeroSlider.jsx`: Removed `italic` from slide `h2` headings.
+    - `src/app/components/StickyImageTextSection.jsx`: Removed `italic` from `h2` headings in mobile and desktop layouts (Sections 5 & 6).
+  - Important decisions:
+    - Confirmed base font system as Vazirmatn (`font-sans`).
+    - Eliminated synthetic italic slants across all headings and paragraphs to protect Persian calligraphy and prevent baseline clipping.
+    - Left all layouts, animations, sizing, spacing, data values, and sticky mechanics strictly untouched.
+  - Verification: `npm run lint` passed with 0 errors and 0 warnings.
+

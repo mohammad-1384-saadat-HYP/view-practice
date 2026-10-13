@@ -78,7 +78,7 @@ export default function HeroSlider({ items = [], className = "" }) {
                   <div className="mb-2">
                     <span className="inline-block h-0.5 w-16 bg-gradient-to-l from-gold-400 to-transparent" />
                   </div>
-                  <h2 className="mb-3 text-2xl font-bold italic leading-tight lg:text-4xl">
+                  <h2 className="mb-3 text-2xl font-bold leading-tight lg:text-4xl">
                     {item.title1 && (
                       <span className="text-gold-400">{item.title1} </span>
                     )}

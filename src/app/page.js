@@ -21,11 +21,6 @@ import HeroSlider from "./components/HeroSlider";
 import StickyImageTextSection from "./components/StickyImageTextSection";
 import ReviewsSlider from "./components/ReviewsSlider";
 
-/* ──────────────────────────────────────────────
- * Reusable inline component: BadgePill
- * Unifies all BiTargetLock / icon + label pill badges
- * used across Sections 2–7 for consistent styling.
- * ────────────────────────────────────────────── */
 function BadgePill({ icon: Icon, label, variant = "gold" }) {
   const variants = {
     gold: "border-gold-500 text-ink dark:text-paper",
@@ -46,17 +41,16 @@ function BadgePill({ icon: Icon, label, variant = "gold" }) {
 export default function Home() {
   return (
     <main className="flex min-h-full flex-1 flex-col">
-      {/* Section 1 */}
       <section className="relative min-h-screen flex flex-col bg-cover bg-center bg-no-repeat bg-theme-first">
         <Header />
         <div className="py-15 px-7 lg:p-20">
-          <h1 className="text-2xl lg:text-3xl font-bold italic">
+          <h1 className="text-2xl lg:text-3xl font-bold">
             ویترین لوکس
             <br /> طلا و جواهرات اصیل
             <br /> درخششی <span className="text-gold-400">ماندگار</span> و
             بی‌همتا
           </h1>
-          <p className="text-[15px] lg:text-base italic mt-4 lg:mt-6.5">
+          <p className="text-[15px] lg:text-base mt-4 lg:mt-6.5">
             مجموعه‌ای از نفیس‌ترین زیورآلات و مصنوعات طلای ۱۸ عیار با فاکتور
             رسمی معتبر.
             <br /> زیبایی اصیل هنر زرگری در کنار تجربه خریدی مطمئن، شفاف و
@@ -65,45 +59,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 2 */}
-      <section className="relative z-10 flex flex-col items-center min-h-screen bg-paper py-15 px-3.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
-        <div className="flex flex-col items-center gap-7.5 lg:gap-24 w-full">
+      <section className="relative z-10 flex flex-col items-center min-h-screen bg-paper py-15 px-7.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
+        <div className="flex flex-col items-center gap-30 lg:gap-24 w-full">
           <div className="flex flex-col items-center gap-10 w-full">
-            <ScrollReveal className="flex flex-col items-center text-center">
-              <BadgePill
-                icon={BiTargetLock}
-                label="اصالت و استاندارد ۱۸ عیار (۷۵۰)"
-              />
-              {/* Enhanced h2 styling — accent gradient underline + improved typography */}
-              <h2 className="relative mt-4 text-xl font-bold italic text-center leading-snug lg:text-3xl">
-                <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                  چرا خریداران شیفته
-                </span>
-                <br className="sm:hidden" />
-                <span className="text-ink dark:text-paper">
-                  {" "}
-                  انتخاب ویترین طلای ما هستند؟
-                </span>
-                <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-              </h2>
-            </ScrollReveal>
+            <div className="flex flex-col items-center gap-7.5 text-center">
+              <ScrollReveal>
+                <BadgePill
+                  icon={BiTargetLock}
+                  label="اصالت و استاندارد ۱۸ عیار (۷۵۰)"
+                />
+              </ScrollReveal>
+              <ScrollReveal>
+                <h2 className="relative text-xl font-bold text-center leading-snug lg:text-3xl">
+                  <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
+                    چرا خریداران شیفته
+                  </span>
+                  <br className="sm:hidden" />
+                  <span className="text-ink dark:text-paper">
+                    {" "}
+                    انتخاب ویترین طلای ما هستند؟
+                  </span>
+                  <span className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
+                </h2>
+              </ScrollReveal>
+            </div>
 
-            {/* Layered-shadow cards (isolated, easy to revert) */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-6xl">
               {Section2DataP1.map((item, index) => (
                 <ScrollReveal
                   key={item.id}
                   delay={index * 0.1}
                   y={24}
-                  className="h-full"
                 >
-                  <div className="group relative flex h-full flex-col items-center gap-4 rounded-2xl border border-gold-500/40 bg-white/80 p-6 text-center shadow-[0_4px_6px_-1px_rgba(0,0,0,0.06),0_10px_20px_-3px_rgba(212,175,55,0.12)] transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/80 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.1),0_20px_35px_-4px_rgba(212,175,55,0.22)] dark:bg-night-900/80 dark:border-gold-500/30 dark:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.5),0_10px_20px_-3px_rgba(212,175,55,0.08)] dark:hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.7),0_20px_35px_-4px_rgba(212,175,55,0.18)]">
+                  <div className="group relative flex min-h-52.5 flex-col items-center gap-4 rounded-2xl border border-gold-500/40 bg-white/80 p-6 text-center shadow-[0_4px_6px_-1px_rgba(0,0,0,0.06),0_10px_20px_-3px_rgba(212,175,55,0.12)] transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/80 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.1),0_20px_35px_-4px_rgba(212,175,55,0.22)] dark:bg-night-900/80 dark:border-gold-500/30 dark:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.5),0_10px_20px_-3px_rgba(212,175,55,0.08)] dark:hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.7),0_20px_35px_-4px_rgba(212,175,55,0.18)]">
                     <span className="absolute top-0 left-6 right-6 h-0.5 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-                    <h3 className="text-lg lg:text-xl font-bold italic text-ink dark:text-paper">
+                    <h3 className="text-lg lg:text-xl font-bold text-gold-600 dark:text-gold-400">
                       {item.title}
                     </h3>
                     <span className="h-px w-16 bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-                    <h4 className="text-sm lg:text-base font-semibold text-gold-600 dark:text-gold-400">
+                    <h4 className="text-sm lg:text-base font-semibold text-ink dark:text-paper">
                       {item.subTitile}
                     </h4>
                     <p className="text-xs lg:text-sm leading-relaxed text-ink/75 dark:text-paper/75">
@@ -118,12 +112,12 @@ export default function Home() {
           <div className="flex flex-col items-center gap-7.5 w-full">
             <ScrollReveal className="flex flex-col items-center text-center">
               {/* Enhanced h2 styling */}
-              <h2 className="relative text-2xl font-bold italic text-center leading-snug lg:text-3xl">
+              <h2 className="relative text-2xl font-bold text-center leading-snug lg:text-3xl">
                 <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
                   درخشان‌ترین کالکشن‌ها
                 </span>{" "}
                 طلا و جواهرات متناسب با سلیقه شما
-                <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
+                <span className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
               </h2>
               <p className="mt-4 text-sm lg:text-base text-center max-w-2xl leading-relaxed text-ink/80 dark:text-paper/80">
                 ویترین طلای ما ارائه‌دهنده نفیس‌ترین مصنوعات طلا، جواهر و سکه
@@ -150,7 +144,7 @@ export default function Home() {
                     />
                     {/* Overlay for text readability in both themes */}
                     <div className="pointer-events-none absolute inset-0 rounded-xl bg-black/35 dark:bg-black/55" />
-                    <h3 className="text-lg lg:text-xl font-bold italic z-10 text-white drop-shadow-md">
+                    <h3 className="text-lg lg:text-xl font-bold z-10 text-white drop-shadow-md">
                       {item.title}
                     </h3>
                   </div>
@@ -172,9 +166,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 3 */}
-      <section className="relative flex flex-col items-center bg-cover bg-center bg-no-repeat bg-theme-middle py-15 px-3.5 lg:px-0 text-center">
-        {/* Dark overlay for section-level readability */}
+      <section className="relative flex flex-col items-center bg-cover bg-center bg-no-repeat bg-theme-middle py-15 px-7.5 text-center">
         <div className="pointer-events-none absolute inset-0 bg-black/45" />
         <ScrollReveal className="relative z-10 mx-auto w-full max-w-3xl flex flex-col items-center gap-5 lg:gap-10 rounded-2xl border border-gold-500/60 bg-black/80 px-6 py-10 shadow-2xl backdrop-blur-sm lg:py-12">
           <BadgePill
@@ -182,8 +174,7 @@ export default function Home() {
             label="کالکشن‌های اختصاصی ویترین"
             variant="muted"
           />
-          {/* Enhanced h2 */}
-          <div className="flex flex-col gap-1 lg:gap-3 text-xl font-bold italic leading-snug text-white sm:text-2xl lg:text-3xl">
+          <div className="flex flex-col gap-1 lg:gap-3 text-xl font-bold leading-snug text-white sm:text-2xl lg:text-3xl">
             <h2>درخششی فراتر از یک انتخاب</h2>
             <h2 className="text-gold-400">سرمایه‌ای برای همیشه</h2>
           </div>
@@ -198,20 +189,17 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
-      {/* Section 4 */}
-      <section className="relative z-10 flex flex-col items-center bg-paper px-3.5 lg:px-5 py-15 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
-        <div className="w-full flex flex-col items-center gap-15">
-          {/* Part 1 — Section4DataP1: Polish & Elevate */}
+      <section className="relative z-10 flex flex-col items-center bg-paper py-15 px-7.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
+        <div className="w-full flex flex-col items-center gap-30">
           <div className="w-full flex flex-col items-center gap-7.5 text-center">
             <ScrollReveal className="flex flex-col items-center text-center">
               <BadgePill icon={BiTargetLock} label="دسته‌بندی‌های ویترین" />
-              {/* Enhanced h2 */}
-              <h2 className="relative mt-4 text-xl font-bold italic text-center leading-snug lg:text-3xl">
+              <h2 className="relative mt-4 text-xl font-bold text-center leading-snug lg:text-3xl">
                 <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
                   دسته‌بندی محصولات
                 </span>{" "}
                 طلا، جواهر و زیورآلات فاخر
-                <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
+                <span className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
               </h2>
             </ScrollReveal>
             <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -232,13 +220,12 @@ export default function Home() {
                       fill
                       className="object-cover absolute rounded-2xl transition-transform duration-700 ease-out group-hover:scale-108"
                     />
-                    {/* Dark gradient overlay for flawless contrast in both light & dark themes */}
                     <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
                     <div className="relative z-10 py-1 px-4 uppercase text-[11px] font-semibold border border-gold-400/70 rounded-full bg-black/40 backdrop-blur-sm text-gold-300">
                       {item.head}
                     </div>
                     <div className="relative z-10 flex flex-col gap-2 text-start my-4">
-                      <h3 className="text-2xl font-bold text-white tracking-wide">
+                      <h3 className="text-2xl font-bold text-white">
                         {item.title}
                       </h3>
                       <p className="text-xs text-white/80 leading-relaxed sm:text-sm">
@@ -262,7 +249,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Part 2 — Swiper slider with Section4DataP2 (inside thumbnail navigation) */}
           {Section4DataP2 && Section4DataP2.length > 0 && (
             <ScrollReveal className="w-full max-w-6xl">
               <HeroSlider items={Section4DataP2} />
@@ -271,7 +257,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 5 — Sticky Image-Text Section (reverse=false) */}
       <StickyImageTextSection
         items={Section5DataP1}
         badge={
@@ -287,7 +272,6 @@ export default function Home() {
         bgClass="bg-theme-middle"
       />
 
-      {/* Section 6 — Sticky Image-Text Section (reverse=true) */}
       <StickyImageTextSection
         items={Section5DataP2}
         badge={
@@ -303,28 +287,25 @@ export default function Home() {
         bgClass="bg-theme-middle"
       />
 
-      {/* Section 7 */}
-      <section className="relative z-10 flex flex-col items-center min-h-screen bg-paper px-3.5 py-15 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
-        {/* Part 1 — Slider with Section7Data1 (reusing HeroSlider) */}
+      <section className="relative z-10 flex flex-col items-center min-h-screen bg-paper py-15 px-7.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
         {Section7Data1 && Section7Data1.length > 0 && (
           <ScrollReveal className="w-full max-w-6xl px-0 lg:px-5">
             <HeroSlider items={Section7Data1} />
           </ScrollReveal>
         )}
 
-        {/* Part 2 — Reviews with Section7Data2 */}
         <ScrollReveal className="mt-15 w-full flex flex-col items-center px-3.5 lg:px-5">
           <BadgePill
             icon={BiSolidQuoteAltRight}
             label="دیدگاه مشتریان ویترین"
             variant="gold"
           />
-          <h2 className="mt-5 text-center text-xl font-bold italic leading-snug sm:text-2xl lg:whitespace-nowrap lg:text-3xl">
+          <h2 className="mt-5 text-center text-xl font-bold leading-snug sm:text-2xl lg:whitespace-nowrap lg:text-3xl">
             <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
               رضایت و اعتماد همراهان
             </span>{" "}
             به کیفیت و اصالت ویترین طلای ما
-            <span className="mx-auto mt-3 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
+            <span className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
           </h2>
 
           <div className="mt-6 w-full flex justify-center">
