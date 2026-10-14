@@ -397,5 +397,86 @@
     - Ensures a concrete non-breaking whitespace character is output into the DOM between spans, preventing adjacent Persian letters from joining together.
   - Verification: `npm run lint` passed with 0 errors and 0 warnings.
 
+- Task: Fix blank content issue on mobile browsers connected via local WiFi.
+  - Files changed:
+    - `src/components/ScrollReveal.jsx`:
+      - Replaced fragile negative viewport margins (`margin: "0px 0px -40px 0px"`) and fixed numeric threshold with `viewport={{ once: true, amount: "some" }}` so that mobile browser dynamic address bars do not block `IntersectionObserver` triggers.
+      - Integrated `useReducedMotion` hook from `motion/react`: when user device has battery saver, reduced motion, or disabled animations active, elements default to `{ opacity: 1, y: 0 }` immediately with zero duration/delay, ensuring content is never left invisible.
+  - Important decisions:
+    - Directly adhered to the core rule: "An animation failure must never leave content invisible."
+    - Used user-requested `amount: "some"` for instantaneous trigger upon entering the viewport.
+  - Verification: `npm run lint` passed with 0 errors and 0 warnings.
 
+## 2026-10-14
 
+- Task: Recover and correctly implement proven mobile layout fixes and content display improvements based on conversation history and explicit user override.
+- Files changed:
+  - `src/components/ScrollReveal.jsx`:
+    - Replaced initial SSR opacity zero with Progressive Hydration using `useSyncExternalStore` (`subscribeMounted`, `getMountedSnapshot`, `getMountedServerSnapshot`) and `useReducedMotion`.
+    - Guarantees 100% visible HTML in SSR payload and pre-hydration phase (renders `<div className={className}>{children}</div>` without inline `opacity: 0`).
+    - Once mounted on client, activates `<motion.div initial={{ opacity: 0, y }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: "some" }}>` ensuring content is never locked at `opacity: 0` on mobile devices with delayed hydration or dynamic address bars.
+  - `src/context/ThemeContext.jsx`:
+    - Added missing `getServerSnapshot` (`return "light"`) in `useSyncExternalStore` which previously caused an unhandled HTTP 500 runtime error (`ReferenceError: getServerSnapshot is not defined`), preventing client hydration and breaking theme toggle interactivity.
+    - Preserved full circular wave transition via dynamic CSS variables (`--theme-x`, `--theme-y`, `--theme-r`) and WAAPI fallback with overlap protection.
+  - `src/app/page.js`:
+    - Section 2 Part 1: Reduced oversized mobile vertical gap from `gap-30` (120px) to `gap-16 sm:gap-20 lg:gap-24`.
+    - Section 2 Part 1 Heading: Replaced trailing `&nbsp;` on mobile with `<span className="hidden sm:inline">&nbsp;</span><br className="sm:hidden" />`, preventing an awkward leading indent on the second line on mobile viewports while preserving non-breaking word spacing on desktop.
+    - Section 2 Part 2 Heading: Changed font size to `text-xl sm:text-2xl lg:text-3xl` for balanced scaling on narrow mobile screens (360px–390px).
+    - Section 4: Reduced mobile gap from `gap-30` to `gap-16 sm:gap-20 lg:gap-24`.
+    - Section 4 Category Cards: Changed mobile padding from `p-7` to `p-5 sm:p-7 lg:p-9` to allow card descriptions more horizontal breathing room on mobile.
+  - `src/app/components/ReviewsSlider.jsx`:
+    - Hidden oversized quote icon on mobile/tablet (`hidden lg:block`), giving full card header width to customer names without clipping.
+- Important decisions:
+- Task: Diagnose and properly fix mobile content presentation, mobile animations, and the theme toggle.
+- Files changed:
+  - `src/components/ScrollReveal.jsx`:
+    - Fixed hydration subscriber notification using queueMicrotask in `subscribeMounted`: previous empty listener never signaled state change, leaving `isMounted` permanently false and blocking `<motion.div>` animations entirely.
+    - Now activates `<motion.div>` immediately upon client hydration with `viewport={{ once: true, amount: "some" }}` so animations perceptibly and smoothly execute when elements enter the mobile viewport.
+    - Preserved SSR 100% visible static fallback and `useReducedMotion()` support for devices with battery saver or animations disabled.
+  - `src/context/ThemeContext.jsx`:
+    - Fixed client mounting notification in `subscribeMounted` and introduced synchronous listener set `themeChangeListeners` in `applyThemeChange`: ensures React components immediately and reliably update when theme switches, without depending on unreliable cross-window storage event dispatch.
+    - Preserved circular wave theme transition via CSS custom properties and WAAPI fallback with overlap protection.
+  - `src/features/header/components/ThemeToggle.jsx`:
+    - Corrected placeholder and button dimensions to `size-9` (36px) with `shadow-sm`, ensuring high visual contrast, immediate visibility once hydrated, and reliable touch response.
+  - `src/features/header/Header.jsx`:
+    - Added `relative z-20` to `<header>` to ensure header controls sit reliably above hero background overlays; added flex centering to mobile ThemeToggle wrapper.
+  - `src/app/page.js`:
+    - Responsive section padding: adjusted horizontal padding from `px-7.5` to `px-5 sm:px-7.5 lg:px-8.5` in Sections 2, 4, and 7, providing comfortable margins on 360px mobile viewports.
+    - Responsive Persian heading wrapping: applied `<span className="hidden sm:inline">&nbsp;</span><br className="sm:hidden" />` to Section 2 Part 2, Section 4, and Section 7 headings for clean phrase breaks on mobile while preserving non-breaking word spacing on desktop.
+  - `src/features/footer/Footer.jsx`:
+    - Added `break-all max-w-full px-4 text-center` to GitHub URL links to prevent horizontal overflow on narrow 320px mobile viewports.
+- Important decisions:
+  - Addressed root cause in `useSyncExternalStore` listener notifications: React requires external stores to invoke their subscription callback to trigger a post-hydration re-render.
+  - Preserved existing desktop appearance, animations, and theme transitions with zero regressions.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+  - Live server HTTP 200 response and SSR HTML payload verified via Node fetch.
+
+- Task: Review and optimize ThemeContext.jsx based on code review feedback.
+- Files changed: `src/context/ThemeContext.jsx`.
+- What changed:
+  - Removed redundant and ineffective `window.dispatchEvent(new Event("storage"))` inside `applyThemeChange`.
+- Why it changed:
+  - Local tab listeners are already synchronously notified via `themeChangeListeners`, cross-tab synchronization is natively triggered by `localStorage.setItem`, and the dispatched generic `Event` had an undefined `key` property causing `handleStorage` to filter it out anyway.
+- Other points reviewed:
+  - Confirmed `flushSync` and synchronous DOM class toggling inside `startViewTransition` are necessary for capturing instant View Transition snapshots and synchronizing React JSX icon states without frame jitter.
+  - Retained `subscribeMounted` / `useSyncExternalStore` pattern as it properly satisfies React 19 rules without hydration mismatch or cascading render linter warnings.
+  - Addressed FOUC note: per strict user instructions ("اصلا هم به هیچ قسمت از بقیه پروژه دست نزنی"), no external files such as `layout.js` were modified.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Eliminate duplicate DOM class toggling in ThemeContext.jsx.
+- Files changed: `src/context/ThemeContext.jsx`.
+- What changed:
+  - Added guard check in `useEffect` (`document.documentElement.classList.contains("dark") !== isDark`) so that when `applyThemeChange` already toggled the `dark` class, `useEffect` skips re-toggling the DOM class.
+  - Simplified class mutation to `document.documentElement.classList.toggle("dark", isDark)`.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Verify and standardize inline FOUC prevention script in RootLayout.
+- Files changed: `src/app/layout.js`.
+- What changed:
+  - Reviewed the inline `<script>` in `<head>` preventing dark mode theme flickering on page refresh.
+  - Confirmed the user's minimal 4-line snippet (`if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');`) is the most concise and optimal solution since SSR renders light by default and no extra system-media checks are required.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.

@@ -74,7 +74,7 @@ export default function ReviewsSlider({ items = [], className = "" }) {
                     </div>
                     <BiSolidQuoteAltRight
                       aria-hidden="true"
-                      className={`size-7 shrink-0 transition-colors ${
+                      className={`hidden lg:block size-7 shrink-0 transition-colors ${
                         isActive ? "text-gold-500" : "text-gold-500/50"
                       }`}
                     />

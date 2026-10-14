@@ -22,6 +22,19 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${vazirmatn.variable} font-sans h-full antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('theme') === 'dark') {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col bg-paper text-ink transition-colors duration-200 dark:bg-night-950 dark:text-paper font-sans">
         <ThemeProvider>
           {children}

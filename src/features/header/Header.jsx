@@ -17,7 +17,7 @@ function DesktopRouteList({ routes }) {
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between border-b border-night-200/50 px-4 py-3.75 shadow-md shadow-night-950/5 transition-all dark:border-night-800/60 dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.7)] lg:border-none lg:shadow-none lg:px-20 lg:py-5">
+    <header className="relative z-20 flex items-center justify-between border-b border-night-200/50 px-4 py-3.75 shadow-md shadow-night-950/5 transition-all dark:border-night-800/60 dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.7)] lg:border-none lg:shadow-none lg:px-20 lg:py-5">
       <MobileNavigation />
       <div className="hidden lg:flex items-center gap-3.5">
         <div>
@@ -44,7 +44,7 @@ export default function Header() {
           className="h-[30px] w-[100px] transition-transform hover:scale-105 dark:invert sm:h-[40px] sm:w-[115px]"
         />
       </Link>
-      <div className="lg:hidden">
+      <div className="lg:hidden flex items-center justify-center">
         <ThemeToggle />
       </div>
       <nav aria-label="منوی ناوبری اصلی" className="hidden lg:flex">

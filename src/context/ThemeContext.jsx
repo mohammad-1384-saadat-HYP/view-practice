@@ -9,30 +9,52 @@ import {
 } from "react";
 import { flushSync } from "react-dom";
 
+let isThemeMounted = false;
+const themeMountListeners = new Set();
+
+function subscribeMounted(onStoreChange) {
+  themeMountListeners.add(onStoreChange);
+  if (!isThemeMounted && typeof window !== "undefined") {
+    queueMicrotask(() => {
+      isThemeMounted = true;
+      themeMountListeners.forEach((listener) => listener());
+    });
+  }
+  return () => themeMountListeners.delete(onStoreChange);
+}
+
+function getMountedSnapshot() {
+  return isThemeMounted;
+}
+
+function getMountedServerSnapshot() {
+  return false;
+}
+
+const themeChangeListeners = new Set();
+
 function subscribe(callback) {
-  window.addEventListener("storage", callback);
-  return () => window.removeEventListener("storage", callback);
+  themeChangeListeners.add(callback);
+  const handleStorage = (e) => {
+    if (!e || e.key === "theme") {
+      callback();
+    }
+  };
+  window.addEventListener("storage", handleStorage);
+  return () => {
+    themeChangeListeners.delete(callback);
+    window.removeEventListener("storage", handleStorage);
+  };
 }
 
 function getSnapshot() {
+  if (typeof window === "undefined") return "light";
   const saved = localStorage.getItem("theme");
   return saved === "dark" || saved === "light" ? saved : "light";
 }
 
 function getServerSnapshot() {
   return "light";
-}
-
-function subscribeMounted() {
-  return () => {};
-}
-
-function getMountedSnapshot() {
-  return true;
-}
-
-function getMountedServerSnapshot() {
-  return false;
 }
 
 const ThemeContext = createContext({
@@ -51,30 +73,23 @@ export function ThemeProvider({ children }) {
   const isTransitioningRef = useRef(false);
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+    const isDark = theme === "dark";
+    if (document.documentElement.classList.contains("dark") !== isDark) {
+      document.documentElement.classList.toggle("dark", isDark);
     }
   }, [theme]);
 
   const toggleTheme = async (coords) => {
-    // Prevent overlapping transitions from rapid repeated clicks
     if (isTransitioningRef.current) return;
 
     const nextTheme = theme === "light" ? "dark" : "light";
 
     const applyThemeChange = () => {
       localStorage.setItem("theme", nextTheme);
-      if (nextTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-      window.dispatchEvent(new Event("storage"));
+      document.documentElement.classList.toggle("dark", nextTheme === "dark");
+      themeChangeListeners.forEach((listener) => listener());
     };
 
-    // Fallback: If View Transitions is not supported, coords missing, or user prefers reduced motion
     const prefersReducedMotion =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -97,26 +112,9 @@ export function ThemeProvider({ children }) {
         Math.max(y, window.innerHeight - y)
       );
 
-      // Inject dynamic circular keyframes directly for ::view-transition-new(root)
-      let styleTag = document.getElementById("theme-circular-transition");
-      if (!styleTag) {
-        styleTag = document.createElement("style");
-        styleTag.id = "theme-circular-transition";
-        document.head.appendChild(styleTag);
-      }
-      styleTag.textContent = `
-        @keyframes theme-circle-expand {
-          from {
-            clip-path: circle(0px at ${x}px ${y}px);
-          }
-          to {
-            clip-path: circle(${endRadius}px at ${x}px ${y}px);
-          }
-        }
-        ::view-transition-new(root) {
-          animation: theme-circle-expand 450ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-      `;
+      document.documentElement.style.setProperty("--theme-x", `${x}px`);
+      document.documentElement.style.setProperty("--theme-y", `${y}px`);
+      document.documentElement.style.setProperty("--theme-r", `${endRadius}px`);
 
       const transition = document.startViewTransition(() => {
         flushSync(() => {
@@ -125,11 +123,24 @@ export function ThemeProvider({ children }) {
       });
 
       try {
+        await transition.ready;
+        const animation = document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: 450,
+            easing: "ease-in-out",
+            pseudoElement: "::view-transition-new(root)",
+          }
+        );
+        await animation.finished;
+      } catch {
+        // Fallback to waiting for view transition to complete (driven by CSS keyframes)
         await transition.finished;
-      } finally {
-        if (styleTag && styleTag.parentNode) {
-          styleTag.parentNode.removeChild(styleTag);
-        }
       }
     } catch {
       // Safe fallback if animation is interrupted or cancelled

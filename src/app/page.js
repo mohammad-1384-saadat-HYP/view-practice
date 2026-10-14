@@ -14,7 +14,6 @@ import {
 import { BiSolidQuoteAltRight, BiTargetLock } from "react-icons/bi";
 import { FaAngleRight, FaArrowRight } from "react-icons/fa";
 import { GiCutDiamond } from "react-icons/gi";
-import { LuMapPin } from "react-icons/lu";
 import Link from "next/link";
 import Image from "next/image";
 import HeroSlider from "./components/HeroSlider";
@@ -75,8 +74,8 @@ export default function Home() {
                     <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
                       چرا خریداران شیفته
                     </span>
+                    <span className="hidden sm:inline">&nbsp;</span>
                     <br className="sm:hidden" />
-                    &nbsp;
                     <span className="text-ink dark:text-paper">
                       انتخاب ویترین طلای ما هستند؟
                     </span>
@@ -123,11 +122,12 @@ export default function Home() {
           <div className="flex flex-col items-center gap-7.5 w-full">
             <ScrollReveal className="flex flex-col items-center text-center">
               <div className="flex flex-col items-center">
-                <h2 className="relative text-2xl font-bold text-center leading-snug lg:text-3xl">
+                <h2 className="relative text-xl sm:text-2xl font-bold text-center leading-snug lg:text-3xl">
                   <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
                     درخشان‌ترین کالکشن‌ها
                   </span>
-                  &nbsp;
+                  <span className="hidden sm:inline">&nbsp;</span>
+                  <br className="sm:hidden" />
                   <span>
                     طلا و جواهرات متناسب با سلیقه شما
                   </span>
@@ -212,8 +212,8 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
-      <section className="relative z-10 flex flex-col items-center bg-paper py-15 px-7.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
-        <div className="w-full flex flex-col items-center gap-30">
+      <section className="relative z-10 flex flex-col items-center bg-paper py-15 px-5 sm:px-7.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
+        <div className="w-full flex flex-col items-center gap-16 sm:gap-20 lg:gap-24">
           <div className="w-full flex flex-col items-center gap-7.5 text-center">
             <ScrollReveal className="flex flex-col items-center gap-7.5 text-center">
               <BadgePill icon={BiTargetLock} label="دسته‌بندی‌های ویترین" />
@@ -222,7 +222,8 @@ export default function Home() {
                   <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
                     دسته‌بندی محصولات
                   </span>
-                  &nbsp;
+                  <span className="hidden sm:inline">&nbsp;</span>
+                  <br className="sm:hidden" />
                   <span>
                     طلا، جواهر و زیورآلات فاخر
                   </span>
@@ -243,7 +244,7 @@ export default function Home() {
                   >
                     <Link
                       href={item.href}
-                      className="group relative w-full min-h-48 flex flex-col items-start justify-between overflow-hidden rounded-2xl border border-gold-500/50 p-7 shadow-xl shadow-black/10 transition-all duration-500 hover:-translate-y-1 hover:border-gold-400 hover:shadow-2xl hover:shadow-gold-500/10 lg:p-9"
+                      className="group relative w-full min-h-48 flex flex-col items-start justify-between overflow-hidden rounded-2xl border border-gold-500/50 p-5 sm:p-7 shadow-xl shadow-black/10 transition-all duration-500 hover:-translate-y-1 hover:border-gold-400 hover:shadow-2xl hover:shadow-gold-500/10 lg:p-9"
                     >
                       <Image
                         alt={item.title}
@@ -328,7 +329,7 @@ export default function Home() {
         bgClass="bg-theme-middle"
       />
 
-      <section className="relative z-10 flex flex-col items-center min-h-screen bg-paper py-15 px-7.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
+      <section className="relative z-10 flex flex-col items-center min-h-screen bg-paper py-15 px-5 sm:px-7.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
         {Section7Data1 && Section7Data1.length > 0 && (
           <ScrollReveal className="w-full max-w-6xl px-0 lg:px-5">
             <HeroSlider items={Section7Data1} />
@@ -346,7 +347,8 @@ export default function Home() {
               <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
                 رضایت و اعتماد همراهان
               </span>
-              &nbsp;
+              <span className="hidden sm:inline">&nbsp;</span>
+              <br className="sm:hidden" />
               <span>
                 به کیفیت و اصالت ویترین طلای ما
               </span>

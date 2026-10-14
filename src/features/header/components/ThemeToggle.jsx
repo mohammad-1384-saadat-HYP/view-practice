@@ -10,7 +10,7 @@ export default function ThemeToggle() {
   if (!mounted) {
     return (
       <div
-        className="size-8.5 rounded-full border border-gold-500/30 p-2 opacity-50"
+        className="size-9 rounded-full border border-gold-500/30 p-2 opacity-50"
         aria-hidden="true"
       />
     );
@@ -30,7 +30,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={handleClick}
       aria-label={isDark ? "تغییر به تم روشن" : "تغییر به تم تاریک"}
-      className="relative flex size-8.5 cursor-pointer items-center justify-center rounded-full border border-gold-500/40 bg-night-50/80 text-gold-700 transition-colors hover:border-gold-500 hover:bg-gold-500 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 dark:bg-night-900/60 dark:text-gold-400 dark:hover:bg-gold-500 dark:hover:text-night-950"
+      className="relative flex size-9 cursor-pointer items-center justify-center rounded-full border border-gold-500/40 bg-night-50/80 text-gold-700 shadow-sm transition-colors hover:border-gold-500 hover:bg-gold-500 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 dark:bg-night-900/60 dark:text-gold-400 dark:hover:bg-gold-500 dark:hover:text-night-950"
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
