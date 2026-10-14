@@ -30,7 +30,7 @@ function BadgePill({ icon: Icon, label, variant = "gold" }) {
     <div
       className={`inline-flex items-center justify-center gap-2 rounded-full border px-4 py-1.5 ${variants[variant] || variants.gold}`}
     >
-      <Icon className="size-4 shrink-0 text-gold-500 lg:size-5" />
+      <Icon aria-hidden="true" className="size-4 shrink-0 text-gold-500 lg:size-5" />
       <span className="text-[11px] font-bold uppercase lg:text-sm">
         {label}
       </span>
@@ -70,55 +70,73 @@ export default function Home() {
                 />
               </ScrollReveal>
               <ScrollReveal>
-                <h2 className="relative text-xl font-bold text-center leading-snug lg:text-3xl">
-                  <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                    چرا خریداران شیفته
-                  </span>
-                  <br className="sm:hidden" />
-                  <span className="text-ink dark:text-paper">
-                    {" "}
-                    انتخاب ویترین طلای ما هستند؟
-                  </span>
-                  <span className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-                </h2>
+                <div className="flex flex-col items-center">
+                  <h2 className="relative text-xl font-bold text-center leading-snug lg:text-3xl">
+                    <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
+                      چرا خریداران شیفته
+                    </span>
+                    <br className="sm:hidden" />
+                    &nbsp;
+                    <span className="text-ink dark:text-paper">
+                      انتخاب ویترین طلای ما هستند؟
+                    </span>
+                  </h2>
+                  <span
+                    aria-hidden="true"
+                    className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent"
+                  />
+                </div>
               </ScrollReveal>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-6xl">
+            <ul className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-6xl list-none p-0 m-0">
               {Section2DataP1.map((item, index) => (
-                <ScrollReveal
-                  key={item.id}
-                  delay={index * 0.1}
-                  y={24}
-                >
-                  <div className="group relative flex min-h-52.5 flex-col items-center gap-4 rounded-2xl border border-gold-500/40 bg-white/80 p-6 text-center shadow-[0_4px_6px_-1px_rgba(0,0,0,0.06),0_10px_20px_-3px_rgba(212,175,55,0.12)] transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/80 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.1),0_20px_35px_-4px_rgba(212,175,55,0.22)] dark:bg-night-900/80 dark:border-gold-500/30 dark:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.5),0_10px_20px_-3px_rgba(212,175,55,0.08)] dark:hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.7),0_20px_35px_-4px_rgba(212,175,55,0.18)]">
-                    <span className="absolute top-0 left-6 right-6 h-0.5 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-                    <h3 className="text-lg lg:text-xl font-bold text-gold-600 dark:text-gold-400">
-                      {item.title}
-                    </h3>
-                    <span className="h-px w-16 bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-                    <h4 className="text-sm lg:text-base font-semibold text-ink dark:text-paper">
-                      {item.subTitile}
-                    </h4>
-                    <p className="text-xs lg:text-sm leading-relaxed text-ink/75 dark:text-paper/75">
-                      {item.description}
-                    </p>
-                  </div>
-                </ScrollReveal>
+                <li key={item.id} className="h-full">
+                  <ScrollReveal delay={index * 0.1} y={24} className="h-full">
+                    <article className="group relative flex min-h-52.5 h-full flex-col items-center justify-between rounded-2xl border border-gold-500/40 bg-white/80 p-6 text-center shadow-[0_4px_6px_-1px_rgba(0,0,0,0.06),0_10px_20px_-3px_rgba(212,175,55,0.12)] transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/80 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.1),0_20px_35px_-4px_rgba(212,175,55,0.22)] dark:bg-night-900/80 dark:border-gold-500/30 dark:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.5),0_10px_20px_-3px_rgba(212,175,55,0.08)] dark:hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.7),0_20px_35px_-4px_rgba(212,175,55,0.18)]">
+                      <span
+                        aria-hidden="true"
+                        className="absolute top-0 left-6 right-6 h-0.5 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent"
+                      />
+                      <div className="flex flex-col items-center gap-4">
+                        <h3 className="text-lg lg:text-xl font-bold text-gold-600 dark:text-gold-400">
+                          {item.title}
+                        </h3>
+                        <span
+                          aria-hidden="true"
+                          className="h-px w-16 bg-gradient-to-r from-transparent via-gold-500 to-transparent"
+                        />
+                        <p className="text-sm lg:text-base font-semibold text-ink dark:text-paper">
+                          {item.subTitile}
+                        </p>
+                      </div>
+                      <p className="text-xs lg:text-sm leading-relaxed text-ink/75 dark:text-paper/75">
+                        {item.description}
+                      </p>
+                    </article>
+                  </ScrollReveal>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div className="flex flex-col items-center gap-7.5 w-full">
             <ScrollReveal className="flex flex-col items-center text-center">
-              {/* Enhanced h2 styling */}
-              <h2 className="relative text-2xl font-bold text-center leading-snug lg:text-3xl">
-                <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                  درخشان‌ترین کالکشن‌ها
-                </span>{" "}
-                طلا و جواهرات متناسب با سلیقه شما
-                <span className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-              </h2>
+              <div className="flex flex-col items-center">
+                <h2 className="relative text-2xl font-bold text-center leading-snug lg:text-3xl">
+                  <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
+                    درخشان‌ترین کالکشن‌ها
+                  </span>
+                  &nbsp;
+                  <span>
+                    طلا و جواهرات متناسب با سلیقه شما
+                  </span>
+                </h2>
+                <span
+                  aria-hidden="true"
+                  className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent"
+                />
+              </div>
               <p className="mt-4 text-sm lg:text-base text-center max-w-2xl leading-relaxed text-ink/80 dark:text-paper/80">
                 ویترین طلای ما ارائه‌دهنده نفیس‌ترین مصنوعات طلا، جواهر و سکه
                 برای مناسبت‌ها، سرمایه‌گذاری و استفاده روزمره است. تمامی محصولات
@@ -127,30 +145,29 @@ export default function Home() {
                 و خریدی لذت‌بخش و امن را تجربه نمایید.
               </p>
             </ScrollReveal>
-            <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-5">
+            <ul className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-5 list-none p-0 m-0">
               {Section2DataP2.map((item, index) => (
-                <ScrollReveal
-                  key={item.id}
-                  delay={index * 0.1}
-                  y={24}
-                  className="w-full"
-                >
-                  <div className="group relative w-full min-h-40 flex flex-col items-center justify-center gap-3.5 overflow-hidden rounded-xl border-2 border-gold-500/85">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover absolute rounded-xl opacity-60 transition-transform duration-500 group-hover:scale-105"
-                    />
-                    {/* Overlay for text readability in both themes */}
-                    <div className="pointer-events-none absolute inset-0 rounded-xl bg-black/35 dark:bg-black/55" />
-                    <h3 className="text-lg lg:text-xl font-bold z-10 text-white drop-shadow-md">
-                      {item.title}
-                    </h3>
-                  </div>
-                </ScrollReveal>
+                <li key={item.id} className="w-full">
+                  <ScrollReveal delay={index * 0.1} y={24} className="w-full">
+                    <article className="group relative w-full min-h-40 flex flex-col items-center justify-center gap-3.5 overflow-hidden rounded-xl border-2 border-gold-500/85">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover absolute rounded-xl opacity-60 transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 rounded-xl bg-black/35 dark:bg-black/55"
+                      />
+                      <h3 className="text-lg lg:text-xl font-bold z-10 text-white drop-shadow-md">
+                        {item.title}
+                      </h3>
+                    </article>
+                  </ScrollReveal>
+                </li>
               ))}
-            </div>
+            </ul>
             <ScrollReveal delay={0.2}>
               <Link
                 href="/sets"
@@ -159,7 +176,10 @@ export default function Home() {
                 <span className="capitalize text-lg lg:text-xl font-bold">
                   مشاهده تمام کالکشن‌ها
                 </span>
-                <FaAngleRight className="size-6 lg:size-7.5 text-gold-500 -scale-x-100" />
+                <FaAngleRight
+                  aria-hidden="true"
+                  className="size-6 lg:size-7.5 text-gold-500 -scale-x-100"
+                />
               </Link>
             </ScrollReveal>
           </div>
@@ -167,18 +187,21 @@ export default function Home() {
       </section>
 
       <section className="relative flex flex-col items-center bg-cover bg-center bg-no-repeat bg-theme-middle py-15 px-7.5 text-center">
-        <div className="pointer-events-none absolute inset-0 bg-black/45" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-black/45" />
         <ScrollReveal className="relative z-10 mx-auto w-full max-w-3xl flex flex-col items-center gap-5 lg:gap-10 rounded-2xl border border-gold-500/60 bg-black/80 px-6 py-10 shadow-2xl backdrop-blur-sm lg:py-12">
           <BadgePill
             icon={GiCutDiamond}
             label="کالکشن‌های اختصاصی ویترین"
             variant="muted"
           />
-          <div className="flex flex-col gap-1 lg:gap-3 text-xl font-bold leading-snug text-white sm:text-2xl lg:text-3xl">
-            <h2>درخششی فراتر از یک انتخاب</h2>
-            <h2 className="text-gold-400">سرمایه‌ای برای همیشه</h2>
-          </div>
-          <span className="mx-auto block h-px w-16 bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
+          <h2 className="flex flex-col gap-1 lg:gap-1.5 text-xl font-bold leading-snug text-white sm:text-2xl lg:text-3xl">
+            <span>درخششی فراتر از یک انتخاب</span>
+            <span className="text-gold-400">سرمایه‌ای برای همیشه</span>
+          </h2>
+          <span
+            aria-hidden="true"
+            className="mx-auto block h-px w-16 bg-gradient-to-r from-transparent via-gold-500 to-transparent"
+          />
           <p className="max-w-xl text-sm leading-7 lg:leading-8 text-gray-200 lg:text-base">
             در ویترین طلای ما، هر قطعه طلا داستانی از ظرافت، هنر دست استادکاران
             و اصالت عیار ۱۸ است. ما با تلفیق هنر سنتی طلاکاری و مدرن‌ترین متدهای
@@ -192,61 +215,79 @@ export default function Home() {
       <section className="relative z-10 flex flex-col items-center bg-paper py-15 px-7.5 lg:px-8.5 text-ink shadow-xl transition-colors dark:bg-black dark:text-paper">
         <div className="w-full flex flex-col items-center gap-30">
           <div className="w-full flex flex-col items-center gap-7.5 text-center">
-            <ScrollReveal className="flex flex-col items-center text-center">
+            <ScrollReveal className="flex flex-col items-center gap-7.5 text-center">
               <BadgePill icon={BiTargetLock} label="دسته‌بندی‌های ویترین" />
-              <h2 className="relative mt-4 text-xl font-bold text-center leading-snug lg:text-3xl">
-                <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-                  دسته‌بندی محصولات
-                </span>{" "}
-                طلا، جواهر و زیورآلات فاخر
-                <span className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-              </h2>
+              <div className="flex flex-col items-center gap-3.5">
+                <h2 className="text-xl font-bold leading-snug lg:text-3xl">
+                  <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
+                    دسته‌بندی محصولات
+                  </span>
+                  &nbsp;
+                  <span>
+                    طلا، جواهر و زیورآلات فاخر
+                  </span>
+                </h2>
+                <span
+                  aria-hidden="true"
+                  className="h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent"
+                />
+              </div>
             </ScrollReveal>
-            <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <ul className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-6 list-none p-0 m-0">
               {Section4DataP1.map((item, index) => (
-                <ScrollReveal
-                  key={item.id}
-                  delay={index * 0.12}
-                  y={24}
-                  className="w-full"
-                >
-                  <Link
-                    href={item.href}
-                    className="group relative w-full min-h-48 flex flex-col items-start justify-between overflow-hidden rounded-2xl border border-gold-500/50 p-7 shadow-xl shadow-black/10 transition-all duration-500 hover:-translate-y-1 hover:border-gold-400 hover:shadow-2xl hover:shadow-gold-500/10 lg:p-9"
+                <li key={item.id} className="w-full">
+                  <ScrollReveal
+                    delay={index * 0.12}
+                    y={24}
+                    className="w-full"
                   >
-                    <Image
-                      alt={item.title}
-                      src={item.image}
-                      fill
-                      className="object-cover absolute rounded-2xl transition-transform duration-700 ease-out group-hover:scale-108"
-                    />
-                    <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
-                    <div className="relative z-10 py-1 px-4 uppercase text-[11px] font-semibold border border-gold-400/70 rounded-full bg-black/40 backdrop-blur-sm text-gold-300">
-                      {item.head}
-                    </div>
-                    <div className="relative z-10 flex flex-col gap-2 text-start my-4">
-                      <h3 className="text-2xl font-bold text-white">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-white/80 leading-relaxed sm:text-sm">
-                        {item.description}
-                      </p>
-                    </div>
-                    <div className="relative z-10 w-full flex items-center justify-between mt-2 pt-3 border-t border-white/10">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gold-400 transition-colors group-hover:text-gold-300 lg:text-base">
-                          مشاهده کالکشن {item.title}
-                        </span>
-                        <FaArrowRight className="size-3 text-gold-400 transition-transform group-hover:-translate-x-1 -scale-x-100" />
+                    <Link
+                      href={item.href}
+                      className="group relative w-full min-h-48 flex flex-col items-start justify-between overflow-hidden rounded-2xl border border-gold-500/50 p-7 shadow-xl shadow-black/10 transition-all duration-500 hover:-translate-y-1 hover:border-gold-400 hover:shadow-2xl hover:shadow-gold-500/10 lg:p-9"
+                    >
+                      <Image
+                        alt={item.title}
+                        src={item.image}
+                        fill
+                        className="object-cover absolute rounded-2xl transition-transform duration-700 ease-out group-hover:scale-108"
+                      />
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/90 via-black/50 to-black/30"
+                      />
+                      <div className="relative z-10 py-1 px-4 uppercase text-[11px] font-semibold border border-gold-400/70 rounded-full bg-black/40 backdrop-blur-sm text-gold-300">
+                        {item.head}
                       </div>
-                      <div className="flex size-9 items-center justify-center border border-gold-500/60 rounded-full bg-black/40 text-gold-400 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-black group-hover:border-gold-500">
-                        <FaArrowRight className="size-3.5 -scale-x-100" />
+                      <div className="relative z-10 flex flex-col gap-2 text-start my-4">
+                        <h3 className="text-2xl font-bold text-white">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs text-white/80 leading-relaxed sm:text-sm">
+                          {item.description}
+                        </p>
                       </div>
-                    </div>
-                  </Link>
-                </ScrollReveal>
+                      <div className="relative z-10 w-full flex items-center justify-between mt-2 pt-3 border-t border-white/10">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-gold-400 transition-colors group-hover:text-gold-300 lg:text-base">
+                            مشاهده کالکشن {item.title}
+                          </span>
+                          <FaArrowRight
+                            aria-hidden="true"
+                            className="size-3 text-gold-400 transition-transform group-hover:-translate-x-1 -scale-x-100"
+                          />
+                        </div>
+                        <div
+                          aria-hidden="true"
+                          className="flex size-9 items-center justify-center border border-gold-500/60 rounded-full bg-black/40 text-gold-400 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-black group-hover:border-gold-500"
+                        >
+                          <FaArrowRight className="size-3.5 -scale-x-100" />
+                        </div>
+                      </div>
+                    </Link>
+                  </ScrollReveal>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           {Section4DataP2 && Section4DataP2.length > 0 && (
@@ -300,13 +341,21 @@ export default function Home() {
             label="دیدگاه مشتریان ویترین"
             variant="gold"
           />
-          <h2 className="mt-5 text-center text-xl font-bold leading-snug sm:text-2xl lg:whitespace-nowrap lg:text-3xl">
-            <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
-              رضایت و اعتماد همراهان
-            </span>{" "}
-            به کیفیت و اصالت ویترین طلای ما
-            <span className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-          </h2>
+          <div className="mt-5 flex flex-col items-center text-center">
+            <h2 className="text-xl font-bold leading-snug sm:text-2xl lg:whitespace-nowrap lg:text-3xl">
+              <span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-clip-text text-transparent dark:from-gold-400 dark:via-gold-300 dark:to-gold-400">
+                رضایت و اعتماد همراهان
+              </span>
+              &nbsp;
+              <span>
+                به کیفیت و اصالت ویترین طلای ما
+              </span>
+            </h2>
+            <span
+              aria-hidden="true"
+              className="mx-auto mt-3.5 block h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-gold-500 to-transparent"
+            />
+          </div>
 
           <div className="mt-6 w-full flex justify-center">
             <ReviewsSlider items={Section7Data2} />

@@ -365,3 +365,37 @@
     - Left all layouts, animations, sizing, spacing, data values, and sticky mechanics strictly untouched.
   - Verification: `npm run lint` passed with 0 errors and 0 warnings.
 
+- Task: Semantic HTML, Technical SEO, and Web Accessibility (a11y) Refactoring across `src/app/page.js` and child components.
+  - Files changed:
+    - `src/app/page.js`:
+      - Fragmented Headings: Consolidated two consecutive `<h2>` tags in Section 3 into a single unified `<h2>` heading wrapping lines with `<span>`, eliminating semantic fragmentation while preserving stacked styling.
+      - Heading Hierarchy: Changed skipped `<h4>` under `<h3>` in Section 2 cards to `<p className="font-semibold ...">`, preserving heading hierarchy.
+      - Semantic Lists & Articles: Converted card grids in Section 2 (Part 1 and Part 2) and Section 4 into semantic `<ul>` and `<li>` elements enclosing `<article>` cards.
+      - Decorative Noise Elimination: Isolated decorative gradient dividers outside heading tags and added `aria-hidden="true"` to prevent screen readers from announcing decorative content.
+      - JSX Spacing Hacks: Replaced fragile `{" "}` string concatenations with clean Tailwind logical spacing utilities (`ms-1.5 sm:ms-2`).
+      - Accessibility: Added `aria-hidden="true"` to decorative icons in `BadgePill` and navigation chevrons.
+    - `src/app/components/HeroSlider.jsx`:
+      - Heading Hierarchy: Changed slide titles from `<h2>` to `<h3>` so slides nested within sections do not compete with section-level `<h2>` headings.
+      - JSX Spacing: Replaced `{" "}` space hack with `me-2` on title prefix.
+      - Accessibility: Added `aria-hidden="true"` to decorative lines and icons.
+    - `src/app/components/StickyImageTextSection.jsx`:
+      - Semantic Lists & Articles: Refactored card stacks in mobile and desktop layouts into `<ul>` and `<li>` lists enclosing `<article>` tags.
+      - Accessibility: Added `aria-hidden="true"` to backdrop overlays.
+    - `src/app/components/ReviewsSlider.jsx`:
+      - Semantic Quotes: Wrapped customer feedback comments inside semantic `<blockquote>` tags.
+      - Accessibility: Added `aria-hidden="true"` to user avatar placeholder icons, quote icons, and gradient dividers.
+  - Verification:
+    - `npm run lint` passed with 0 errors and 0 warnings.
+    - Zero visual regression; all layouts, animations, interactions, and theme adaptations remain 100% intact.
+
+- Task: RTL / Persian spacing refinement using Method 3 (`&nbsp;`).
+  - Files changed:
+    - `src/app/page.js`: Replaced CSS margin classes (`ms-1.5 sm:ms-2`) with explicit `&nbsp;` between title spans in Section 2 (Part 1 and Part 2), Section 4, and Section 7.
+    - `src/app/components/HeroSlider.jsx`: Replaced CSS margin class `me-2` with `&nbsp;` between `title1` and `title2`.
+  - Important decisions:
+    - Selected Method 3 (`&nbsp;`) per user instruction to evaluate its behavior on Persian word separation and text flow.
+    - Ensures a concrete non-breaking whitespace character is output into the DOM between spans, preventing adjacent Persian letters from joining together.
+  - Verification: `npm run lint` passed with 0 errors and 0 warnings.
+
+
+

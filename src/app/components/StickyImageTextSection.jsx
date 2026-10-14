@@ -18,7 +18,7 @@ export default function StickyImageTextSection({
       className={`relative min-h-screen bg-cover bg-center bg-no-repeat py-12 lg:py-20 px-7.5 lg:px-8.5 ${bgClass}`}
       style={bgImage ? { backgroundImage: `url('${bgImage}')` } : undefined}
     >
-      <div className="pointer-events-none absolute inset-0 bg-black/45" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-black/45" />
 
       <div className="relative z-10 flex w-full flex-col items-center gap-8 lg:hidden">
         <div className="flex flex-col items-center gap-4 text-center">
@@ -31,27 +31,31 @@ export default function StickyImageTextSection({
           </p>
         </div>
 
-        <div className="flex w-full flex-col gap-5">
+        <ul className="flex w-full flex-col gap-5 list-none p-0 m-0">
           {items.map((item) => (
-            <div
-              key={item.id}
-              className="group relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-lg transition-all duration-500 hover:-translate-y-1 hover:border-gold-500/50 hover:shadow-2xl hover:shadow-black/70"
-              style={{ aspectRatio: "16/10" }}
-            >
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 group-hover:from-black/90" />
-              <h3 className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-lg font-bold text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-102">
-                {item.title}
-              </h3>
-            </div>
+            <li key={item.id} className="w-full">
+              <article
+                className="group relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-lg transition-all duration-500 hover:-translate-y-1 hover:border-gold-500/50 hover:shadow-2xl hover:shadow-black/70"
+                style={{ aspectRatio: "16/10" }}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 group-hover:from-black/90"
+                />
+                <h3 className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-lg font-bold text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-102">
+                  {item.title}
+                </h3>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       <div
@@ -71,27 +75,31 @@ export default function StickyImageTextSection({
           </div>
         </div>
 
-        <div className="flex w-1/2 flex-col gap-6">
+        <ul className="flex w-1/2 flex-col gap-6 list-none p-0 m-0">
           {items.map((item) => (
-            <div
-              key={item.id}
-              className="group relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-gold-500/50 hover:shadow-2xl hover:shadow-black/70"
-              style={{ aspectRatio: "16/10" }}
-            >
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                sizes="50vw"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 group-hover:from-black/90" />
-              <h3 className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-xl font-bold text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-102">
-                {item.title}
-              </h3>
-            </div>
+            <li key={item.id} className="w-full">
+              <article
+                className="group relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-gold-500/50 hover:shadow-2xl hover:shadow-black/70"
+                style={{ aspectRatio: "16/10" }}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="50vw"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 group-hover:from-black/90"
+                />
+                <h3 className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-xl font-bold text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-102">
+                  {item.title}
+                </h3>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

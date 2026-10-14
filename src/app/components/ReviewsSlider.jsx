@@ -59,11 +59,13 @@ export default function ReviewsSlider({ items = [], className = "" }) {
                     : "scale-95 opacity-55 border border-gold-500/25 bg-paper/60 hover:opacity-80 dark:bg-night-900/50"
                 }`}
               >
-                {/* Header: User avatar + Name + Quote icon */}
                 <div>
                   <div className="flex items-center justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="flex size-10 items-center justify-center rounded-full border border-gold-500/40 bg-gold-500/10 text-gold-500 shadow-sm">
+                      <div
+                        aria-hidden="true"
+                        className="flex size-10 items-center justify-center rounded-full border border-gold-500/40 bg-gold-500/10 text-gold-500 shadow-sm"
+                      >
                         <FiUser className="size-5" />
                       </div>
                       <h3 className="text-base font-bold text-ink dark:text-paper lg:text-lg">
@@ -71,19 +73,21 @@ export default function ReviewsSlider({ items = [], className = "" }) {
                       </h3>
                     </div>
                     <BiSolidQuoteAltRight
+                      aria-hidden="true"
                       className={`size-7 shrink-0 transition-colors ${
                         isActive ? "text-gold-500" : "text-gold-500/50"
                       }`}
                     />
                   </div>
 
-                  {/* Decorative divider */}
-                  <span className="mb-4 block h-px w-full bg-gradient-to-l from-gold-500/40 via-gold-500/10 to-transparent" />
+                  <span
+                    aria-hidden="true"
+                    className="mb-4 block h-px w-full bg-gradient-to-l from-gold-500/40 via-gold-500/10 to-transparent"
+                  />
 
-                  {/* Review comment */}
-                  <p className="text-sm leading-relaxed text-ink/80 dark:text-paper/80 sm:text-base">
+                  <blockquote className="text-sm leading-relaxed text-ink/80 dark:text-paper/80 sm:text-base m-0 p-0">
                     &ldquo;{item.comment}&rdquo;
-                  </p>
+                  </blockquote>
                 </div>
               </div>
             )}

@@ -53,7 +53,6 @@ export default function HeroSlider({ items = [], className = "" }) {
         >
           {items.map((item, index) => (
             <SwiperSlide key={item.id} className="relative">
-              {/* Background image */}
               <div className="absolute inset-0">
                 <Image
                   src={item.image}
@@ -63,11 +62,9 @@ export default function HeroSlider({ items = [], className = "" }) {
                   sizes="(max-width: 1024px) 100vw, 90vw"
                   priority={index === 0}
                 />
-                {/* Overlay for text readability in both light & dark themes */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/30 lg:bg-gradient-to-l lg:from-black/95 lg:via-black/65 lg:to-black/25" />
               </div>
 
-              {/* Slide content — left padding reserved for desktop thumbnails in RTL */}
               <div className="relative z-10 flex h-full min-h-[440px] flex-col justify-end p-6 text-white sm:p-8 lg:min-h-[520px] lg:p-12">
                 <div className="max-w-xl lg:max-w-2xl xl:max-w-3xl pl-0 lg:pl-36 xl:pl-44">
                   {item.head && (
@@ -75,15 +72,18 @@ export default function HeroSlider({ items = [], className = "" }) {
                       {item.head}
                     </p>
                   )}
-                  <div className="mb-2">
+                  <div className="mb-2" aria-hidden="true">
                     <span className="inline-block h-0.5 w-16 bg-gradient-to-l from-gold-400 to-transparent" />
                   </div>
-                  <h2 className="mb-3 text-2xl font-bold leading-tight lg:text-4xl">
+                  <h3 className="mb-3 text-2xl font-bold leading-tight lg:text-4xl">
                     {item.title1 && (
-                      <span className="text-gold-400">{item.title1} </span>
+                      <>
+                        <span className="text-gold-400">{item.title1}</span>
+                        &nbsp;
+                      </>
                     )}
                     {item.title2 || ""}
-                  </h2>
+                  </h3>
                   {item.description && (
                     <p className="mb-6 max-w-lg text-sm leading-relaxed text-gray-200 lg:text-base">
                       {item.description}
@@ -96,7 +96,7 @@ export default function HeroSlider({ items = [], className = "" }) {
                         className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-6 py-2.5 text-sm font-semibold text-black transition-all duration-300 hover:bg-gold-400 hover:shadow-lg hover:shadow-gold-500/20"
                       >
                         <span>مشاهده جزئیات</span>
-                        <GoArrowUpRight className="size-4 -scale-x-100" />
+                        <GoArrowUpRight aria-hidden="true" className="size-4 -scale-x-100" />
                       </Link>
                     </div>
                   )}
@@ -106,7 +106,6 @@ export default function HeroSlider({ items = [], className = "" }) {
           ))}
         </Swiper>
 
-        {/* Desktop Vertical Image Pagination — Inside Active Slide Frame on the Left for RTL */}
         {items.length > 1 && (
           <div
             className="pointer-events-auto absolute left-5 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-3 rounded-2xl border border-white/15 bg-black/45 p-2.5 shadow-2xl backdrop-blur-md lg:flex"
@@ -137,7 +136,6 @@ export default function HeroSlider({ items = [], className = "" }) {
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="120px"
                   />
-                  {/* Subtle dark tint over inactive thumbnails */}
                   {!isActive && (
                     <div className="absolute inset-0 bg-black/35 transition-opacity duration-300 group-hover:bg-black/10" />
                   )}
