@@ -1,1 +1,99 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--font-sans: var(--font-vazirmatn), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--color-paper: #ffffff;
+	--color-ink: #111111;
+
+	/* Reconstructed Royal / Champagne Gold Palette */
+	--color-gold-50: #fdfbf2;
+	--color-gold-100: #f7f0d4;
+	--color-gold-200: #efe0a8;
+	--color-gold-300: #e5cc73;
+	--color-gold-400: #dab342;
+	--color-gold-500: #d4af37;
+	--color-gold-600: #b38e22;
+	--color-gold-700: #8c6c18;
+	--color-gold-800: #6b5114;
+	--color-gold-900: #4a3810;
+	--color-gold-950: #2a1f08;
+
+	/* Bright Vivid Gold Palette (طلایی درخشان و زرد-طلایی روشن) */
+	--color-gold-bright-50: #fffdeb;
+	--color-gold-bright-100: #fff9c4;
+	--color-gold-bright-200: #fff187;
+	--color-gold-bright-300: #ffe345;
+	--color-gold-bright-400: #ffd314;
+	--color-gold-bright-500: #f5be0b;
+	--color-gold-bright-600: #d49b04;
+	--color-gold-bright-700: #a87405;
+	--color-gold-bright-800: #865a0c;
+	--color-gold-bright-900: #6e480f;
+	--color-gold-bright-950: #402604;
+
+	/* Antique Bronze Gold Palette (طلایی عتیقه و برنزی گرم) */
+	--color-gold-antique-50: #fbf7f0;
+	--color-gold-antique-100: #f5ebd9;
+	--color-gold-antique-200: #ecd5b1;
+	--color-gold-antique-300: #dfbb83;
+	--color-gold-antique-400: #ce9d55;
+	--color-gold-antique-500: #bf8535;
+	--color-gold-antique-600: #a36a28;
+	--color-gold-antique-700: #835022;
+	--color-gold-antique-800: #6c4121;
+	--color-gold-antique-900: #59361e;
+	--color-gold-antique-950: #331c0e;
+
+	/* Comprehensive Luxury Dark / Neutral Scale (Night) */
+	--color-night-50: #f8f9fa;
+	--color-night-100: #f1f3f5;
+	--color-night-200: #e2e5e9;
+	--color-night-300: #c4c9d1;
+	--color-night-400: #9aa1ad;
+	--color-night-500: #6c7482;
+	--color-night-600: #484f5c;
+	--color-night-700: #2d323c;
+	--color-night-800: #1c1f26;
+	--color-night-900: #111317;
+	--color-night-950: #0a0b0d;
+}
+
+.bg-theme-first {
+	background-image: url('/light-theme-first.jpg');
+}
+:where(.dark, .dark *) .bg-theme-first {
+	background-image: url('/dark-theme-first.jpg');
+}
+
+.bg-theme-middle {
+	background-image: url('/light-theme-middle.jpg');
+}
+:where(.dark, .dark *) .bg-theme-middle {
+	background-image: url('/dark-theme-middle.jpg');
+}
+
+/* Circular Wave View Transition for Theme Switch */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+	z-index: 1;
+}
+
+::view-transition-new(root) {
+	z-index: 9999;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}
+

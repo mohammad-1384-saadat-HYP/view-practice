@@ -1,0 +1,106 @@
+"use client";
+
+import Image from "next/image";
+
+export default function StickyImageTextSection({
+  items = [],
+  badge,
+  heading = "",
+  description = "",
+  reverse = false,
+  bgClass = "bg-theme-middle",
+  bgImage = "",
+}) {
+  if (!items || items.length === 0) return null;
+
+  return (
+    <section
+      className={`relative min-h-screen bg-cover bg-center bg-no-repeat py-12 lg:py-20 px-7.5 lg:px-8.5 ${bgClass}`}
+      style={bgImage ? { backgroundImage: `url('${bgImage}')` } : undefined}
+    >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-black/45" />
+
+      <div className="relative z-10 flex w-full flex-col items-center gap-8 lg:hidden">
+        <div className="flex flex-col items-center gap-4 text-center">
+          {badge}
+          <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl">
+            {heading}
+          </h2>
+          <p className="max-w-lg text-center text-sm leading-relaxed text-gray-200 sm:text-base">
+            {description}
+          </p>
+        </div>
+
+        <ul className="flex w-full flex-col gap-5 list-none p-0 m-0">
+          {items.map((item) => (
+            <li key={item.id} className="w-full">
+              <article
+                className="group relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-lg transition-all duration-500 hover:-translate-y-1 hover:border-gold-500/50 hover:shadow-2xl hover:shadow-black/70"
+                style={{ aspectRatio: "16/10" }}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 group-hover:from-black/90"
+                />
+                <h3 className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-lg font-bold text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-102">
+                  {item.title}
+                </h3>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div
+        className={`relative z-10 hidden w-full gap-12 lg:flex ${
+          reverse ? "flex-row-reverse" : "flex-row"
+        }`}
+      >
+        <div className="w-1/2 self-stretch">
+          <div className="sticky top-28 flex flex-col items-start gap-5 text-start">
+            {badge}
+            <h2 className="text-3xl font-bold leading-tight text-white xl:text-4xl">
+              {heading}
+            </h2>
+            <p className="max-w-lg text-sm leading-relaxed text-gray-200 lg:text-base">
+              {description}
+            </p>
+          </div>
+        </div>
+
+        <ul className="flex w-1/2 flex-col gap-6 list-none p-0 m-0">
+          {items.map((item) => (
+            <li key={item.id} className="w-full">
+              <article
+                className="group relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-gold-500/50 hover:shadow-2xl hover:shadow-black/70"
+                style={{ aspectRatio: "16/10" }}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="50vw"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 group-hover:from-black/90"
+                />
+                <h3 className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-xl font-bold text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-102">
+                  {item.title}
+                </h3>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
