@@ -55,8 +55,8 @@ export default function ReviewsSlider({ items = [], className = "" }) {
               <div
                 className={`flex h-full min-h-[220px] flex-col justify-between rounded-2xl p-6 sm:p-7 transition-all duration-500 backdrop-blur-md ${
                   isActive
-                    ? "scale-100 opacity-100 border-2 border-gold-400 bg-paper/90 shadow-2xl shadow-gold-500/15 dark:bg-night-900/90"
-                    : "scale-95 opacity-55 border border-gold-500/25 bg-paper/60 hover:opacity-80 dark:bg-night-900/50"
+                    ? "opacity-100 border-2 border-gold-400 bg-paper/90 dark:bg-night-900/90"
+                    : "opacity-60 border-2 border-gold-500/25 bg-paper/60 hover:opacity-80 dark:bg-night-900/50"
                 }`}
               >
                 <div>

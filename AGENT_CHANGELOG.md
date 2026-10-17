@@ -480,3 +480,60 @@
   - Confirmed the user's minimal 4-line snippet (`if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');`) is the most concise and optimal solution since SSR renders light by default and no extra system-media checks are required.
 - Verification:
   - `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Add dynamic allowedDevOrigins in next.config.mjs to unblock Next.js dev resources on mobile over local network.
+- Files changed: `next.config.mjs`.
+- What changed:
+  - Added dynamic detection of local network IPv4 addresses via `node:os` and private network wildcard ranges (`192.168.*.*`, `10.*.*.*`, `172.*.*.*`, `*.local`) to `allowedDevOrigins` in `next.config.mjs`.
+- Why it changed:
+  - Allows mobile devices connected via local Wi-Fi / IP (at office, home, or hotspot) to access Next.js dev resources and HMR without being blocked by cross-origin security rules.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Fix ThemeToggle broken unmounted state and standardize ThemeContext mounting (Option 2).
+- Files changed: `src/context/ThemeContext.jsx`, `src/features/header/components/ThemeToggle.jsx`.
+- What changed:
+  - In `ThemeToggle.jsx`: Removed the early return that rendered a non-interactive empty `div` (`border border-gold-500/30 p-2 opacity-50`). ThemeToggle is now always rendered as a full, interactive `<button>` with full styling. Before client mounting/hydration, it displays a CSS-based icon fallback (`FaMoon` in light mode, `FaSun` in dark mode) without blocking interaction. Once mounted, it activates Motion transitions.
+  - In `ThemeContext.jsx`: Removed fragile module-level `isThemeMounted` boolean and `queueMicrotask` listener loop. Standardized `mounted` with clean `useSyncExternalStore` pattern (`emptySubscribe`, `() => true`, `() => false`) that satisfies React 19 rules without hydration mismatches or cascading render lint warnings.
+- Why it changed:
+  - Resolves user issue #2 where the theme toggle button only showed a faint border and was non-clickable on mobile.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+  - Server restart left to the user per AGENTS.md rule 10.1.
+
+- Task: Fix multi-instance hydration mismatch and mounting in ScrollReveal.jsx (Option 3).
+- Files changed: `src/components/ScrollReveal.jsx`.
+- What changed:
+  - Removed fragile module-level `isScrollRevealMounted` variable and `scrollRevealListeners` Set.
+  - Standardized `isMounted` detection using the clean, static `useSyncExternalStore` pattern (`emptySubscribe = () => () => {}`, `getMountedSnapshot = () => true`, `getMountedServerSnapshot = () => false`).
+  - Preserved `useReducedMotion()` accessibility guard and 100% visible SSR content fallback.
+- Why it changed:
+  - Resolves user issue #3 where page content elements with `ScrollReveal` rendered as static un-animated elements on mobile because shared module-level state dropped mounting listeners on multi-instance components and caused hydration mismatches.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+
+- Task: Fix ReferenceError in ScrollReveal.jsx caused by typo in store subscriber name.
+- Files changed: `src/components/ScrollReveal.jsx`.
+- What changed:
+  - Replaced undefined `subscribeMounted` reference with `emptySubscribe` inside `useSyncExternalStore`.
+- Why it changed:
+  - Resolved `ReferenceError: subscribeMounted is not defined` runtime crash when rendering ScrollReveal.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+  - Live server HTTP 200 and SSR HTML payload verified via Node fetch.
+
+## 2026-10-17
+
+- Task: Eliminate review card text shaking and layout jump on slide activation in ReviewsSlider.
+- Files changed: `src/app/components/ReviewsSlider.jsx`.
+- What changed:
+  - Removed `scale-95` on inactive slides and `scale-100` on the active slide.
+  - Unified the border width to `border-2` across both active (`border-2 border-gold-400`) and inactive (`border-2 border-gold-500/25`) states.
+  - Adjusted inactive slide opacity to a balanced `opacity-60`.
+- Why it changed:
+  - Resolves user-reported issue where switching active slides on mobile and desktop caused the card text and quote comment to expand, shrink, or shake due to transform scale and 1px-to-2px border layout shifts.
+- Important decisions:
+  - Kept changes strictly limited to the slide card styling in `ReviewsSlider.jsx` without touching any other files.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+  - Dev/build server launch skipped per AGENTS.md rule 10.1.

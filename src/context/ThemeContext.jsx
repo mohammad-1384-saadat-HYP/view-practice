@@ -9,28 +9,6 @@ import {
 } from "react";
 import { flushSync } from "react-dom";
 
-let isThemeMounted = false;
-const themeMountListeners = new Set();
-
-function subscribeMounted(onStoreChange) {
-  themeMountListeners.add(onStoreChange);
-  if (!isThemeMounted && typeof window !== "undefined") {
-    queueMicrotask(() => {
-      isThemeMounted = true;
-      themeMountListeners.forEach((listener) => listener());
-    });
-  }
-  return () => themeMountListeners.delete(onStoreChange);
-}
-
-function getMountedSnapshot() {
-  return isThemeMounted;
-}
-
-function getMountedServerSnapshot() {
-  return false;
-}
-
 const themeChangeListeners = new Set();
 
 function subscribe(callback) {
@@ -63,10 +41,14 @@ const ThemeContext = createContext({
   mounted: false,
 });
 
+const emptySubscribe = () => () => {};
+const getMountedSnapshot = () => true;
+const getMountedServerSnapshot = () => false;
+
 export function ThemeProvider({ children }) {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const mounted = useSyncExternalStore(
-    subscribeMounted,
+    emptySubscribe,
     getMountedSnapshot,
     getMountedServerSnapshot
   );

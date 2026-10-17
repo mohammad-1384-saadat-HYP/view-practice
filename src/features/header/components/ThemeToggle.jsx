@@ -7,15 +7,6 @@ import { FaMoon, FaSun } from "react-icons/fa";
 export default function ThemeToggle() {
   const { theme, toggleTheme, mounted } = useTheme();
 
-  if (!mounted) {
-    return (
-      <div
-        className="size-9 rounded-full border border-gold-500/30 p-2 opacity-50"
-        aria-hidden="true"
-      />
-    );
-  }
-
   const isDark = theme === "dark";
 
   const handleClick = (e) => {
@@ -32,22 +23,29 @@ export default function ThemeToggle() {
       aria-label={isDark ? "تغییر به تم روشن" : "تغییر به تم تاریک"}
       className="relative flex size-9 cursor-pointer items-center justify-center rounded-full border border-gold-500/40 bg-night-50/80 text-gold-700 shadow-sm transition-colors hover:border-gold-500 hover:bg-gold-500 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 dark:bg-night-900/60 dark:text-gold-400 dark:hover:bg-gold-500 dark:hover:text-night-950"
     >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={theme}
-          initial={{ rotate: -90, scale: 0.6, opacity: 0 }}
-          animate={{ rotate: 0, scale: 1, opacity: 1 }}
-          exit={{ rotate: 90, scale: 0.6, opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="flex items-center justify-center"
-        >
-          {isDark ? (
-            <FaSun className="size-4" />
-          ) : (
-            <FaMoon className="size-3.5" />
-          )}
-        </motion.span>
-      </AnimatePresence>
+      {!mounted ? (
+        <span className="flex items-center justify-center" aria-hidden="true">
+          <FaMoon className="size-3.5 block dark:hidden" />
+          <FaSun className="size-4 hidden dark:block" />
+        </span>
+      ) : (
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={theme}
+            initial={{ rotate: -90, scale: 0.6, opacity: 0 }}
+            animate={{ rotate: 0, scale: 1, opacity: 1 }}
+            exit={{ rotate: 90, scale: 0.6, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center justify-center"
+          >
+            {isDark ? (
+              <FaSun className="size-4" />
+            ) : (
+              <FaMoon className="size-3.5" />
+            )}
+          </motion.span>
+        </AnimatePresence>
+      )}
     </button>
   );
 }
