@@ -97,3 +97,23 @@
 	}
 }
 
+/* Subtle Float Animation for Scroll Indicator (Option A) */
+@keyframes subtle-float {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(6px);
+	}
+}
+
+.animate-subtle-float {
+	animation: subtle-float 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animate-subtle-float {
+		animation: none !important;
+	}
+}
+
