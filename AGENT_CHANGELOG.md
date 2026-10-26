@@ -537,3 +537,155 @@
 - Verification:
   - `npm run lint` passed with 0 errors and 0 warnings.
   - Dev/build server launch skipped per AGENTS.md rule 10.1.
+
+- Task: Build all linked website subpages with matching styles/animations, create custom 404 page, and omit one page for 404 testing.
+- Files changed:
+  - `src/components/BadgePill.jsx`
+  - `src/components/ProductCard.jsx`
+  - `src/components/SubPageLayout.jsx`
+  - `src/app/not-found.js`
+  - `src/app/sets/page.js`
+  - `src/app/sets/bridal/page.js`
+  - `src/app/sets/carved/page.js`
+  - `src/app/sets/diamond/page.js`
+  - `src/app/sets/bracelets/page.js`
+  - `src/app/sets/bracelets/albernado/page.js`
+  - `src/app/sets/bracelets/cartier/page.js`
+  - `src/app/sets/yellow-white/page.js`
+  - `src/app/jewelry/page.js`
+  - `src/app/jewelry/rings/page.js`
+  - `src/app/jewelry/necklaces/page.js`
+  - `src/app/jewelry/earrings/page.js`
+  - `src/app/jewelry/anklets/page.js`
+  - `src/app/jewelry/mens-chains/page.js`
+  - `src/app/bullion-coins/page.js`
+  - `src/app/exclusive-collections/page.js`
+  - `src/app/contact-us/page.js`
+  - `src/app/collections/page.js`
+  - `src/app/gold-18k/page.js`
+  - `src/app/about-us/page.js`
+  - `src/app/buying-guide/page.js`
+  - `src/app/guarantee/page.js`
+- What changed:
+  - Extracted and created shared luxury components (`BadgePill`, `ProductCard`, and `SubPageLayout`) maintaining full harmony with the home page's aesthetic (gold borders, glowing accents, theme backgrounds, responsive typography, and `ScrollReveal` animations).
+  - Designed and built a custom `not-found.js` page featuring glowing gold 404 typography, ambient backdrop glow, descriptive Persian messaging, quick action CTAs (Return Home, View Collections, Contact Us), and quick navigation cards.
+  - Implemented 22 fully-formed subpages with dedicated gold & jewelry content, product showcase grids, technical specifications, buying advice, and contact workflows.
+  - Deliberately omitted `/online-showcase` (ویترین آنلاین) so the user can test the 404 page directly from the navigation bar.
+- Why it changed:
+  - Satisfies user request to construct all pages linked in the homepage navigation and footer with matching styles, implement an exceptional 404 page, and leave one page unbuilt for interactive 404 testing.
+- Important decisions:
+  - Omitted `/online-showcase` because it is prominently positioned in the desktop navbar and mobile drawer, providing an effortless test path for the 404 page.
+  - Retained `<Header />` and `<Footer />` on all subpages and the 404 page to guarantee seamless navigation and theme switching across the entire site.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+  - Static analysis confirmed all import references, routing paths, and responsive classes are error-free.
+  - Build/dev-server launch skipped per AGENTS.md rule 10.1.
+
+- Task: Fix SubPageLayout UI/UX bugs, standardize section spacing, and enforce 1-col (sm), 2-col (768px/md), 3-col (lg) grid layout across all pages.
+- Files changed:
+  - `src/components/SubPageLayout.jsx`
+  - `src/app/page.js`
+  - `src/app/not-found.js`
+  - `src/app/sets/page.js`
+  - `src/app/sets/bridal/page.js`
+  - `src/app/sets/carved/page.js`
+  - `src/app/sets/diamond/page.js`
+  - `src/app/sets/bracelets/page.js`
+  - `src/app/sets/bracelets/albernado/page.js`
+  - `src/app/sets/bracelets/cartier/page.js`
+  - `src/app/sets/yellow-white/page.js`
+  - `src/app/jewelry/page.js`
+  - `src/app/jewelry/rings/page.js`
+  - `src/app/jewelry/necklaces/page.js`
+  - `src/app/jewelry/earrings/page.js`
+  - `src/app/jewelry/anklets/page.js`
+  - `src/app/jewelry/mens-chains/page.js`
+  - `src/app/bullion-coins/page.js`
+  - `src/app/exclusive-collections/page.js`
+  - `src/app/contact-us/page.js`
+  - `src/app/collections/page.js`
+  - `src/app/gold-18k/page.js`
+  - `src/app/about-us/page.js`
+  - `src/app/buying-guide/page.js`
+  - `src/app/guarantee/page.js`
+  - `src/app/online-showcase/page.js`
+- What changed:
+  - In `SubPageLayout.jsx`:
+    - Fixed Hero Section title contrast: replaced washed-out gradient with high-contrast, luminous gold text (`text-gold-400 font-black drop-shadow-[0_2px_12px_rgba(212,175,55,0.45)]`) and clear title prefix (`text-white/90`).
+    - Fixed Consultation Banner primary link button: replaced unclear color with a distinct gold-bordered, gold-tinted luxury button with clear hover states in light and dark mode.
+    - Standardized main content container to use spacious, responsive section gaps (`flex flex-col gap-16 sm:gap-20 lg:gap-24`) matching the home page.
+  - In `page.js` (Home Page):
+    - Adjusted grid columns in Section 2 Part 1 (`md:grid-cols-2 lg:grid-cols-3`), Section 2 Part 2 (`md:grid-cols-2 lg:grid-cols-3`), and Section 4 Part 1 (`md:grid-cols-2`).
+  - Across all subpages & `not-found.js`:
+    - Removed cramped `mb-*` section margins to allow the unified container gap (`gap-16 sm:gap-20 lg:gap-24`) to space sections cleanly.
+    - Standardized all card and product grids strictly per user requirement: 1 column on mobile/`sm`, 2 columns on 768px (`md`), and 3 columns on `lg` (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8`).
+    - Ensured all image paths continue to use existing local images (`/light-theme-first.jpg`, `/dark-theme-first.jpg`, `/light-theme-middle.jpg`, `/dark-theme-middle.jpg`) without external placeholders.
+- Task: Standardize Hero Sections (Height & Visuals) and Unify Initial Hero Backgrounds.
+- Files changed:
+  - `src/components/SubPageLayout.jsx`
+  - `src/app/sets/yellow-white/page.js`
+  - `src/app/sets/carved/page.js`
+  - `src/app/sets/bracelets/page.js`
+  - `src/app/jewelry/necklaces/page.js`
+  - `src/app/jewelry/anklets/page.js`
+  - `src/app/gold-18k/page.js`
+- What changed:
+  - In `SubPageLayout.jsx`:
+    - Updated Section 1 height from unconstrained padding-based height to `min-h-screen flex flex-col`, matching the exact reference height behavior of the homepage hero.
+    - Updated hero content container with `flex-1 flex flex-col justify-center` so breadcrumbs, badge, and titles are vertically centered in the viewport with balanced breathing room on desktop and mobile.
+    - Replaced heavy `bg-black/65 backdrop-blur-[1px]` overlay with a subtle, balanced gradient overlay (`bg-gradient-to-b from-black/55 via-black/35 to-black/60`), removing blur so the luxury background image remains recognizable and visually stunning like on the homepage.
+    - Enhanced foreground text contrast with crisp text shadows (`drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]`) and `text-white/95`, `text-gold-400 font-black`, and `text-gray-100` ensuring 100% sharp readability over both light and dark background areas.
+  - In 6 subpages (`sets/yellow-white`, `sets/carved`, `sets/bracelets`, `jewelry/necklaces`, `jewelry/anklets`, `gold-18k`):
+    - Replaced inconsistent `bgClass="bg-theme-middle"` with `bgClass="bg-theme-first"`, ensuring 100% of initial hero sections across all pages share the exact same initial background image asset as the homepage hero.
+- Task: Match Subpage Hero Sections to Homepage, Implement Option A Animated Scroll Indicator, and Professionally Redesign Footer Buttons.
+- Files changed:
+  - `src/app/globals.css`
+  - `src/components/ScrollIndicator.jsx`
+  - `src/components/SubPageLayout.jsx`
+  - `src/features/footer/Footer.jsx`
+- What changed:
+  - In `SubPageLayout.jsx`:
+    - Replaced vertical centering with top-aligned content structure directly beneath `<Header />`, reproducing the homepage hero's composition and exact container padding (`px-7 py-15 lg:p-20`).
+    - Standardized typography to match reference homepage heading and description scales (`text-2xl lg:text-3xl font-bold`, `text-[15px] lg:text-base`) with subtle accent line (`h-0.5 w-16`) and drop shadows.
+    - Preserved subpage-specific elements (breadcrumbs, badge pill, dynamic titles) within the unified structural hierarchy.
+    - Integrated `<ScrollIndicator targetId="main-content" />` positioned at the bottom of the hero using `justify-between` layout.
+    - Added `id="main-content"` on `<main>` to serve as a reliable scroll destination target.
+  - In `src/app/globals.css`:
+    - Added keyframes `@keyframes subtle-float` (2.2s, 6px translateY) and utility class `.animate-subtle-float`.
+    - Added `@media (prefers-reduced-motion: reduce)` rule disabling animation for accessibility.
+  - In `src/components/ScrollIndicator.jsx`:
+    - Created semantic `<button type="button">` client component with 44px touch target (`size-10 sm:size-11`).
+    - Integrated `FaChevronDown` icon with subtle float animation.
+    - Provided Persian `aria-label="اسکرول به بخش محتوای صفحه"` and `aria-hidden="true"` on the icon.
+    - Added click handler resolving the target section `#main-content` smoothly (`scrollIntoView({ behavior: 'smooth' })`), falling back to instant scroll (`behavior: 'auto'`) when `prefers-reduced-motion` is detected in `window.matchMedia`.
+    - Added luxury frosted gold styling (`border-gold-400/40 bg-black/40 text-gold-400 backdrop-blur-xs`) with interactive hover, active scale, and accessible focus-visible rings.
+  - In `src/features/footer/Footer.jsx`:
+    - Replaced non-semantic 26px `div`s with accessible, responsive 40-44px `<a>` social buttons (`size-10 sm:size-11 rounded-xl`) with gold borders, hover lift, gold ambient glow, active press states, focus rings, and explicit `aria-label`s.
+    - Redesigned bottom raw link into a luxury pill button featuring `FaGithub`, responsive truncation, subtle borders, and smooth interaction states.
+    - Added focus rings and subtle hover states to navigation route links for improved keyboard and mouse usability.
+    - Guaranteed dual-theme compatibility (light mode with `bg-white text-gold-700` and dark mode with `dark:bg-black dark:text-gold-400`).
+- Why it changed:
+  - Harmonizes subpage hero sections with the reference homepage layout, solves scroll discoverability without obtrusive elements via Option A, and elevates footer action buttons into professional, accessible UI controls.
+- Important decisions:
+  - Used `min-h-screen flex flex-col justify-between` on the hero section: this naturally positions the hero content at the top below Header (matching homepage) while pinning the scroll indicator at the bottom edge.
+  - Used DOM element ID `#main-content` for scrolling rather than hardcoded pixel offsets, ensuring robust navigation regardless of viewport height or screen resolution.
+  - Respected user accessibility preferences (`prefers-reduced-motion`) across both CSS keyframes and JavaScript smooth-scroll execution.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
+  - Static code inspection and prop verification performed across all modified files.
+  - Build/dev server launch skipped per AGENTS.md rule 10.1.
+
+## 2026-10-26
+
+- Task: Commit newly added sections and subpages based on feature-based design and push to remote.
+- Plan:
+  - Group 1 (Shared UI & Layout Foundation): `src/components/BadgePill.jsx`, `src/components/ProductCard.jsx`, `src/components/ScrollIndicator.jsx`, `src/components/SubPageLayout.jsx`, `src/app/globals.css`.
+  - Group 2 (Sets Feature): `src/app/sets/`.
+  - Group 3 (Jewelry Feature): `src/app/jewelry/`.
+  - Group 4 (Collections, Bullion & Showcase): `src/app/bullion-coins/`, `src/app/collections/`, `src/app/exclusive-collections/`, `src/app/gold-18k/`, `src/app/online-showcase/`.
+  - Group 5 (Information & Support Pages): `src/app/about-us/`, `src/app/buying-guide/`, `src/app/contact-us/`, `src/app/guarantee/`.
+  - Group 6 (Not Found Page): `src/app/not-found.js`.
+  - Group 7 (Homepage & Footer Refinements): `src/app/page.js`, `src/features/footer/Footer.jsx`.
+  - Group 8 (Documentation & Changelog): `AGENT_CHANGELOG.md`.
+- Verification:
+  - `npm run lint` passed with 0 errors and 0 warnings.
