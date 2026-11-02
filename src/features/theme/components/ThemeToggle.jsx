@@ -1,6 +1,6 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
+import { useTheme } from "../hooks/useTheme";
 import { AnimatePresence, motion } from "motion/react";
 import { FaMoon, FaSun } from "react-icons/fa";
 
