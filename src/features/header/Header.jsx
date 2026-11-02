@@ -1,7 +1,7 @@
 import { HeaderRoutes } from "./data/headerRoutes";
 import DesktopRouteItem from "./components/DesktopRouteItem";
 import MobileNavigation from "./components/MobileNavigation";
-import ThemeToggle from "./components/ThemeToggle";
+import { ThemeToggle } from "@/features/theme";
 import Image from "next/image";
 import Link from "next/link";
 

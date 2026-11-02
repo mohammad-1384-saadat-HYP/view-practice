@@ -1,6 +1,6 @@
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/context/ThemeContext";
+import StoreProvider from "@/store/storeProvider";
 import ScrollUpButton from "@/features/scroll-to-top/ScrollUpButton";
 
 const vazirmatn = Vazirmatn({
@@ -36,10 +36,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="flex min-h-full flex-col bg-paper text-ink transition-colors duration-200 dark:bg-night-950 dark:text-paper font-sans">
-        <ThemeProvider>
+        <StoreProvider>
           {children}
           <ScrollUpButton />
-        </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );

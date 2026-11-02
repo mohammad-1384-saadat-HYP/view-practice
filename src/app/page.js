@@ -88,7 +88,7 @@ export default function Home() {
               </ScrollReveal>
             </div>
 
-            <ul className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-6xl list-none p-0 m-0">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl list-none p-0 m-0">
               {Section2DataP1.map((item, index) => (
                 <li key={item.id} className="h-full">
                   <ScrollReveal delay={index * 0.1} y={24} className="h-full">
@@ -145,7 +145,7 @@ export default function Home() {
                 و خریدی لذت‌بخش و امن را تجربه نمایید.
               </p>
             </ScrollReveal>
-            <ul className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-5 list-none p-0 m-0">
+            <ul className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 list-none p-0 m-0">
               {Section2DataP2.map((item, index) => (
                 <li key={item.id} className="w-full">
                   <ScrollReveal delay={index * 0.1} y={24} className="w-full">
@@ -234,7 +234,7 @@ export default function Home() {
                 />
               </div>
             </ScrollReveal>
-            <ul className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-6 list-none p-0 m-0">
+            <ul className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 list-none p-0 m-0">
               {Section4DataP1.map((item, index) => (
                 <li key={item.id} className="w-full">
                   <ScrollReveal

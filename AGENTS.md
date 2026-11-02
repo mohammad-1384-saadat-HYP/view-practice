@@ -26,8 +26,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Before making **any code or project-file change**, the AI MUST follow this order:
 
-1. Read `AGENTS.md` completely.
-2. Read `AGENT_CHANGELOG.md` completely, with particular attention to the latest entries, so it understands changes previously made by other AI agents.
+1. Read `AGENTS.md` (required only once at the beginning of a conversation/session or when switching to a completely new task context; do not re-read repeatedly before every follow-up step or minor file edit within the same task).
+2. Read `AGENT_CHANGELOG.md` (targeted reading: focus primarily on the most recent entries to understand current context, rather than reading the entire historical log unless investigating a specific past change; required once per session/task context).
 3. Inspect the relevant project structure and the files directly related to the requested task.
 4. Identify the technologies, conventions, and implementation patterns already used in the relevant area.
 5. Determine which files are in scope for the requested change.
@@ -37,7 +37,7 @@ Before making **any code or project-file change**, the AI MUST follow this order
 9. After completing the change, verify the written code for syntax correctness and obvious implementation mistakes.
 10. Update `AGENT_CHANGELOG.md` with the changes made by the current AI.
 
-The AI MUST NOT skip reading either `AGENTS.md` or `AGENT_CHANGELOG.md`, even for a small change.
+The AI MUST NOT skip reading `AGENTS.md` and recent entries of `AGENT_CHANGELOG.md` at session start, but it MUST NOT re-read them redundantly on minor follow-up steps.
 
 ---
 
@@ -86,7 +86,7 @@ The AI MUST NOT:
 - Change build, deployment, environment, or project configuration merely to make a task easier.
 - Rewrite existing code simply because the AI prefers another coding style.
 - Make broad cleanup changes while working on an unrelated feature.
-- Modify backend or other non-target areas when they are outside the requested scope.
+- Modify backend, frontend, or other non-target areas when they are outside the requested scope.
 
 If a requested task appears to require a change outside the normal scope, the AI must explain why that change is needed and ask the user before doing it.
 
@@ -101,7 +101,7 @@ If a package or dependency is genuinely required:
 1. Tell the user which package is needed.
 2. Explain briefly why it is needed.
 3. Wait for the user to decide whether to install it.
-4. Do not install it or modify dependency files unless the user explicitly authorizes it.
+4. Do not install it or modify dependency/manifest files unless the user explicitly authorizes it.
 
 The AI should first look for a solution using packages, libraries, utilities, and capabilities already present in the project.
 
@@ -117,7 +117,7 @@ The AI MUST:
 
 - Reuse existing project conventions whenever reasonably possible.
 - Follow the patterns already used in the relevant area of the project.
-- Reuse existing utilities, components, services, hooks, API helpers, libraries, and abstractions when appropriate.
+- Reuse existing utilities, components, modules, services, hooks, API helpers, libraries, and abstractions when appropriate.
 - Avoid creating a new architecture when an appropriate existing pattern already exists.
 - Avoid introducing a new pattern merely because it is personally preferred.
 
@@ -128,11 +128,23 @@ The AI MUST NOT assume:
 - a specific routing system,
 - a specific state-management solution,
 - a specific HTTP/API library,
+- a specific database or ORM pattern,
 - a specific folder structure,
 - a specific styling solution,
-- or a specific component architecture.
+- or a specific component/module architecture.
 
 These MUST be determined from the actual project.
+
+### 6.1 Responsive Breakpoint Preferences
+
+The user's primary responsive-design preferences and guidelines for review are as follows:
+
+- **Primary Checkpoints:** The breakpoints primarily monitored and evaluated are `sm`, `md`, and `lg`.
+- **Mobile-Oriented Scope:** Both `sm` and `md` are generally treated as mobile-oriented screen sizes when designing and reviewing responsive layouts.
+- **Desktop Transition:** Layouts must not automatically switch to a desktop-oriented layout at `md`. The primary checkpoint for transitioning to a desktop layout should generally be `lg`, unless an established project requirement or component structure specifically dictates otherwise.
+- **Convention-Aware Styling:** Use the actual breakpoint values and responsive conventions already established in the project. Do not assume the project uses Tailwind CSS merely because these breakpoint tokens are referenced. If the project uses CSS Modules, vanilla CSS, or another styling system, apply the equivalent responsive behavior using the existing styling architecture.
+- **Breakpoint Discrimination:** Pay careful attention to the distinctions between `sm`, `md`, and `lg`, particularly when deciding when a multi-column or desktop grid/dock should replace a mobile stack.
+- **Full Viewport Usability:** These preferences do not permit ignoring intermediate viewport sizes. Layouts must remain completely usable, readable, and visually balanced at all intermediate widths between and beyond the primary checkpoints without clipping, overlap, or horizontal overflow.
 
 ---
 
@@ -140,13 +152,13 @@ These MUST be determined from the actual project.
 
 Before implementing API or data-related functionality, the AI MUST inspect how the existing project handles:
 
-- API requests,
-- authentication,
+- API requests and endpoints,
+- authentication and authorization,
 - headers and tokens,
 - error handling,
 - response handling,
 - request validation,
-- data fetching,
+- data fetching and persistence,
 - caching,
 - and related abstractions.
 
@@ -154,7 +166,7 @@ The AI MUST follow the existing pattern in the relevant area whenever possible.
 
 The AI MUST NOT:
 
-- Introduce a new API/service architecture merely because it may be cleaner.
+- Introduce a new API/service/data-access architecture merely because it may be cleaner.
 - Replace an existing HTTP/data-access library without explicit permission.
 - Create duplicate API abstractions when an appropriate existing abstraction already exists.
 - Change global API configuration unless the requested task explicitly requires it and the change is authorized.
@@ -177,7 +189,7 @@ If the AI does not understand:
 - which file should be changed,
 - which API should be called,
 - what an API response means,
-- what UI behavior is expected,
+- what UI or system behavior is expected,
 - which existing implementation should be followed,
 - what technology or pattern should be used,
 - or any other detail that materially affects the implementation,
@@ -188,6 +200,19 @@ The AI should ask the smallest number of clear questions needed to continue.
 
 Do not silently invent requirements.
 
+### 8.1 Mandatory Ambiguity-Handling Process
+
+For any genuine ambiguity, missing critical information, conflicting requirements, or significant decision requiring user input:
+- The AI MUST use Antigravity's native interactive question/approval interface (`ask_question`).
+- Present clear selectable options in Persian, plus an option equivalent to "Other / I'll provide my own instructions" that allows custom text.
+- Do not provide a Skip option.
+- Wait for the user's submitted answer before performing dependent work.
+- Do not treat an unanswered question as approval.
+- Do not ask the user to choose the order of the architecture migration or implementation steps; the AI must decide the safest order after inspecting the project and explain its reasoning.
+- Do not interrupt the user for minor routine implementation choices.
+- If the native interface cannot support the exact requested interaction, use its closest supported alternative. Never claim that an interaction occurred if it did not.
+- All questions, options, explanations presented to the user, and reports must be in Persian, while keeping code identifiers, filenames, commands, and paths in their original form.
+
 ---
 
 ## 9. Code Quality and Correctness
@@ -197,12 +222,19 @@ The AI is expected to write correct code, not merely code that passes a superfic
 Before considering a task complete, the AI MUST:
 
 - Check the code it wrote for syntax errors.
-- Check imports, variables, function names, and references for obvious mistakes.
+- Check imports, variables, function names, types, and references for obvious mistakes.
 - Check that the new code is consistent with the existing project structure.
 - Check that the implementation actually matches the user's request.
 - Check that it did not accidentally introduce unrelated changes.
 - Check that existing behavior is not unnecessarily changed.
 - Check that the implementation does not introduce obvious duplication or unnecessary complexity.
+
+### 9.1 Pragmatic Error Handling and Respecting Intentional Code
+
+- **Distinguish Genuine Bugs from Opinionated Warnings:** The AI MUST distinguish between genuine runtime/logic bugs (e.g., broken imports, undefined variables, fatal type mismatches that break execution) and opinionated linter/type warnings or intentional patterns.
+- **Respect Intentional Code:** If the user's code or requested pattern intentionally bypasses a strict type or linter preference (or triggers a pedantic warning that works fine in practice and matches the user's intent), the AI **MUST NOT** rewrite, over-engineer, or alter working logic just to appease the linter or type-checker.
+- **Scope of Fixes:** Fix genuine bugs caused by the AI's own changes, and leave pre-existing warnings in untouched code alone.
+- **Preserve User Logic:** If a strict lint or type rule conflicts with the user's intended implementation, keep the user's logic intact (or briefly note it in the final report without modifying the working code).
 
 The AI MUST NOT knowingly leave obviously incorrect code merely because it is syntactically valid.
 
@@ -214,26 +246,28 @@ If the AI cannot confidently verify an important behavior without running the ap
 
 The AI should not take ownership of the user's normal development workflow unless the user explicitly asks it to do so.
 
-**10.1 Command Execution Rules:**
+### 10.1 Command Execution Rules
 
-- The AI MUST NOT run `npm run dev`, `npm run build`, `npm start`, or any equivalent server/build commands on its own. The user will handle checking the project in the browser and managing the development server.
-- The AI's required verification is primarily:
+- **Forbidden Commands:** The AI MUST NOT start development servers, run build pipelines, or execute application start commands (e.g., `dev`, `build`, `start`, or framework/language-specific equivalents) on its own. The user will handle running the application and managing the development server.
+- **Allowed Read-Only Checks:** While starting dev servers or running full builds remains strictly forbidden, the AI **is permitted and encouraged** to use existing project diagnostic tools (such as TypeScript type-checking e.g. `tsc --noEmit`, ESLint, or IDE language server diagnostics) if available in the project, strictly in **read-only mode** (never use `--fix` or auto-formatters automatically) and scoped to the modified files whenever possible.
+- **Verification Focus:** The AI's required verification is primarily:
   - static inspection,
   - syntax correctness,
+  - read-only diagnostic checks for genuine errors,
   - consistency with the existing code,
   - and checking for obvious implementation errors.
 
-Do not make unnecessary changes just to accommodate a local development environment.
+Do not make unnecessary changes just to accommodate a local development environment, and do not rewrite or alter working code merely to appease non-fatal linter or type warnings.
 
-If the user explicitly asks the AI to run a particular verification or test command, follow that request if the environment allows it.
+If the user explicitly asks the AI to run a particular verification, linter, or test command, follow that request if the environment allows it.
 
 The AI MUST report what was actually verified and MUST NOT claim to have performed a test or verification that it did not perform.
 
 ---
 
-## 11. Component and Abstraction Creation
+## 11. Component, Module, and Abstraction Creation
 
-Do not extract code into a new component, utility, hook, service, or abstraction merely because it might be reusable in the future.
+Do not extract code into a new component, module, class, utility, hook, service, or abstraction merely because it might be reusable in the future.
 
 Create/extract a separate abstraction when there is an actual current need.
 
@@ -255,12 +289,12 @@ The AI MUST NOT perform unrelated refactoring.
 
 Examples of changes that require a concrete reason related to the current task:
 
-- Renaming existing variables throughout unrelated code.
+- Renaming existing variables or functions throughout unrelated code.
 - Reformatting large files.
 - Moving files.
 - Reorganizing folders.
 - Rewriting working code into a preferred pattern.
-- Changing state-management patterns.
+- Changing state-management or data-flow patterns.
 - Replacing existing libraries or APIs.
 - "Cleaning up" unrelated code.
 - Introducing a new abstraction when the existing implementation is sufficient.
@@ -269,13 +303,13 @@ If refactoring is necessary to implement the requested feature safely, explain t
 
 ---
 
-## 13. State Management and Existing Patterns
+## 13. State Management and Application Patterns
 
 Prefer the state-management and application patterns already used in the relevant area of the project.
 
 The AI MUST:
 
-- Inspect how nearby code manages state.
+- Inspect how nearby code manages state and data flow.
 - Follow the existing pattern when appropriate.
 - Reuse existing state-management mechanisms where possible.
 
@@ -351,17 +385,22 @@ If these questions cannot be answered confidently, ask the user before editing.
 
 After making changes, the AI MUST update `AGENT_CHANGELOG.md`.
 
-Each entry should include, when applicable:
+### 17.1 Compact and Token-Efficient Entries
 
-- Date
-- Task / Request
-- Files Changed
-- What Changed
-- Why It Changed
-- Important Decisions
-- Rule Conflicts / Explicit Exceptions
-- Verification Performed
-- Known Issues / Unverified Items
+The AI MUST keep `AGENT_CHANGELOG.md` entries **ultra-concise and high-signal** (compact bullet points) to optimize context and token efficiency:
+
+- **High-Signal Fields:** Include relevant fields when applicable:
+  - Date
+  - Task / Request
+  - Files Changed
+  - What Changed
+  - Why It Changed
+  - Important Decisions
+  - Rule Conflicts / Explicit Exceptions
+  - Verification Performed
+  - Known Issues / Unverified Items
+- **Omit Inapplicable Fields:** Omit empty or inapplicable fields entirely (e.g., if there were no rule conflicts, important decisions, or unverified items, do not include those headers).
+- **Group Follow-up Tweaks:** Trivial follow-up tweaks within the same session can be grouped or appended concisely rather than generating bloated multi-section reports every time.
 
 The changelog exists so a future AI agent can understand what previous agents did before making new changes.
 
@@ -379,8 +418,8 @@ The changelog is historical context, not a replacement for the current code.
 
 The AI MUST:
 
-- Read it before starting work.
-- Use it to understand recent changes and decisions.
+- Read it once at the start of a conversation/session (focusing primarily on the most recent entries rather than processing the entire historical log unless investigating a specific past change).
+- Use recent entries to understand recent changes, conventions, and decisions.
 - Verify historical information against the current code when necessary.
 - Never assume that a previous AI's implementation is still present or correct without checking the relevant files.
 
